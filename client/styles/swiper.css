@@ -1,0 +1,33 @@
+@import 'swiper/css';
+@import "swiper/css/pagination";
+@import "swiper/css/navigation";
+
+.swiper-pagination {
+  bottom: 0 !important;
+}
+.swiper-pagination-bullet-active {
+  background-color: #A78BFA;
+}
+
+/*.swiper-slide:hover .swiper-button-prev,
+.swiper-slide:hover .swiper-button-next {
+  visibility: visible;
+}
+
+.swiper-button-prev {
+  visibility: hidden;
+  left: 0;
+  color: #A78BFA;
+}
+.swiper-button-prev:after {
+  transform: scale(0.7)
+}
+
+.swiper-button-next {
+  visibility: hidden;
+  right: 0;
+  color: #A78BFA;
+}
+.swiper-button-next:after {
+  transform: scale(0.7)
+}*/
