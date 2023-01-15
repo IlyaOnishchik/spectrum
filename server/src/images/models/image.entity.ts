@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
 import { Field, Int, ObjectType } from "@nestjs/graphql";
+import { Category } from "src/categories/models/category.entity";
 
 @Entity('images')
 @ObjectType()
