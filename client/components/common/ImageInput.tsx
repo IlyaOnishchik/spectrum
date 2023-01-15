@@ -1,8 +1,16 @@
+import { ChangeEvent, FC } from "react"
 
+type ImageInputProps = {
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
+}
 
-const ImageInput = () => {
+const ImageInput: FC<ImageInputProps> = ({ onChange }) => {
   return (
-    <input type='file' accept='image/*' onChange={e => console.log(e.target.files![0])}/>
+    <input
+      type='file'
+      accept='image/*'
+      onChange={onChange}
+    />
   )
 }
 
