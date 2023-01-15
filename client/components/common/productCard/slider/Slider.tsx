@@ -1,10 +1,9 @@
 import { FC } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useHover } from '../../../../hooks/useHover';
 
-import { Image } from '../../../../types/Image'
 import ButtonNext from './ButtonNext';
 import ButtonPrev from './ButtonPrev';
+import { Image } from '../../../../types/Image'
 
 type SliderProps = {
   name: string

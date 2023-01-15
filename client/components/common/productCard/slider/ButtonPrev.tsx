@@ -1,6 +1,6 @@
-import { ChevronLeftIcon } from '@heroicons/react/24/solid'
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { useSwiper } from 'swiper/react'
+import { ChevronLeftIcon } from '@heroicons/react/24/solid'
 
 type ButtonPrevProps = {
   isHovered: boolean
