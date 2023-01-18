@@ -19,7 +19,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env'
+      envFilePath: '.env',
     }),
     MailerModule.forRoot({
       transport: {
@@ -27,8 +27,8 @@ import { MailerModule } from '@nestjs-modules/mailer';
         secure: false,
         auth: {
           user: process.env.MAIL_USER,
-          pass: process.env.MAIL_PASS
-        }
+          pass: process.env.MAIL_PASS,
+        },
       },
     }),
     TypeOrmModule.forRoot({
@@ -39,7 +39,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
-      synchronize: true
+      synchronize: true,
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,

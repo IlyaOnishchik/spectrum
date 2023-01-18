@@ -7,10 +7,16 @@ import { Category } from './models/category.entity';
 @Injectable()
 export class CategoriesService {
   constructor(
-    @InjectRepository(Category) private categoriesRepository: Repository<Category>
+    @InjectRepository(Category)
+    private categoriesRepository: Repository<Category>,
   ) {}
 
-  async create(name: string, image: Image, parentCategoryId: string, order: number): Promise<Category> {
+  async create(
+    name: string,
+    image: Image,
+    parentCategoryId: string,
+    order: number,
+  ): Promise<Category> {
     const category = new Category();
     category.name = name;
     category.image = image;
@@ -22,8 +28,8 @@ export class CategoriesService {
   async findAll(): Promise<Category[]> {
     return await this.categoriesRepository.find({
       relations: {
-        image: true
-      }
+        image: true,
+      },
     });
   }
 }

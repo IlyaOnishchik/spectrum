@@ -6,9 +6,7 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Resolver()
 export class RolesResolver {
-  constructor(
-    private rolesService: RolesService
-  ) {}
+  constructor(private rolesService: RolesService) {}
 
   @Mutation(() => Role, { name: 'createRole' })
   async create(@Args('name') name: string): Promise<Role> {

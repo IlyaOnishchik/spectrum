@@ -8,14 +8,21 @@ import { ImagesService } from 'src/images/images.service';
 export class CategoriesResolver {
   constructor(
     private categoriesService: CategoriesService,
-    private imagesService: ImagesService
+    private imagesService: ImagesService,
   ) {}
 
   @Mutation(() => Category, { name: 'createCategory' })
-  async create(@Args('createCategoryInput') createCategoryInput: CreateCategoryInput): Promise<Category> {
+  async create(
+    @Args('createCategoryInput') createCategoryInput: CreateCategoryInput,
+  ): Promise<Category> {
     const { name, imageId, parentCategoryId, order } = createCategoryInput;
     const image = imageId ? await this.imagesService.findOne(imageId) : null;
-    return await this.categoriesService.create(name, image, parentCategoryId, order);
+    return await this.categoriesService.create(
+      name,
+      image,
+      parentCategoryId,
+      order,
+    );
   }
 
   @Query(() => [Category], { name: 'categories' })

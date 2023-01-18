@@ -1,6 +1,12 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Field, Int, ObjectType } from "@nestjs/graphql";
-import { Image } from "src/images/models/image.entity";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Image } from 'src/images/models/image.entity';
 
 @Entity('categories')
 @ObjectType()

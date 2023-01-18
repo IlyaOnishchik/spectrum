@@ -6,7 +6,7 @@ import { Role } from './models/role.entity';
 @Injectable()
 export class RolesService {
   constructor(
-    @InjectRepository(Role) private rolesRepository: Repository<Role>
+    @InjectRepository(Role) private rolesRepository: Repository<Role>,
   ) {}
 
   async create(name: string): Promise<Role> {

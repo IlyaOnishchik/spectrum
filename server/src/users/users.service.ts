@@ -6,7 +6,7 @@ import { User } from './models/user.entity';
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(User) private usersRepository: Repository<User>
+    @InjectRepository(User) private usersRepository: Repository<User>,
   ) {}
 
   async create(user: User): Promise<User> {
@@ -14,11 +14,11 @@ export class UsersService {
   }
 
   async findOne(where: Partial<User>): Promise<User> {
-    return await this.usersRepository.findOne({ 
-      where, 
+    return await this.usersRepository.findOne({
+      where,
       relations: {
-        roles: true
-      }
+        roles: true,
+      },
     });
   }
 

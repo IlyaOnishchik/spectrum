@@ -1,4 +1,8 @@
-import { ConflictException, UnauthorizedException, UseGuards } from '@nestjs/common';
+import {
+  ConflictException,
+  UnauthorizedException,
+  UseGuards,
+} from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
@@ -25,7 +29,8 @@ export class AuthResolver {
   async signUp(@Args('credentials') credentials: Credentials): Promise<string> {
     const { email, password } = credentials;
     const candidate = await this.usersService.findOne({ email });
-    if (candidate) throw new ConflictException('User with this email already exists!');
+    if (candidate)
+      throw new ConflictException('User with this email already exists!');
     const passwordHash = await bcrypt.hashSync(password, 5);
     const user = new User();
     user.email = email;
@@ -35,9 +40,15 @@ export class AuthResolver {
     const defaultRole = await this.rolesService.findOne({ name: 'user' });
     user.roles = [defaultRole];
     const createdUser = await this.usersService.create(user);
-    const payload: JwtPayload = { id: createdUser.id, email: createdUser.email };
+    const payload: JwtPayload = {
+      id: createdUser.id,
+      email: createdUser.email,
+    };
     const accessToken = this.jwtService.sign(payload, { expiresIn: '30d' });
-    await this.authService.sendActivationMail(createdUser.email, `${process.env.SERVER_URL}/auth/activate/${createdUser.activationLink}`);
+    await this.authService.sendActivationMail(
+      createdUser.email,
+      `${process.env.SERVER_URL}/auth/activate/${createdUser.activationLink}`,
+    );
     return accessToken;
   }
 
@@ -55,7 +66,9 @@ export class AuthResolver {
 
   @Query(() => User)
   @UseGuards(JwtAuthGuard)
-  async currentUser(@CurrentUser() user: Pick<User, 'id' | 'email'>): Promise<User> {
+  async currentUser(
+    @CurrentUser() user: Pick<User, 'id' | 'email'>,
+  ): Promise<User> {
     return await this.usersService.findOne({ email: user.email });
   }
 }

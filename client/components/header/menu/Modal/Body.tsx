@@ -20,7 +20,7 @@ const Body = () => {
           <div>
             <div className="font-bold">{item.name}</div>
             <img src={process.env.NEXT_PUBLIC_API_URL + '/' + item.image?.name} alt={item.name} />
-            <div>{secondaryCategories.filter(it => it.parentCategoryId === item.id).map(it => <div>{it.name}</div>)}</div>
+            <div>{secondaryCategories.filter(it => it.parentCategoryId === item.id).map(it => <div key={it.id}>{it.name}</div>)}</div>
           </div>
         )
       }

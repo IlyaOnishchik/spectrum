@@ -1,6 +1,12 @@
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Field, ObjectType } from "@nestjs/graphql";
-import { Role } from "src/roles/models/role.entity";
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Field, ObjectType } from '@nestjs/graphql';
+import { Role } from 'src/roles/models/role.entity';
 
 @Entity('users')
 @ObjectType()
@@ -15,7 +21,7 @@ export class User {
 
   @Column()
   passwordHash: string;
-  
+
   @Column({ default: false })
   @Field(() => Boolean)
   isActivated: boolean;
@@ -23,8 +29,12 @@ export class User {
   @Column()
   activationLink: string;
 
-  @ManyToMany(() => Role, role => role.users)
-  @JoinTable({ name: 'users_roles', joinColumn: { name: 'userId' }, inverseJoinColumn: { name: 'roleId' } })
+  @ManyToMany(() => Role, (role) => role.users)
+  @JoinTable({
+    name: 'users_roles',
+    joinColumn: { name: 'userId' },
+    inverseJoinColumn: { name: 'roleId' },
+  })
   @Field(() => [Role])
   roles: Role[];
 }

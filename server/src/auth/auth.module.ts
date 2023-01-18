@@ -14,13 +14,13 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
-        secret: configService.get<string>('ACCESS_TOKEN_SECRET')
-      })
+        secret: configService.get<string>('ACCESS_TOKEN_SECRET'),
+      }),
     }),
     UsersModule,
-    RolesModule
+    RolesModule,
   ],
   providers: [AuthService, AuthResolver, JwtStrategy],
-  controllers: [AuthController]
+  controllers: [AuthController],
 })
 export class AuthModule {}

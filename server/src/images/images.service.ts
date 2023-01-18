@@ -6,7 +6,7 @@ import { Image } from './models/image.entity';
 @Injectable()
 export class ImagesService {
   constructor(
-    @InjectRepository(Image) private imagesRepository: Repository<Image>
+    @InjectRepository(Image) private imagesRepository: Repository<Image>,
   ) {}
 
   async create(name: string): Promise<Image> {
@@ -16,6 +16,6 @@ export class ImagesService {
   }
 
   async findOne(id: string): Promise<Image> {
-    return await this.imagesRepository.findOne({ where: { id } })
+    return await this.imagesRepository.findOne({ where: { id } });
   }
 }
