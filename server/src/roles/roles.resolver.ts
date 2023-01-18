@@ -1,6 +1,8 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { RolesService } from './roles.service';
 import { Role } from './models/role.entity';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Resolver()
 export class RolesResolver {
@@ -13,6 +15,7 @@ export class RolesResolver {
     return await this.rolesService.create(name);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Query(() => [Role], { name: 'roles' })
   async findAll(): Promise<Role[]> {
     return await this.rolesService.findAll();
