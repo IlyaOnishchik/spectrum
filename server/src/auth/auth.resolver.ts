@@ -1,14 +1,16 @@
-import { ConflictException } from '@nestjs/common';
-import { Args, Mutation, ObjectType, Resolver } from '@nestjs/graphql';
-import { UsersService } from 'src/users/users.service';
-import { Credentials } from './models/credentials.input';
+import { ConflictException, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
+import { v4 as uuidv4 } from 'uuid';
+import { AuthService } from './auth.service';
+import { UsersService } from 'src/users/users.service';
+import { RolesService } from 'src/roles/roles.service';
+import { Credentials } from './models/credentials.input';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { CurrentUser } from './decorators/current-user.decorator';
 import { User } from 'src/users/models/user.entity';
 import { JwtPayload } from './models/jwt-payload.model';
-import { JwtService } from '@nestjs/jwt';
-import { v4 as uuidv4 } from 'uuid';
-import { RolesService } from 'src/roles/roles.service';
-import { AuthService } from './auth.service';
 
 @Resolver()
 export class AuthResolver {
@@ -34,8 +36,26 @@ export class AuthResolver {
     user.roles = [defaultRole];
     const createdUser = await this.usersService.create(user);
     const payload: JwtPayload = { id: createdUser.id, email: createdUser.email };
-    const accessToken = this.jwtService.sign(payload, { expiresIn: '30m' });
+    const accessToken = this.jwtService.sign(payload, { expiresIn: '30d' });
     await this.authService.sendActivationMail(createdUser.email, `${process.env.SERVER_URL}/auth/activate/${createdUser.activationLink}`);
     return accessToken;
+  }
+
+  @Mutation(() => String)
+  async signIn(@Args('credentials') credentials: Credentials): Promise<string> {
+    const { email, password } = credentials;
+    const user = await this.usersService.findOne({ email });
+    if (!user) throw new UnauthorizedException('User not found!');
+    const isMatch = bcrypt.compareSync(password, user.passwordHash);
+    if (!isMatch) throw new UnauthorizedException('Wrong password!');
+    const payload: JwtPayload = { id: user.id, email: user.email };
+    const accessToken = this.jwtService.sign(payload, { expiresIn: '30d' });
+    return accessToken;
+  }
+
+  @Query(() => User)
+  @UseGuards(JwtAuthGuard)
+  async currentUser(@CurrentUser() user: Pick<User, 'id' | 'email'>): Promise<User> {
+    return await this.usersService.findOne({ email: user.email });
   }
 }
