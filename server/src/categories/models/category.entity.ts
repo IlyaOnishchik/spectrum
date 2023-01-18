@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, Int, ObjectType } from "@nestjs/graphql";
 import { Image } from "src/images/models/image.entity";
 
 @Entity('categories')
@@ -13,8 +13,16 @@ export class Category {
   @Field()
   name: string;
 
-  @OneToOne(() => Image)
+  @OneToOne(() => Image, { nullable: true })
   @JoinColumn()
-  @Field(() => Image)
+  @Field(() => Image, { nullable: true })
   image: Image;
+
+  @Column({ nullable: true })
+  @Field({ nullable: true })
+  parentCategoryId: string;
+
+  @Column()
+  @Field(() => Int)
+  order: number;
 }

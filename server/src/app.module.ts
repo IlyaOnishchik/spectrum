@@ -9,28 +9,39 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CategoriesModule } from './categories/categories.module';
 import { ImagesModule } from './images/images.module';
+import { ConfigModule } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
+import { RolesModule } from './roles/roles.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env'
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'spectrum',
+      host: process.env.DATABASE_HOST,
+      port: +process.env.DATABASE_PORT,
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
-      synchronize: true,
+      synchronize: true
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'static')
+      rootPath: join(__dirname, '..', 'static'),
     }),
     CategoriesModule,
     ImagesModule,
+    UsersModule,
+    RolesModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

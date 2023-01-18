@@ -14,4 +14,8 @@ export class ImagesService {
     image.name = name;
     return await this.imagesRepository.save(image);
   }
+
+  async findOne(id: string): Promise<Image> {
+    return await this.imagesRepository.findOne({ where: { id } })
+  }
 }

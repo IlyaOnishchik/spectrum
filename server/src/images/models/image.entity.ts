@@ -6,6 +6,7 @@ import { Category } from "src/categories/models/category.entity";
 @ObjectType()
 export class Image {
   @PrimaryGeneratedColumn('uuid')
+  @Field()
   id: string;
 
   @Column({ unique: true })

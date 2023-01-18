@@ -1,5 +1,9 @@
+import { Image } from "./Image"
+
 export type Category = {
   id: string
   name: string
-  parent: Category | null
+  image: Image | null
+  parentCategoryId: string | null
+  order: number
 }
