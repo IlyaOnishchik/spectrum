@@ -22,7 +22,7 @@ const Body: FC<BodyProps> = ({ onClose }) => {
     <ModalBody>
       <Accordion allowToggle>
         <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 | gap-2'>
-          {baseCategories.map(base => 
+          {baseCategories.sort((a,b) => a.order - b.order).map(base =>
             <BodyItem 
               key={base.id} 
               category={base}
