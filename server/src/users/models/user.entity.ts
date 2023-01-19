@@ -26,6 +26,10 @@ export class User {
   @Field(() => Boolean)
   isActivated: boolean;
 
+  @Column({ default: false })
+  @Field(() => Boolean)
+  isBanned: boolean;
+
   @Column()
   activationLink: string;
 

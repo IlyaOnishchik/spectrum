@@ -1,13 +1,16 @@
+import { useDisclosure } from '@chakra-ui/react'
 import { UserCircleIcon, HeartIcon, ShoppingCartIcon, ArrowRightOnRectangleIcon, ArrowLeftOnRectangleIcon, IdentificationIcon, ChartBarSquareIcon } from '@heroicons/react/24/solid'
 import { useCurrentUser } from '../../../hooks/useCurrentUser'
 import { useAuth } from '../../../lib/auth/useAuth'
 import ActionsItem from './ActionsItem'
+import AuthModal from './auth/AuthModal'
 
 const Actions = () => {
 
   const { data } = useCurrentUser()
-  const { signOut } = useAuth()
-  console.log(data)
+  const { isOpen: isSignInOpen, onOpen: onSignInOpen, onClose: onSignInClose } = useDisclosure()
+  const { isOpen: isSignUpOpen, onOpen: onSignUpOpen, onClose: onSignUpClose } = useDisclosure()
+  const { signIn, signUp, signOut } = useAuth()
 
   return (
     <nav>
@@ -22,8 +25,20 @@ const Actions = () => {
             </>
           ) : (
             <>
-              <ActionsItem name='Sign in' href='/' icon={<ArrowLeftOnRectangleIcon className='w-8 h-8 text-white'/>}/>
-              <ActionsItem name='Sign up' href='/' icon={<IdentificationIcon className='w-8 h-8 text-white'/>}/>
+              <ActionsItem
+                name='Sign in' 
+                href='/' 
+                icon={<ArrowLeftOnRectangleIcon className='w-8 h-8 text-white'/>}
+                onClick={onSignInOpen}
+              />
+              <AuthModal title='Sign in' isOpen={isSignInOpen} onClose={onSignInClose} callback={signIn}/>
+              <ActionsItem
+                name='Sign up'
+                href='/'
+                icon={<IdentificationIcon className='w-8 h-8 text-white'/>}
+                onClick={onSignUpOpen}
+              />
+              <AuthModal title='Sign up' isOpen={isSignUpOpen} onClose={onSignUpClose} callback={signUp}/>
             </>
           )
         }

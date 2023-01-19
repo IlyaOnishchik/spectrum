@@ -1,11 +1,16 @@
-import { ModalBody } from "@chakra-ui/react"
+import { FC } from 'react'
+import { Accordion, ModalBody, useDisclosure } from "@chakra-ui/react"
 import { useCategories } from "../../../../hooks/useCategories"
 import { Category } from "../../../../types/Category"
 import Error from "../../../common/Error"
 import Loading from "../../../common/Loading"
+import BodyItem from "./BodyItem"
 
-const Body = () => {
+type BodyProps = {
+  onClose: () => void
+}
 
+const Body: FC<BodyProps> = ({ onClose }) => {
   const { data, loading, error } = useCategories()
   if (loading) return <Loading/>
   if (error) return <Error message={error.message}/>
@@ -15,15 +20,17 @@ const Body = () => {
 
   return (
     <ModalBody>
-      {
-        baseCategories.map(item => 
-          <div>
-            <div className="font-bold">{item.name}</div>
-            <img src={process.env.NEXT_PUBLIC_API_URL + '/' + item.image?.name} alt={item.name} />
-            <div>{secondaryCategories.filter(it => it.parentCategoryId === item.id).map(it => <div key={it.id}>{it.name}</div>)}</div>
-          </div>
-        )
-      }
+      <Accordion allowToggle>
+        <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 | gap-2'>
+          {baseCategories.map(base => 
+            <BodyItem 
+              key={base.id} 
+              category={base}
+              subcategories={secondaryCategories.filter(sec => sec.parentCategoryId === base.id)}
+              onClose={onClose}
+            />)}
+        </ul>
+      </Accordion>
     </ModalBody>
   )
 }

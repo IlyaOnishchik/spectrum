@@ -20,6 +20,8 @@
     "@types/react-dom": "18.0.9",
     "eslint": "8.30.0",
     "eslint-config-next": "13.0.7",
+    "formik": "^2.2.9",
+    "formik-typed": "^0.0.3-alpha",
     "framer-motion": "^7.10.3",
     "graphql": "^16.6.0",
     "next": "13.0.7",

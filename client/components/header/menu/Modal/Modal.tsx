@@ -16,7 +16,7 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose }) => {
       <ModalContent>
         <ModalHeader>Catalog</ModalHeader>
         <ModalCloseButton/>
-        <Body/>
+        <Body onClose={onClose}/>
       </ModalContent>
     </ModalChakra>
   )
