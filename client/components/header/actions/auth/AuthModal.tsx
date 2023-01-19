@@ -11,7 +11,7 @@ type AuthModalProps = {
 
 const AuthModal: FC<AuthModalProps> = ({ title, isOpen, onClose, callback }) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} size={['full', 'md']}>
       <ModalOverlay/>
       <ModalContent>
         <ModalHeader>{title}</ModalHeader>

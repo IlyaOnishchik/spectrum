@@ -19,7 +19,7 @@ export class ImagesController {
   @UseInterceptors(
     FileInterceptor('image', {
       storage: diskStorage({
-        destination: './static/images',
+        destination: './static',
         filename: (_, file, cb) => {
           const extension = file.originalname.split('.')[1];
           const filename = uuidv4() + '.' + extension;

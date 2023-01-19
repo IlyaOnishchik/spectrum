@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react'
+import React, { ButtonHTMLAttributes, FC, ReactNode } from 'react'
 
 type ButtonProps = {
   children?: ReactNode
@@ -7,7 +7,7 @@ type ButtonProps = {
 
 const Button: FC<ButtonProps> = ({ children, variant }) => {
   return (
-    <button 
+    <button
       className={`rounded | transition-all
         ${variant === 'outline'
           ? 'px-[14px] py-[6px] | border-2 border-violet-400 | hover:bg-violet-400 text-violet-400 hover:text-white'

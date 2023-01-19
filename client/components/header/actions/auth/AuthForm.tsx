@@ -1,6 +1,8 @@
 import { FC } from 'react'
-import { FormControl, FormErrorMessage, FormLabel, Input } from '@chakra-ui/react'
 import { Field, Formik } from 'formik'
+import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react'
+import AuthInput from './AuthInput'
+import Button from '../../../common/Button'
 
 type AuthFormProps = {
   callback: (email: string, password: string) => Promise<void>,
@@ -25,20 +27,20 @@ const AuthForm: FC<AuthFormProps> = ({ callback, onClose, title }) => {
       }}
     >
       {({ handleSubmit, errors, touched }) => (
-        <form onSubmit={handleSubmit} className=''>
-          <FormControl marginBottom={'10px'}>
+        <form onSubmit={handleSubmit} className='flex flex-col gap-5 pb-2'>
+          <FormControl className='flex flex-col'>
             <FormLabel htmlFor="email">Email address</FormLabel>
             <Field
-              as={Input}
+              as={AuthInput}
               id="email"
               name="email"
               type="email"
             />
           </FormControl>
-          <FormControl isInvalid={!!errors.password && touched.password} marginBottom={'15px'}>
+          <FormControl isInvalid={!!errors.password && touched.password} className='flex flex-col'>
             <FormLabel htmlFor="password">Password</FormLabel>
             <Field
-              as={Input}
+              as={AuthInput}
               id="password"
               name="password"
               type="password"
@@ -53,7 +55,7 @@ const AuthForm: FC<AuthFormProps> = ({ callback, onClose, title }) => {
             <FormErrorMessage>{errors.password}</FormErrorMessage>
           </FormControl>
           <div className='text-right'>
-            <button className='px-2 py-1 | rounded | transition-all font-semibold bg-gray-200 hover:bg-gray-300' type='submit'>{title}</button>
+            <Button>{title}</Button>
           </div>
         </form>
       )}

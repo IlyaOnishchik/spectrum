@@ -12,7 +12,7 @@ const Profile = () => {
   console.log(data)
 
   return (
-    <div>Profile</div>
+    <div>{data.currentUser.email}</div>
   )
 }
 
