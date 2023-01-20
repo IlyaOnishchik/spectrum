@@ -3,6 +3,8 @@ import { RolesService } from './roles.service';
 import { Role } from './models/role.entity';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { Roles } from './decorators/roles.decorator';
+import { RolesGuard } from './guards/roles.guard';
 
 @Resolver()
 export class RolesResolver {
@@ -13,7 +15,8 @@ export class RolesResolver {
     return await this.rolesService.create(name);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @Roles('admin')
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Query(() => [Role], { name: 'roles' })
   async findAll(): Promise<Role[]> {
     return await this.rolesService.findAll();

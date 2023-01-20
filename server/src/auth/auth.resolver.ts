@@ -43,6 +43,7 @@ export class AuthResolver {
     const payload: JwtPayload = {
       id: createdUser.id,
       email: createdUser.email,
+      roles: createdUser.roles
     };
     const accessToken = this.jwtService.sign(payload, { expiresIn: '30d' });
     await this.authService.sendActivationMail(
@@ -59,7 +60,7 @@ export class AuthResolver {
     if (!user) throw new UnauthorizedException('User not found!');
     const isMatch = bcrypt.compareSync(password, user.passwordHash);
     if (!isMatch) throw new UnauthorizedException('Wrong password!');
-    const payload: JwtPayload = { id: user.id, email: user.email };
+    const payload: JwtPayload = { id: user.id, email: user.email, roles: user.roles };
     const accessToken = this.jwtService.sign(payload, { expiresIn: '30d' });
     return accessToken;
   }
