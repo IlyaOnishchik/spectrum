@@ -1,7 +1,7 @@
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import { Category } from './models/category.entity';
 import { CategoriesService } from './categories.service';
-import { CreateCategoryInput } from './models/create-category.input';
+import { CreateCategory } from './models/create-category.input';
 import { ImagesService } from 'src/images/images.service';
 
 @Resolver(() => Category)
@@ -13,7 +13,7 @@ export class CategoriesResolver {
 
   @Mutation(() => Category, { name: 'createCategory' })
   async create(
-    @Args('createCategoryInput') createCategoryInput: CreateCategoryInput,
+    @Args('createCategoryInput') createCategoryInput: CreateCategory,
   ): Promise<Category> {
     const { name, imageId, parentCategoryId, order } = createCategoryInput;
     const image = imageId ? await this.imagesService.findOne(imageId) : null;

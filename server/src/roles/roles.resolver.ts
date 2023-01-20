@@ -10,6 +10,8 @@ import { RolesGuard } from './guards/roles.guard';
 export class RolesResolver {
   constructor(private rolesService: RolesService) {}
 
+  @Roles('admin')
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Mutation(() => Role, { name: 'createRole' })
   async create(@Args('name') name: string): Promise<Role> {
     return await this.rolesService.create(name);
