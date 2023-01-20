@@ -32,4 +32,8 @@ export class CategoriesService {
       },
     });
   }
+
+  async findOne(where: Partial<Category>): Promise<Category> {
+    return await this.categoriesRepository.findOne({ where });
+  }
 }

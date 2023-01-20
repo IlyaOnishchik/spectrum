@@ -16,7 +16,7 @@ export class CategoriesResolver {
     @Args('createCategoryInput') createCategoryInput: CreateCategory,
   ): Promise<Category> {
     const { name, imageId, parentCategoryId, order } = createCategoryInput;
-    const image = imageId ? await this.imagesService.findOne(imageId) : null;
+    const image = imageId ? await this.imagesService.findOne({ id: imageId }) : null;
     return await this.categoriesService.create(
       name,
       image,

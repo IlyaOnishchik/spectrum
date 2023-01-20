@@ -20,8 +20,6 @@ export class RolesGuard implements CanActivate {
 
         let { user } = ctx.getContext().req;
 
-        console.log(user)
-
         return requiredRoles.some(role => user.roles.map(role => role.name).includes(role));
     }
 }

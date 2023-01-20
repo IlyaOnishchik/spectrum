@@ -17,6 +17,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { ParameterCategoriesModule } from './parameter-categories/parameter-categories.module';
 import { ParametersModule } from './parameters/parameters.module';
 import { ProductsModule } from './products/products.module';
+import { ProductsImagesModule } from './products-images/products-images.module';
 
 @Module({
   imports: [
@@ -59,6 +60,7 @@ import { ProductsModule } from './products/products.module';
     ParameterCategoriesModule,
     ParametersModule,
     ProductsModule,
+    ProductsImagesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -7,7 +7,7 @@ import { Parameter } from './models/parameter.entity';
 @Injectable()
 export class ParametersService {
   constructor(
-    @InjectRepository(Parameter) private parameterRepository: Repository<Parameter>
+    @InjectRepository(Parameter) private parametersRepository: Repository<Parameter>
   ) {}
 
   async create(name: string, category: ParameterCategory, order: number): Promise<Parameter> {
@@ -15,6 +15,6 @@ export class ParametersService {
     parameter.name = name;
     parameter.category = category;
     parameter.order = order;
-    return await this.parameterRepository.save(parameter);
+    return await this.parametersRepository.save(parameter);
   }
 }

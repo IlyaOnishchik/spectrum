@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { Image } from './models/image.entity';
 
 @Injectable()
@@ -15,7 +15,11 @@ export class ImagesService {
     return await this.imagesRepository.save(image);
   }
 
-  async findOne(id: string): Promise<Image> {
-    return await this.imagesRepository.findOne({ where: { id } });
+  async findManyByIds(ids: string[]): Promise<Image[]> {
+    return await this.imagesRepository.find({ where: { id: In(ids) } });
+  }
+
+  async findOne(where: Partial<Image>): Promise<Image> {
+    return await this.imagesRepository.findOne({ where });
   }
 }
