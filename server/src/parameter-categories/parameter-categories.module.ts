@@ -6,6 +6,7 @@ import { ParameterCategory } from './models/parameter-category.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ParameterCategory])],
-  providers: [ParameterCategoriesService, ParameterCategoriesResolver]
+  providers: [ParameterCategoriesService, ParameterCategoriesResolver],
+  exports: [ParameterCategoriesService]
 })
 export class ParameterCategoriesModule {}

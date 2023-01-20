@@ -1,5 +1,6 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Parameter } from "src/parameters/models/parameter.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('parameter_categories')
 @ObjectType()
@@ -15,4 +16,8 @@ export class ParameterCategory {
   @Column({ unique: true })
   @Field(() => Int)
   order: number;
+
+  @OneToMany(() => Parameter, parameter => parameter.category)
+  @Field(() => [Parameter], { nullable: true })
+  parameters: Parameter[];
 }

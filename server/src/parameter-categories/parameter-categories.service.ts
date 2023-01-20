@@ -15,4 +15,8 @@ export class ParameterCategoriesService {
     parameterCategory.order = order;
     return await this.parameterCategoriesRepository.save(parameterCategory);
   }
+
+  async findOne(where: Partial<ParameterCategory>): Promise<ParameterCategory> {
+    return await this.parameterCategoriesRepository.findOne({ where });
+  }
 }
