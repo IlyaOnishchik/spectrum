@@ -18,8 +18,13 @@ export class ProductsService {
     return await this.productsRepository.save(product);
   }
 
-  async findAll(): Promise<Product[]> {
+  async find(
+    categoryId: string
+  ): Promise<Product[]> {
     return await this.productsRepository.find({
+      where: {
+        category: { id: categoryId }
+      },
       relations: {
         category: true,
         images: {

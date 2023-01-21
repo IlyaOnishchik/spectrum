@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 
 export const PRODUCTS_QUERY = gql`
-  query products {
-    products {
+  query products($categoryId: String) {
+    products(categoryId: $categoryId) {
       id
       price
       category { id name }
@@ -12,4 +12,8 @@ export const PRODUCTS_QUERY = gql`
   }
 `
 
-export const useProducts = () => useQuery(PRODUCTS_QUERY)
+type UseProductsVariables = {
+  categoryId?: string
+}
+
+export const useProducts = (variables: UseProductsVariables) => useQuery(PRODUCTS_QUERY, { variables })

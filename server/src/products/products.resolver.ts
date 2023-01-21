@@ -5,6 +5,7 @@ import { CategoriesService } from 'src/categories/categories.service';
 import { Roles } from 'src/roles/decorators/roles.decorator';
 import { RolesGuard } from 'src/roles/guards/roles.guard';
 import { CreateProduct } from './models/create-product.input';
+import { FindProducts } from './models/find-products.args';
 import { Product } from './models/product.entity';
 import { ProductsService } from './products.service';
 
@@ -25,7 +26,8 @@ export class ProductsResolver {
   }
 
   @Query(() => [Product], { name: 'products' })
-  async find(): Promise<Product[]> {
-    return await this.productsService.findAll();
+  async find(@Args() findProducts: FindProducts): Promise<Product[]> {
+    const { categoryId } = findProducts;
+    return await this.productsService.find(categoryId);
   }
 }
