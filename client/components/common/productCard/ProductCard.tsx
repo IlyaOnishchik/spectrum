@@ -1,17 +1,17 @@
 import { FC } from 'react'
-
-import { Image } from '../../../types/Image'
 import Slider from './slider/Slider'
 import Actions from './Actions'
 import { useHover } from '../../../hooks/useHover'
+import { Product } from '../../../types/Product'
 
 type ProductCardProps = {
-  name: string
-  price: number
-  images: Image[]
+  product: Product
 }
 
-const ProductCard: FC<ProductCardProps> = ({ name, price, images }) => {
+const ProductCard: FC<ProductCardProps> = ({ product }) => {
+
+  const name = 'mock'
+  const images = [...product.images].sort((a,b) => a.order - b.order).map(item => item.image)
 
   const { isHovered, onMouseEnter, onMouseLeave } = useHover()
 
@@ -24,7 +24,7 @@ const ProductCard: FC<ProductCardProps> = ({ name, price, images }) => {
       <div className='flex flex-col | gap-1'>
         <div className='text-lg font-bold'>{name}</div>
         <div className='flex justify-between items-center'>
-          <div className='text-xl font-bold'>{price} $</div>
+          <div className='text-xl font-bold'>{product.price} $</div>
           <Actions/>
         </div>
       </div>

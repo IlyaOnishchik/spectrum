@@ -1,11 +1,16 @@
-import React from 'react'
-import { Navigation, Pagination } from 'swiper'
+import { Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { useProducts } from '../../../hooks/useProducts'
+import Loading from '../../common/Loading'
+import Error from '../../common/Error'
 import ProductCard from '../../common/productCard/ProductCard'
-
-import { products } from '../../../data/products'
+import { Product } from '../../../types/Product'
 
 const Slider = () => {
+  const { loading, error, data } = useProducts()
+  if (loading) return <Loading/>
+  if (error) return <Error message={error.message}/>
+  const products: Product[] = data.products
 
   return (
     <Swiper
@@ -21,9 +26,9 @@ const Slider = () => {
       }}
       className='block | w-full | pb-6'
     >
-      {products.map(item =>
+      {products.map(item => 
         <SwiperSlide key={item.id} className='flex justify-center px-5 pb-5'>
-          <ProductCard key={item.id} name={item.name} price={item.price} images={item.images}/>
+          <ProductCard product={item}/>
         </SwiperSlide>
       )}
     </Swiper>

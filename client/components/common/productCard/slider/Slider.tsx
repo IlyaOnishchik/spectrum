@@ -12,7 +12,6 @@ type SliderProps = {
 }
 
 const Slider: FC<SliderProps> = ({ name, images, isHovered }) => {
-
   return (
     <Swiper
       className='w-full h-[200px]'
@@ -20,9 +19,9 @@ const Slider: FC<SliderProps> = ({ name, images, isHovered }) => {
     >
       <ButtonPrev isHovered={isHovered}/>
       <ButtonNext isHovered={isHovered}/>
-      {images.sort((a,b) => a.order - b.order).map(item =>
+      {images.map(item =>
         <SwiperSlide key={item.id} >
-          <img src={`/${item.path}/${item.name}`} alt={name} className='absolute w-full h-full object-contain'/>
+          <img src={`${process.env.NEXT_PUBLIC_API_URL}/${item.name}`} alt={name} className='absolute w-full h-full object-contain'/>
         </SwiperSlide>
       )}      
     </Swiper>
