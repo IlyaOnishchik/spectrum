@@ -2,6 +2,7 @@ import { Field, Int, ObjectType } from "@nestjs/graphql";
 import { Category } from "src/categories/models/category.entity";
 import { Image } from "src/images/models/image.entity";
 import { ProductImage } from "src/products-images/models/product-image.entity";
+import { ProductParameter } from "src/products-parameters/models/product-parameter.entity";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('products')
@@ -22,4 +23,12 @@ export class Product {
   @ManyToOne(() => Category, category => category.products)
   @Field(() => Category)
   category: Category;
+
+  @OneToMany(() => ProductParameter, productParameter => productParameter.product)
+  @Field(() => [ProductParameter])
+  parameters: ProductParameter[];
+
+  @Column()
+  @Field(() => Int)
+  quantity: number;
 }

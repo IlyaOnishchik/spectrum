@@ -19,9 +19,9 @@ export class ProductsResolver {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Mutation(() => Product, { name: 'createProduct' })
   async create(@Args('createProduct') createProduct: CreateProduct): Promise<Product> {
-    const { price, categoryId } = createProduct;
+    const { price, categoryId, quantity } = createProduct;
     const category = await this.categoriesService.findOne({ id: categoryId });
-    return await this.productsService.create(price, category);
+    return await this.productsService.create(price, category, quantity);
   }
 
   @Query(() => [Product], { name: 'products' })

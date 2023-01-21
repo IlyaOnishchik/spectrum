@@ -3,6 +3,7 @@ import { Category } from './models/category.entity';
 import { CategoriesService } from './categories.service';
 import { CreateCategory } from './models/create-category.input';
 import { ImagesService } from 'src/images/images.service';
+import { FindCategory } from './models/find-category.args';
 
 @Resolver(() => Category)
 export class CategoriesResolver {
@@ -28,5 +29,10 @@ export class CategoriesResolver {
   @Query(() => [Category], { name: 'categories' })
   async findAll(): Promise<Category[]> {
     return await this.categoriesService.findAll();
+  }
+
+  @Query(() => Category, { name: 'category' })
+  async findOne(@Args() findCategory: FindCategory): Promise<Category> {
+    return await this.categoriesService.findOne(findCategory);
   }
 }

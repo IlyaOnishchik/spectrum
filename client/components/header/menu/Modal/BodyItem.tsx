@@ -23,7 +23,7 @@ const BodyItem: FC<BodyItemProps> = ({ category, subcategories, onClose }) => {
           <ul>
             {subcategories.map(subcategory => 
               <li key={subcategory.id} className='cursor-pointer hover:opacity-70 transition-all p-1' onClick={onClose}>
-                <Link href={`/subcategories/${subcategory.id}`}>{subcategory.name}</Link>
+                <Link href={`/categories/${subcategory.id}`}>{subcategory.name}</Link>
               </li>
             )}
           </ul>

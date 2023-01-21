@@ -10,20 +10,24 @@ export class ProductsService {
     @InjectRepository(Product) private productsRepository: Repository<Product>
   ) {}
 
-  async create(price: number, category: Category): Promise<Product> {
+  async create(price: number, category: Category, quantity: number): Promise<Product> {
     const product = new Product();
     product.price = price;
     product.category = category;
+    product.quantity = quantity;
     return await this.productsRepository.save(product);
   }
 
   async findAll(): Promise<Product[]> {
     return await this.productsRepository.find({
       relations: {
+        category: true,
         images: {
           image: true
         },
-        category: true
+        parameters: {
+          parameter: true
+        }
       }
     });
   }

@@ -17,4 +17,8 @@ export class ParametersService {
     parameter.order = order;
     return await this.parametersRepository.save(parameter);
   }
+
+  async findOne(where: Partial<Parameter>): Promise<Parameter> {
+    return await this.parametersRepository.findOne({ where });
+  }
 }

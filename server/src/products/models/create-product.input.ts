@@ -7,4 +7,7 @@ export class CreateProduct {
 
   @Field()
   categoryId: string;
+
+  @Field(() => Int)
+  quantity: number;
 }

@@ -7,6 +7,7 @@ import { ParameterCategoriesModule } from 'src/parameter-categories/parameter-ca
 
 @Module({
   imports: [TypeOrmModule.forFeature([Parameter]), ParameterCategoriesModule],
-  providers: [ParametersService, ParametersResolver]
+  providers: [ParametersService, ParametersResolver],
+  exports: [ParametersService]
 })
 export class ParametersModule {}

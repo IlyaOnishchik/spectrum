@@ -10,7 +10,11 @@ type ProductCardProps = {
 
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
 
-  const name = 'mock'
+  console.log(product)
+
+  const brand = product.parameters.find(item => item.parameter.name === 'Brand')?.value || 'Brand'
+  const model = product.parameters.find(item => item.parameter.name === 'Model')?.value || 'Model'
+  const name = brand + ' ' + model
   const images = [...product.images].sort((a,b) => a.order - b.order).map(item => item.image)
 
   const { isHovered, onMouseEnter, onMouseLeave } = useHover()

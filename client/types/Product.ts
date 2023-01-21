@@ -1,9 +1,11 @@
 import { Category } from "./Category"
 import { ProductImage } from "./ProductImage"
+import { ProductParameter } from "./ProductParameter"
 
 export type Product = {
   id: string
-  images: ProductImage[]
   price: number
   category: Category
+  images: ProductImage[]
+  parameters: ProductParameter[]
 }

@@ -4,9 +4,10 @@ export const PRODUCTS_QUERY = gql`
   query products {
     products {
       id
-      images { image { id name } order }
       price
       category { id name }
+      images { image { id name } order }
+      parameters { parameter { name } value }
     }
   }
 `
