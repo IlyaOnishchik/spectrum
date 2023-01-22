@@ -10,8 +10,6 @@ type ProductCardProps = {
 
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
 
-  console.log(product)
-
   const brand = product.parameters.find(item => item.parameter.name === 'Brand')?.value || 'Brand'
   const model = product.parameters.find(item => item.parameter.name === 'Model')?.value || 'Model'
   const name = brand + ' ' + model

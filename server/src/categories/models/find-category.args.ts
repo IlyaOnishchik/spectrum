@@ -6,5 +6,5 @@ export class FindCategory {
   id: string;
 
   @Field({ nullable: true })
-  name: string; 
+  name: string;
 }

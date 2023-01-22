@@ -7,16 +7,7 @@ import { RolesGuard } from 'src/roles/guards/roles.guard';
 import { CreateProduct } from './models/create-product.input';
 import { FindProductsArgs } from './models/find-products.args';
 import { Product } from './models/product.entity';
-import { ProductsService } from './products.service';
-
-@ObjectType()
-class ProductsRepsonse {
-  @Field(() => [Product])
-  products: Product[];
-
-  @Field(() => Int)
-  count: number;
-}
+import { PaginatedProductsRepsonse, ProductsService } from './products.service';
 
 @Resolver()
 export class ProductsResolver {
@@ -34,14 +25,8 @@ export class ProductsResolver {
     return await this.productsService.create(price, category, quantity);
   }
 
-  @Query(() => [Product], { name: 'products' })
-  async find(@Args() findProductsArgs: FindProductsArgs): Promise<Product[]> {
-    return await this.productsService.find(findProductsArgs);
-  }
-
-  @Query(() => ProductsRepsonse)
-  async findAndCount() {
-    const result = await this.productsService.findAndCount();
-    return { products: result[0], count: result[1] };
+  @Query(() => PaginatedProductsRepsonse, { name: 'products' })
+  async findAndCount(@Args() findProductsArgs: FindProductsArgs): Promise<PaginatedProductsRepsonse> {
+    return await this.productsService.findAndCount(findProductsArgs);
   }
 }

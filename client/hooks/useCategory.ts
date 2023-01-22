@@ -13,4 +13,4 @@ type UseCategoryVariables = {
   name?: string
 }
 
-export const useCategory = (variables: UseCategoryVariables) => useQuery(CATEGORY_QUERY, { variables })
+export const useCategory = (variables?: UseCategoryVariables) => useQuery(CATEGORY_QUERY, { variables })

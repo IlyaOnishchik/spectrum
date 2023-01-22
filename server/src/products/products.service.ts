@@ -1,9 +1,19 @@
 import { Injectable } from '@nestjs/common';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Category } from 'src/categories/models/category.entity';
 import { Repository } from 'typeorm';
 import { FindProductsArgs } from './models/find-products.args';
 import { Product } from './models/product.entity';
+
+@ObjectType()
+export class PaginatedProductsRepsonse {
+  @Field(() => [Product])
+  items: Product[];
+
+  @Field(() => Int)
+  count: number;
+}
 
 @Injectable()
 export class ProductsService {
@@ -19,13 +29,9 @@ export class ProductsService {
     return await this.productsRepository.save(product);
   }
 
-  async findAndCount() {
-    return await this.productsRepository.findAndCount();
-  }
-
-  async find(findProductsArgs: FindProductsArgs): Promise<Product[]> {
+  async findAndCount(findProductsArgs: FindProductsArgs): Promise<PaginatedProductsRepsonse> {
     const { categoryId, take, skip } = findProductsArgs;
-    return await this.productsRepository.find({
+    const result = await this.productsRepository.findAndCount({
       take,
       skip,
       where: {
@@ -41,6 +47,7 @@ export class ProductsService {
         }
       },
     });
+    return { items: result[0], count: result[1] };
   }
 
   async findOne(where: Partial<Product>): Promise<Product> {
