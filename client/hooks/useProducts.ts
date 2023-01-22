@@ -16,4 +16,4 @@ type UseProductsVariables = {
   categoryId?: string
 }
 
-export const useProducts = (variables: UseProductsVariables) => useQuery(PRODUCTS_QUERY, { variables })
+export const useProducts = (variables?: UseProductsVariables) => useQuery(PRODUCTS_QUERY, { variables })

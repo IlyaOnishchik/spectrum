@@ -1,7 +1,13 @@
-import { ArgsType, Field } from "@nestjs/graphql";
+import { ArgsType, Field, Int } from "@nestjs/graphql";
 
 @ArgsType()
-export class FindProducts {
+export class FindProductsArgs {
   @Field({ nullable: true })
-  categoryId: string; 
+  categoryId: string;
+
+  @Field(() => Int, { nullable: true })
+  take: number;
+
+  @Field(() => Int, { nullable: true })
+  skip: number;
 }

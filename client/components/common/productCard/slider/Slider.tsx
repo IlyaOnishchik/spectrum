@@ -16,6 +16,7 @@ const Slider: FC<SliderProps> = ({ name, images, isHovered }) => {
     <Swiper
       className='w-full h-[200px]'
       allowTouchMove={false}
+      loop={true}
     >
       <ButtonPrev isHovered={isHovered}/>
       <ButtonNext isHovered={isHovered}/>

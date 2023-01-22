@@ -18,7 +18,7 @@ const Products: FC<ProductsProps> = ({ category }) => {
   const products: Product[] = data.products 
 
   return (
-    <div>
+    <div className='grid grid-cols-3 gap-10'>
       {products.map(item => <ProductCard product={item}/>)}
     </div>
   )

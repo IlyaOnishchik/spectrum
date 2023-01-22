@@ -20,7 +20,7 @@ const Slider = () => {
       }}
       modules={[Pagination]}
       breakpoints={{
-        1280: { slidesPerView: 4 },
+        1535: { slidesPerView: 4 },
         1024: { slidesPerView: 3 },
         768: { slidesPerView: 2 },
       }}

@@ -1,13 +1,22 @@
 import { UseGuards } from '@nestjs/common';
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Field, Int, Mutation, ObjectType, Query, Resolver } from '@nestjs/graphql';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CategoriesService } from 'src/categories/categories.service';
 import { Roles } from 'src/roles/decorators/roles.decorator';
 import { RolesGuard } from 'src/roles/guards/roles.guard';
 import { CreateProduct } from './models/create-product.input';
-import { FindProducts } from './models/find-products.args';
+import { FindProductsArgs } from './models/find-products.args';
 import { Product } from './models/product.entity';
 import { ProductsService } from './products.service';
+
+@ObjectType()
+class ProductsRepsonse {
+  @Field(() => [Product])
+  products: Product[];
+
+  @Field(() => Int)
+  count: number;
+}
 
 @Resolver()
 export class ProductsResolver {
@@ -26,8 +35,13 @@ export class ProductsResolver {
   }
 
   @Query(() => [Product], { name: 'products' })
-  async find(@Args() findProducts: FindProducts): Promise<Product[]> {
-    const { categoryId } = findProducts;
-    return await this.productsService.find(categoryId);
+  async find(@Args() findProductsArgs: FindProductsArgs): Promise<Product[]> {
+    return await this.productsService.find(findProductsArgs);
+  }
+
+  @Query(() => ProductsRepsonse)
+  async findAndCount() {
+    const result = await this.productsService.findAndCount();
+    return { products: result[0], count: result[1] };
   }
 }

@@ -4,8 +4,11 @@ import { useCategory } from '../../hooks/useCategory'
 import { Category } from '../../types/Category'
 import Error from '../common/Error'
 import Loading from '../common/Loading'
+import Pagination from '../common/Pagination'
 import Section from '../common/Section'
+import Filtration from './Filtration'
 import Products from './Products'
+import Sorting from './Sorting'
 
 const Category = () => {
 
@@ -18,13 +21,13 @@ const Category = () => {
 
   return (
     <Section title={category.name}>
-      <div className='flex'>
-        <div className='flex-auto flex flex-col'>
-          <div>sorting</div>
+      <div className='flex justify-between'>
+        <div className='flex flex-col'>
+          <Sorting/>
           <Products category={category}/>
-          <div>pagination</div>
+          <Pagination/>
         </div>
-        <div>filtration</div>
+        <Filtration/>
       </div>
     </Section>
   )
