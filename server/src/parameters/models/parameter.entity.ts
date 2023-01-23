@@ -1,5 +1,6 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
 import { ParameterCategory } from "src/parameter-categories/models/parameter-category.entity";
+import { ParameterType } from "src/parameter-types/models/parameter-type.entity";
 import { ProductParameter } from "src/products-parameters/models/product-parameter.entity";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
@@ -17,6 +18,10 @@ export class Parameter {
   @ManyToOne(() => ParameterCategory, category => category.parameters)
   @Field(() => ParameterCategory)
   category: ParameterCategory;
+
+  @ManyToOne(() => ParameterType, type => type.parameters)
+  @Field(() => ParameterType)
+  type: ParameterType;
 
   @Column()
   @Field(() => Int)

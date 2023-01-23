@@ -31,7 +31,7 @@ const Content: FC<ContentProps> = ({ categoryId }) => {
         <Main products={products}/>
         <Footer/>
       </div>
-      <Aside/>
+      <Aside products={products}/>
     </div>
   )
 }

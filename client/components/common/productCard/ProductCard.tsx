@@ -26,7 +26,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
       <div className='flex flex-col | gap-1'>
         <div className='text-lg font-bold'>{name}</div>
         <div className='flex justify-between items-center'>
-          <div className='text-xl font-bold'>{product.price} $</div>
+          <div className='text-xl font-bold'>${product.price}</div>
           <Actions/>
         </div>
       </div>

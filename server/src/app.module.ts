@@ -19,6 +19,7 @@ import { ParametersModule } from './parameters/parameters.module';
 import { ProductsModule } from './products/products.module';
 import { ProductsImagesModule } from './products-images/products-images.module';
 import { ProductsParametersModule } from './products-parameters/products-parameters.module';
+import { ParameterTypesModule } from './parameter-types/parameter-types.module';
 
 @Module({
   imports: [
@@ -63,6 +64,7 @@ import { ProductsParametersModule } from './products-parameters/products-paramet
     ProductsModule,
     ProductsImagesModule,
     ProductsParametersModule,
+    ParameterTypesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

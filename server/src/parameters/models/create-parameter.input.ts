@@ -8,6 +8,9 @@ export class CreateParameter {
   @Field()
   categoryId: string;
 
+  @Field()
+  typeId: string;
+
   @Field(() => Int)
   order: number;
 }
