@@ -32,7 +32,7 @@ const Pagination: FC<PaginationProps> = ({ page, count, take, setPage }) => {
           </PaginationButton>
         </> 
       }
-      <span className='text-2xl'>{page + 1}</span>
+      <span className='text-lg'>{page + 1}</span>
       {!isLastPage &&
         <>
           <PaginationButton onClick={handleNext}>

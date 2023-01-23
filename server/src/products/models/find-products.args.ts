@@ -10,4 +10,10 @@ export class FindProductsArgs {
 
   @Field(() => Int, { nullable: true })
   skip: number;
+
+  @Field({ nullable: true })
+  sortBy: string;
+
+  @Field({ nullable: true })
+  order: string;
 }

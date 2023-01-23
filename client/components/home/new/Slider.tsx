@@ -10,7 +10,7 @@ const Slider = () => {
   const { loading, error, data } = useProducts()
   if (loading) return <Loading/>
   if (error) return <Error message={error.message}/>
-  const products: Product[] = data.products.products
+  const products: Product[] = data.products.items
 
   return (
     <Swiper

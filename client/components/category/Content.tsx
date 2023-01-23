@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { useProducts } from '../../hooks/useProducts'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { Product } from '../../types/Product'
@@ -17,8 +17,8 @@ type ContentProps = {
 const Content: FC<ContentProps> = ({ categoryId }) => {
 
   const dispatch = useAppDispatch()
-  const { page, take } = useAppSelector(state => state.category)
-  const { loading, error, data } = useProducts({ categoryId, take, skip: page * take })
+  const { page, take, sortBy, order } = useAppSelector(state => state.category)
+  const { loading, error, data } = useProducts({ categoryId, take, skip: page * take, sortBy, order })
   useEffect(() => { if (data) dispatch(setCount(data.products.count)) }, [data])
   if (loading) return <Loading/>
   if (error) return <Error message={error.message}/>

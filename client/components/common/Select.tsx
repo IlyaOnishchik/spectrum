@@ -1,26 +1,25 @@
 import { ChangeEvent, FC } from "react"
 
-type Option = {
+export type SelectOption = {
   name: string
-  value: number
+  value: number | string
 }
 
 type SelectProps = {
   label: string
-  value: number
-  options: Option[]
+  value: number | string
+  options: SelectOption[]
   onChange: (e: ChangeEvent<HTMLSelectElement>) => void
 } 
 
 const Select: FC<SelectProps> = ({ label, value, options, onChange }) => {
   return (
-    <div>
-    <span>{label}:</span>
-    <select value={value} onChange={e => onChange(e)}>
-      {options.map(item => <option key={item.value} value={item.value}>{item.name}</option>)}
-    </select>
+    <div className='flex items-center gap-1 text-lg'>
+      <span>{label}:</span>
+      <select value={value} onChange={e => onChange(e)}>
+        {options.map(item => <option key={item.name} value={item.value}>{item.name}</option>)}
+      </select>
     </div>
-    
   )
 }
 

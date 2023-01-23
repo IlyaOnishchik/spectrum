@@ -30,10 +30,11 @@ export class ProductsService {
   }
 
   async findAndCount(findProductsArgs: FindProductsArgs): Promise<PaginatedProductsRepsonse> {
-    const { categoryId, take, skip } = findProductsArgs;
+    const { categoryId, take, skip, sortBy, order } = findProductsArgs;
     const result = await this.productsRepository.findAndCount({
       take,
       skip,
+      order: { [sortBy]: order },
       where: {
         category: { id: categoryId }
       },
