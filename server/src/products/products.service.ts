@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Category } from 'src/categories/models/category.entity';
-import { Repository } from 'typeorm';
+import { Between, LessThan, MoreThan, Repository } from 'typeorm';
 import { FindProductsArgs } from './models/find-products.args';
 import { Product } from './models/product.entity';
 
@@ -30,13 +30,14 @@ export class ProductsService {
   }
 
   async findAndCount(findProductsArgs: FindProductsArgs): Promise<PaginatedProductsRepsonse> {
-    const { categoryId, take, skip, sortBy, order } = findProductsArgs;
+    const { categoryId, take, skip, sortBy, order, minPrice, maxPrice } = findProductsArgs;
     const result = await this.productsRepository.findAndCount({
       take,
       skip,
       order: { [sortBy]: order },
       where: {
-        category: { id: categoryId }
+        category: { id: categoryId },
+        price: minPrice && maxPrice ? Between(minPrice, maxPrice) : minPrice ? MoreThan(minPrice) : maxPrice ? LessThan(maxPrice) : null
       },
       relations: {
         category: true,

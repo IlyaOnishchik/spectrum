@@ -9,7 +9,7 @@ const PaginationButton: FC<PaginationButtonProps> = ({ children, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className='p-1 rounded transition-all bg-violet-400 hover:bg-white text-white hover:text-violet-400'
+      className='p-1 rounded transition-colors bg-violet-400 hover:bg-white text-white hover:text-violet-400'
     >
       {children}
     </button>

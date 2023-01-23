@@ -1,4 +1,4 @@
-import { ArgsType, Field, Int } from "@nestjs/graphql";
+import { ArgsType, Field, Int, InterfaceType, ObjectType } from "@nestjs/graphql";
 
 @ArgsType()
 export class FindProductsArgs {
@@ -16,4 +16,10 @@ export class FindProductsArgs {
 
   @Field({ nullable: true })
   order: string;
+
+  @Field(() => Int, { nullable: true })
+  minPrice: number;
+
+  @Field(() => Int, { nullable: true })
+  maxPrice: number;
 }
