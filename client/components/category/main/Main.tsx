@@ -8,7 +8,7 @@ type MainProps = {
 
 const Main: FC<MainProps> = ({ products }) => {
   return (
-    <div>
+    <div className='self-center 2xl:self-start'>
       <Products products={products}/>
     </div>
   )

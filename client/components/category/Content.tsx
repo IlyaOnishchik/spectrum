@@ -25,8 +25,8 @@ const Content: FC<ContentProps> = ({ categoryId }) => {
   const products: Product[] = data.products.items
 
   return (
-    <div className='flex justify-between'>
-      <div className='flex flex-col | gap-10'>
+    <div className='flex gap-10'>
+      <div className='flex-auto flex flex-col | gap-10'>
         <Header/>
         <Main products={products}/>
         <Footer/>

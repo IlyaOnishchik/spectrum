@@ -3,8 +3,8 @@ import PriceFilter from "./PriceFilter"
 
 const Aside = () => {
   return (
-    <aside>
-      <Accordion width={280} allowMultiple>
+    <aside className='hidden lg:block'>
+      <Accordion width={260} allowMultiple>
         <PriceFilter/>
       </Accordion>
     </aside>
