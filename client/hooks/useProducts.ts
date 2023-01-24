@@ -1,8 +1,18 @@
 import { gql, useQuery } from "@apollo/client";
 
 export const PRODUCTS_QUERY = gql`
-  query products($categoryId: String, $take: Int, $skip: Int, $sortBy: String, $order: String) {
-    products(categoryId: $categoryId, take: $take, skip: $skip, sortBy: $sortBy, order: $order) {
+  query products(
+    $categoryId: String, 
+    $take: Int, $skip: Int, 
+    $sortBy: String, $order: String, 
+    $minPrice: Int, $maxPrice: Int
+  ) {
+    products(
+      categoryId: $categoryId, 
+      take: $take, skip: $skip, 
+      sortBy: $sortBy, order: $order, 
+      minPrice: $minPrice, maxPrice: $maxPrice
+    ) {
       items {
         id
         price
@@ -21,6 +31,8 @@ type UseProductsVariables = {
   skip?: number
   sortBy?: string
   order?: string
+  minPrice?: number
+  maxPrice?: number
 }
 
 export const useProducts = (variables?: UseProductsVariables) => useQuery(PRODUCTS_QUERY, { variables })

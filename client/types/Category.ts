@@ -1,4 +1,5 @@
 import { Image } from "./Image"
+import { Product } from "./Product"
 
 export type Category = {
   id: string
@@ -6,4 +7,5 @@ export type Category = {
   image: Image | null
   parentCategoryId: string | null
   order: number
+  products: Product[]
 }

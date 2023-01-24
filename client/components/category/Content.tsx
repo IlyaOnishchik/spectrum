@@ -17,8 +17,8 @@ type ContentProps = {
 const Content: FC<ContentProps> = ({ categoryId }) => {
 
   const dispatch = useAppDispatch()
-  const { page, take, sortBy, order } = useAppSelector(state => state.category)
-  const { loading, error, data } = useProducts({ categoryId, take, skip: page * take, sortBy, order })
+  const { page, take, sortBy, order, price: { from, to } } = useAppSelector(state => state.category)
+  const { loading, error, data } = useProducts({ categoryId, take, skip: page * take, sortBy, order, minPrice: from, maxPrice: to })
   useEffect(() => { if (data) dispatch(setCount(data.products.count)) }, [data])
   if (loading) return <Loading/>
   if (error) return <Error message={error.message}/>
@@ -31,7 +31,7 @@ const Content: FC<ContentProps> = ({ categoryId }) => {
         <Main products={products}/>
         <Footer/>
       </div>
-      <Aside products={products}/>
+      <Aside/>
     </div>
   )
 }

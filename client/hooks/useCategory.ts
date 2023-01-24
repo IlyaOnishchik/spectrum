@@ -5,6 +5,10 @@ export const CATEGORY_QUERY = gql`
     category(id: $id, name: $name) {
       id
       name
+      products {
+        id
+        price
+      }
     }
   }
 `

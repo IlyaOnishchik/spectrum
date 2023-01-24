@@ -1,20 +1,13 @@
-import { FC } from "react"
-import { Product } from "../../../types/Product"
-import { ProductParameter } from "../../../types/ProductParameter"
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel } from "@chakra-ui/react"
+import PriceFilter from "./PriceFilter"
 
-type AsideProps = {
-  products: Product[]
-}
-
-const Aside: FC<AsideProps> = ({ products }) => {
-
-  console.log(products)
-
-  const allParameters = products.map(item => item.parameters)
-  console.log(allParameters)
-
+const Aside = () => {
   return (
-    <aside>Aside</aside>
+    <aside>
+      <Accordion width={280} allowMultiple>
+        <PriceFilter/>
+      </Accordion>
+    </aside>
   )
 }
 
