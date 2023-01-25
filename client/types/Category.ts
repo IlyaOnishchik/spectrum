@@ -1,3 +1,4 @@
+import { Filters } from "./Filters"
 import { Image } from "./Image"
 import { Product } from "./Product"
 
@@ -8,5 +9,5 @@ export type Category = {
   parentCategoryId: string | null
   order: number
   products: Product[]
-  filters: unknown
+  filters: Filters
 }

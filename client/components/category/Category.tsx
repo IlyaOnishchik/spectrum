@@ -2,8 +2,9 @@ import { Accordion, AccordionButton, AccordionItem, AccordionPanel, Checkbox } f
 import { FC } from 'react'
 import { useCategory } from '../../hooks/useCategory'
 import { useAppDispatch } from '../../redux/hooks'
-import { setPrice } from '../../redux/slices/categorySlice'
+import { setFilters, setPrice } from '../../redux/slices/categorySlice'
 import { Category } from '../../types/Category'
+import { Filters } from '../../types/Filters'
 import Error from '../common/Error'
 import Loading from '../common/Loading'
 import Section from '../common/Section'
@@ -25,27 +26,12 @@ const Category: FC<CategoryProps> = ({ id }) => {
   const minPrice = prices[0]
   const maxPrice = prices[prices.length - 1]
   dispatch(setPrice({ min: minPrice, max: maxPrice, from: minPrice, to: maxPrice}))
-  const filters = category.filters
-  console.log(filters)
+  const filters: Filters = category.filters
+  dispatch(setFilters(filters))
 
   return (
     <Section title={category.name}>
       <Content categoryId={id}/>
-      {/* <Accordion>
-        {checkFilters.map(item => 
-          <AccordionItem key={item.name}>
-            <AccordionButton>{item.name}</AccordionButton>
-            <AccordionPanel>
-              {item.values.map(item => 
-                <>
-                  <Checkbox colorScheme='purple'>{item.value} {item.unit}</Checkbox>
-                </>
-              )}
-            </AccordionPanel>
-          </AccordionItem>
-        )}
-        
-      </Accordion> */}
     </Section>
   )
 }

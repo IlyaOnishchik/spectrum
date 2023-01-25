@@ -1,8 +1,16 @@
-import React from 'react'
+import { Checkbox } from "@chakra-ui/react"
+import { FC } from "react"
+import { CheckFilterValue } from "../../../types/Filters"
 
-const CheckFilter = () => {
+type CheckFilterProps = {
+  values: CheckFilterValue[]
+}
+
+const CheckFilter: FC<CheckFilterProps> = ({ values }) => {
   return (
-    <div>CheckFilter</div>
+    <div className='flex flex-col'>
+      {values.map(item => <Checkbox colorScheme='purple' checked={item.isChecked}>{item.value} {item.unit}</Checkbox>)}
+    </div>
   )
 }
 

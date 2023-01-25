@@ -53,7 +53,7 @@ export class CategoriesResolver {
         const newCheckFilter = new CheckFilter();
         newCheckFilter.id = productParameter.parameter.id;
         newCheckFilter.name = productParameter.parameter.name;
-        newCheckFilter.order = productParameter.parameter.order * 10 + productParameter.parameter.category.order;
+        newCheckFilter.order = productParameter.parameter.category.order * 10 + productParameter.parameter.order;
         const newCheckFilterValue = new CheckFilterValue();
         newCheckFilterValue.value = productParameter.value;
         newCheckFilterValue.unit = productParameter.unit;
@@ -74,7 +74,7 @@ export class CategoriesResolver {
         const newRangeFilter = new RangeFilter();
         newRangeFilter.id = productParameter.parameter.id;
         newRangeFilter.name = productParameter.parameter.name;
-        newRangeFilter.order = productParameter.parameter.order * 10 + productParameter.parameter.category.order;
+        newRangeFilter.order = productParameter.parameter.category.order * 10 + productParameter.parameter.order;
         newRangeFilter.unit = productParameter.unit;
         newRangeFilter.min = +productParameter.value;
         newRangeFilter.max = +productParameter.value;
