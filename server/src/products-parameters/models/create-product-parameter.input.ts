@@ -10,4 +10,7 @@ export class CreateProductParameter {
 
   @Field()
   value: string;
+
+  @Field({ nullable: true })
+  unit: string;
 }

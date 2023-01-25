@@ -37,7 +37,14 @@ export class CategoriesService {
     return await this.categoriesRepository.findOne({
       where,
       relations: {
-        products: true
+        products: {
+          parameters: {
+            parameter: {
+              category: true,
+              type: true
+            }
+          }
+        }
       }
     });
   }

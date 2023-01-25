@@ -1,4 +1,4 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel } from "@chakra-ui/react"
+import { Accordion } from "@chakra-ui/react"
 import PriceFilter from "./PriceFilter"
 
 const Aside = () => {

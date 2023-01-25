@@ -8,4 +8,5 @@ export type Category = {
   parentCategoryId: string | null
   order: number
   products: Product[]
+  filters: unknown
 }

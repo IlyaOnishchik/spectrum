@@ -16,7 +16,7 @@ const Footer = () => {
   const handleSetPage = (page: number) => { dispatch(setPage(page)) }
 
   return (
-    <footer className='flex justify-between items-center'>
+    <footer className='flex flex-col sm:flex-row justify-between items-center gap-5'>
       <Pagination page={page} count={count} take={take} setPage={handleSetPage}/>
       <Select label='Products per page' value={take} options={options} onChange={handleChangeTake}/>
     </footer>

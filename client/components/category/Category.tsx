@@ -1,3 +1,4 @@
+import { Accordion, AccordionButton, AccordionItem, AccordionPanel, Checkbox } from '@chakra-ui/react'
 import { FC } from 'react'
 import { useCategory } from '../../hooks/useCategory'
 import { useAppDispatch } from '../../redux/hooks'
@@ -24,10 +25,27 @@ const Category: FC<CategoryProps> = ({ id }) => {
   const minPrice = prices[0]
   const maxPrice = prices[prices.length - 1]
   dispatch(setPrice({ min: minPrice, max: maxPrice, from: minPrice, to: maxPrice}))
-  
+  const filters = category.filters
+  console.log(filters)
+
   return (
     <Section title={category.name}>
       <Content categoryId={id}/>
+      {/* <Accordion>
+        {checkFilters.map(item => 
+          <AccordionItem key={item.name}>
+            <AccordionButton>{item.name}</AccordionButton>
+            <AccordionPanel>
+              {item.values.map(item => 
+                <>
+                  <Checkbox colorScheme='purple'>{item.value} {item.unit}</Checkbox>
+                </>
+              )}
+            </AccordionPanel>
+          </AccordionItem>
+        )}
+        
+      </Accordion> */}
     </Section>
   )
 }

@@ -11,11 +11,12 @@ export class ProductsParametersService {
     @InjectRepository(ProductParameter) private productsParametersRepository: Repository<ProductParameter>
   ) {}
 
-  async create(product: Product, parameter: Parameter, value: string): Promise<ProductParameter> {
+  async create(product: Product, parameter: Parameter, value: string, unit: string): Promise<ProductParameter> {
     const productParameter = new ProductParameter();
     productParameter.product = product;
     productParameter.parameter = parameter;
     productParameter.value = value;
+    productParameter.unit = unit;
     return await this.productsParametersRepository.save(productParameter);
   }
 }

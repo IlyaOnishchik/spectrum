@@ -16,7 +16,7 @@ const PriceFilter = () => {
   return (
     <AccordionItem>
       <AccordionButton fontSize={18} justifyContent='space-between'>
-        Price $
+        Price
         <AccordionIcon/>
       </AccordionButton>
       <AccordionPanel>

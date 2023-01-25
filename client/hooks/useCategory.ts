@@ -8,6 +8,37 @@ export const CATEGORY_QUERY = gql`
       products {
         id
         price
+        parameters {
+          id
+          value
+          unit
+          parameter {
+            id
+            name
+            order
+            type { id name }
+            category { id name order }
+          }
+        }
+      }
+      filters {
+        checkFilters {
+          id
+          name
+          order
+          values {
+            value
+            unit
+          }
+        }
+        rangeFilters {
+          id
+          name
+          order
+          min
+          max
+          unit
+        }
       }
     }
   }

@@ -11,10 +11,12 @@ const Header: FC<HeaderProps> = ({ }) => {
   const { count } = useAppSelector(state => state.category)
 
   return (
-    <header className='flex justify-between lg:justify-start items-center gap-10 text-lg'>
-      <Filtration/>
+    <header className='flex flex-col sm:flex-row justify-between lg:justify-start items-center gap-5 text-lg'>
       <Sorting/>
-      <div>Products - {count}</div>
+      <div className='flex gap-5'>
+        <div>Products - {count}</div>
+        <Filtration/>
+      </div>
     </header>
   )
 }

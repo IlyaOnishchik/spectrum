@@ -21,4 +21,8 @@ export class ProductParameter {
   @Column()
   @Field()
   value: string;
+
+  @Column({ nullable: true })
+  @Field({ nullable: true })
+  unit: string;
 }

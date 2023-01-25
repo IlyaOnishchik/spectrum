@@ -15,9 +15,9 @@ export class ProductsParametersResolver {
 
   @Mutation(() => ProductParameter, { name: 'createProductParameter' })
   async create(@Args('createProductParameter') createProductParameter: CreateProductParameter): Promise<ProductParameter> {
-    const { productId, parameterId, value } = createProductParameter;
+    const { productId, parameterId, value, unit } = createProductParameter;
     const product = await this.productsService.findOne({ id: productId });
     const parameter = await this.parametersService.findOne({ id: parameterId });
-    return await this.productsParametersService.create(product, parameter, value);
+    return await this.productsParametersService.create(product, parameter, value, unit);
   }
 }
