@@ -1,14 +1,9 @@
-import { Accordion } from "@chakra-ui/react"
-import Filters from "./Filters"
-import PriceFilter from "./PriceFilter"
+import Filtration from "../../common/filtration/Filtration"
 
 const Aside = () => {
   return (
     <aside className='hidden lg:block'>
-      <Accordion width={260} allowMultiple>
-        <PriceFilter/>
-        <Filters/>
-      </Accordion>
+      <Filtration/>
     </aside>
   )
 }

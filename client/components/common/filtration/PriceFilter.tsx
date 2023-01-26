@@ -1,7 +1,7 @@
 import { AccordionButton, AccordionIcon, AccordionItem, AccordionPanel } from '@chakra-ui/react'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import { setPriceFrom, setPriceTo } from '../../../redux/slices/categorySlice'
-import RangeFilter from '../../common/filters/RangeFilter'
+import RangeFilter from './RangeFilter'
 
 const PriceFilter = () => {
 

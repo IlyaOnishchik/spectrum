@@ -1,4 +1,3 @@
-import { Accordion, AccordionButton, AccordionItem, AccordionPanel, Checkbox } from '@chakra-ui/react'
 import { FC } from 'react'
 import { useCategory } from '../../hooks/useCategory'
 import { useAppDispatch } from '../../redux/hooks'

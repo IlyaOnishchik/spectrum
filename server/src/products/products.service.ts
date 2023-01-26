@@ -3,6 +3,7 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Category } from 'src/categories/models/category.entity';
 import { Between, LessThan, MoreThan, Repository } from 'typeorm';
+import { FiltersInput } from './models/filters.model';
 import { FindProductsArgs } from './models/find-products.args';
 import { Product } from './models/product.entity';
 
@@ -30,7 +31,8 @@ export class ProductsService {
   }
 
   async findAndCount(findProductsArgs: FindProductsArgs): Promise<PaginatedProductsRepsonse> {
-    const { categoryId, take, skip, sortBy, order, minPrice, maxPrice } = findProductsArgs;
+    const { categoryId, take, skip, sortBy, order, minPrice, maxPrice, filters } = findProductsArgs;
+
     const result = await this.productsRepository.findAndCount({
       take,
       skip,
@@ -49,10 +51,26 @@ export class ProductsService {
         }
       },
     });
-    return { items: result[0], count: result[1] };
+
+    return { 
+      items: filters ? this.filterProducts(result[0], filters) : result[0], 
+      count: result[1] 
+    };
   }
 
   async findOne(where: Partial<Product>): Promise<Product> {
     return await this.productsRepository.findOne({ where });
+  }
+
+  private filterProducts(products: Product[], filters: FiltersInput): Product[] {
+
+    filters.checkFilters.forEach(filter => {
+      if (filter.values.length) products = products.filter(product => product.parameters.find(productParameter => productParameter.parameter.name === filter.name && filter.values.find(item => item.value === productParameter.value)))
+    })
+    filters.rangeFilters.forEach(filter => {
+      products = products.filter(product => product.parameters.find(productParameter => productParameter.parameter.name === filter.name && +productParameter.value >= filter.from && +productParameter.value <= filter.to))
+    })
+
+    return products;
   }
 }

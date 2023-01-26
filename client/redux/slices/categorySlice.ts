@@ -85,7 +85,26 @@ export const categorySlice = createSlice({
       action.payload.rangeFilters.forEach(filter => {
         rangeFilters.push({ ...filter, type: 'range', from: filter.min, to: filter.max })
       })
+
+
       state.filters = { checkFilters, rangeFilters }
+    },
+    toggleCheckFilterValue: (state, action: PayloadAction<{ id: string, value: string }>) => { 
+      state.filters.checkFilters.forEach(item => {
+        if (item.id === action.payload.id) {
+          item.values.forEach(item => {
+            if (item.value === action.payload.value) item.isChecked = !item.isChecked
+          })
+        }
+      })
+    },
+    setRangeFilterValue: (state, action: PayloadAction<{ id: string, from: number, to: number }>) => {
+      state.filters.rangeFilters.forEach(item => {
+        if (item.id === action.payload.id) {
+          item.from = action.payload.from
+          item.to = action.payload.to
+        }
+      })
     }
   }
 })
@@ -94,6 +113,6 @@ export const {
   setCount, setPage, setTake,
   setSortBy, setOrder, 
   setPrice, setPriceFrom, setPriceTo,
-  setFilters
+  setFilters, toggleCheckFilterValue, setRangeFilterValue
 } = categorySlice.actions
 export const categoryReducer = categorySlice.reducer

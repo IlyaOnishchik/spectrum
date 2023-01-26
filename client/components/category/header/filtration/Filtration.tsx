@@ -1,9 +1,8 @@
-import React from 'react'
+import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, useDisclosure } from '@chakra-ui/react'
 import { AdjustmentsHorizontalIcon } from '@heroicons/react/24/solid'
 import IconButton from '../../../common/IconButton'
-import { Accordion, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, useDisclosure } from '@chakra-ui/react'
-import PriceFilter from '../../aside/PriceFilter'
-import Filters from '../../aside/Filters'
+import FiltrationCommon from '../../../common/filtration/Filtration'
+
 
 const Filtration = () => {
 
@@ -19,10 +18,7 @@ const Filtration = () => {
           <ModalHeader>Filters</ModalHeader>
           <ModalCloseButton/>
           <ModalBody className='flex justify-center'>
-            <Accordion width={260} allowMultiple>
-              <PriceFilter/>
-              <Filters/>
-            </Accordion>
+            <FiltrationCommon/>
           </ModalBody>
         </ModalContent>
       </Modal>

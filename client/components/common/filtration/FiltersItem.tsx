@@ -1,8 +1,10 @@
 import React, { FC } from 'react'
 import { AccordionButton, AccordionIcon, AccordionItem, AccordionPanel } from '@chakra-ui/react'
 import { CheckFilter, RangeFilter } from '../../../types/Filters'
-import CheckFilterComponent from '../../common/filters/CheckFilter'
-import RangeFilterComponent from '../../common/filters/RangeFilter'
+import CheckFilterComponent from './CheckFilter'
+import RangeFilterComponent from './RangeFilter'
+import { useAppDispatch } from '../../../redux/hooks'
+import { setRangeFilterValue, toggleCheckFilterValue } from '../../../redux/slices/categorySlice'
 
 type FiltersItemProps = {
   filter: RangeFilter | CheckFilter
@@ -10,7 +12,7 @@ type FiltersItemProps = {
 
 const FiltersItem: FC<FiltersItemProps> = ({ filter }) => {
 
-  console.log(filter)
+  const dispatch = useAppDispatch()
 
   return (
     <AccordionItem>
@@ -21,9 +23,14 @@ const FiltersItem: FC<FiltersItemProps> = ({ filter }) => {
       <AccordionPanel>
         {
           filter.type === 'check' ? (
-            <CheckFilterComponent values={filter.values}/>
+            <CheckFilterComponent id={filter.id} values={filter.values}/>
           ) : 'range' ? (
-            <RangeFilterComponent min={filter.min} max={filter.max} from={filter.from} to={filter.to} onChangeEnd={() => alert('End')}/>
+            <RangeFilterComponent 
+              min={filter.min} 
+              max={filter.max} 
+              from={filter.from}
+              to={filter.to}
+              onChangeEnd={(value) => dispatch(setRangeFilterValue({ id: filter.id, from: value[0], to: value[1] }))}/>
           ) : null
         }
       </AccordionPanel>
