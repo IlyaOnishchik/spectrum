@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import React from 'react'
 import Loading from '../components/common/Loading'
+import Favorites from '../components/favorites/Favorites'
 import { useCurrentUser } from '../hooks/useCurrentUser'
 
 const FavoritesPage = () => {
@@ -11,7 +12,7 @@ const FavoritesPage = () => {
   if (error) router.push('/')
 
   return (
-    <div>FavoritesPage</div>
+    <Favorites/>
   )
 }
 

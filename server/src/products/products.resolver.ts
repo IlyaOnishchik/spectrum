@@ -5,6 +5,7 @@ import { CategoriesService } from 'src/categories/categories.service';
 import { Roles } from 'src/roles/decorators/roles.decorator';
 import { RolesGuard } from 'src/roles/guards/roles.guard';
 import { CreateProduct } from './models/create-product.input';
+import { FindProduct } from './models/find-product';
 import { FindProductsArgs } from './models/find-products.args';
 import { Product } from './models/product.entity';
 import { PaginatedProductsRepsonse, ProductsService } from './products.service';
@@ -28,5 +29,10 @@ export class ProductsResolver {
   @Query(() => PaginatedProductsRepsonse, { name: 'products' })
   async findAndCount(@Args() findProductsArgs: FindProductsArgs): Promise<PaginatedProductsRepsonse> {
     return await this.productsService.findAndCount(findProductsArgs);
+  }
+
+  @Query(() => Product, { name: 'product' })
+  async findOne(@Args() findProduct: FindProduct): Promise<Product> {
+    return await this.productsService.findOne(findProduct);
   }
 }

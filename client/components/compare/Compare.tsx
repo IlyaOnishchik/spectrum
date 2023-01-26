@@ -1,8 +1,11 @@
 import React from 'react'
+import Section from '../common/Section'
 
 const Compare = () => {
   return (
-    <div>Compare</div>
+    <Section title='Compare'>
+
+    </Section>
   )
 }
 

@@ -1,20 +1,21 @@
 import { FC } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import ButtonNext from './ButtonNext';
-import ButtonPrev from './ButtonPrev';
-import { Image } from '../../../../types/Image'
+import ButtonNext from './productCard/slider/ButtonNext';
+import ButtonPrev from './productCard/slider/ButtonPrev';
+import { Image } from '../../types/Image'
 
-type SliderProps = {
+type ImageSliderProps = {
   name: string
   images: Image[]
   isHovered: boolean
+  height: string
 }
 
-const Slider: FC<SliderProps> = ({ name, images, isHovered }) => {
+const ImageSlider: FC<ImageSliderProps> = ({ name, images, isHovered, height }) => {
   return (
     <Swiper
-      className='w-full h-[200px]'
+      className={`w-full h-[${height}]`}
       allowTouchMove={false}
       loop={true}
     >
@@ -29,4 +30,4 @@ const Slider: FC<SliderProps> = ({ name, images, isHovered }) => {
   )
 }
 
-export default Slider
+export default ImageSlider

@@ -1,8 +1,11 @@
 import React from 'react'
+import Section from '../common/Section'
 
 const Favorites = () => {
   return (
-    <Favorites/>
+    <Section title='Favorites'>
+
+    </Section>
   )
 }
 

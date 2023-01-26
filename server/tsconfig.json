@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    // "target": "ES2020", // new
+    // "module": "ESNext", // new
+    // "moduleResolution": "NodeNext", // new
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,

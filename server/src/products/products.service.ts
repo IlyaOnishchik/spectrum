@@ -59,18 +59,29 @@ export class ProductsService {
   }
 
   async findOne(where: Partial<Product>): Promise<Product> {
-    return await this.productsRepository.findOne({ where });
+    return await this.productsRepository.findOne({
+      where,
+      relations: {
+        category: true,
+        images: {
+          image: true
+        },
+        parameters: {
+          parameter: {
+            category: true
+          }
+        }
+      }, 
+    });
   }
 
   private filterProducts(products: Product[], filters: FiltersInput): Product[] {
-
     filters.checkFilters.forEach(filter => {
       if (filter.values.length) products = products.filter(product => product.parameters.find(productParameter => productParameter.parameter.name === filter.name && filter.values.find(item => item.value === productParameter.value)))
     })
     filters.rangeFilters.forEach(filter => {
       products = products.filter(product => product.parameters.find(productParameter => productParameter.parameter.name === filter.name && +productParameter.value >= filter.from && +productParameter.value <= filter.to))
     })
-
     return products;
   }
 }

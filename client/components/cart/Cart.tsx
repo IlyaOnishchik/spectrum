@@ -1,8 +1,11 @@
 import React from 'react'
+import Section from '../common/Section'
 
 const Cart = () => {
   return (
-    <div>Cart</div>
+    <Section title='Cart'>
+
+    </Section>
   )
 }
 
