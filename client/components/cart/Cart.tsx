@@ -1,7 +1,12 @@
-import React from 'react'
+import { FC } from 'react'
+import { Product } from '../../types/Product'
 import Section from '../common/Section'
 
-const Cart = () => {
+type CartProps = {
+  products: Product[]
+}
+
+const Cart: FC<CartProps> = ({ products }) => {
   return (
     <Section title='Cart'>
 

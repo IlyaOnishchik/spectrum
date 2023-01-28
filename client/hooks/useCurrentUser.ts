@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 
-const CURRENT_USER_QUERY = gql`
+export const CURRENT_USER_QUERY = gql`
   query currentUser {
     currentUser { 
       id 
@@ -10,7 +10,29 @@ const CURRENT_USER_QUERY = gql`
       roles {
         id 
         name 
-      } 
+      }
+      cart {
+        products {
+          id
+          images { image { name } order }
+          parameters {
+            parameter { name }
+            value
+            unit
+          }
+        }
+      }
+      favorites {
+        products {
+          id
+          images { image { name } order }
+          parameters {
+            parameter { name }
+            value
+            unit
+          }
+        }
+      }
     }
   }
 `

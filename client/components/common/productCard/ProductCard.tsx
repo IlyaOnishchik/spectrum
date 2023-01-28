@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import ImageSlider from '../ImageSlider'
-import Actions from './Actions'
+import Actions from './actions/Actions'
 import { useHover } from '../../../hooks/useHover'
 import { Product } from '../../../types/Product'
 import Link from 'next/link'
@@ -20,7 +20,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div 
-      className='flex flex-col | w-[280px] gap-5 px-5 py-3 | transition-all shadow-inner md:shadow-xl md:hover:shadow-lg rounded-xl'
+      className='flex flex-col | w-[280px] gap-5 px-5 py-3 | transition-all shadow md:shadow-xl md:hover:shadow-lg rounded-xl'
       onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
     >
       <ImageSlider name={name} images={images} isHovered={isHovered} height='200px'/>
@@ -29,7 +29,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
           <div className='text-lg font-bold'>{name}</div>
           <div className='flex justify-between items-center'>
             <div className='text-xl font-bold'>${product.price}</div>
-            <Actions/>
+            <Actions productId={product.id}/>
           </div>
         </div>
       </Link>

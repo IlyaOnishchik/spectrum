@@ -1,3 +1,5 @@
+import { Cart } from "./Cart"
+import { Favorites } from "./Favorites"
 import { Role } from "./Role"
 
 export type User = {
@@ -6,4 +8,6 @@ export type User = {
   roles: Role[]
   isActivated: boolean
   isBanned: boolean
+  cart: Cart
+  favorites: Favorites
 }

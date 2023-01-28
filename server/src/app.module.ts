@@ -22,6 +22,7 @@ import { ProductsParametersModule } from './products-parameters/products-paramet
 import { ParameterTypesModule } from './parameter-types/parameter-types.module';
 import { CartsModule } from './carts/carts.module';
 import { FavoritesModule } from './favorites/favorites.module';
+import { CartsProductsModule } from './carts-products/carts-products.module';
 
 @Module({
   imports: [
@@ -69,6 +70,7 @@ import { FavoritesModule } from './favorites/favorites.module';
     ParameterTypesModule,
     CartsModule,
     FavoritesModule,
+    CartsProductsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

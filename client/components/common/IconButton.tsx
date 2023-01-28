@@ -2,7 +2,7 @@ import { FC, ReactNode } from "react"
 
 type IconButtonProps = {
   children?: ReactNode
-  onClick: () => void
+  onClick?: () => void
 }
 
 const IconButton: FC<IconButtonProps> = ({ children, onClick }) => {

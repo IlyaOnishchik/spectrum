@@ -18,6 +18,26 @@ export class UsersService {
       where,
       relations: {
         roles: true,
+        cart: {
+          products: {
+            images: {
+              image: true
+            },
+            parameters: {
+              parameter: true
+            },
+          }
+        },
+        favorites: {
+          products: {
+            images: {
+              image: true
+            },
+            parameters: {
+              parameter: true
+            },
+          }
+        }
       },
     });
   }
