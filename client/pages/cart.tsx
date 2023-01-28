@@ -13,10 +13,10 @@ const CartPage = () => {
   if (error) router.push('/')
   const user: User = data.currentUser
   const cart = user.cart
-  const products = cart.products
+  const cartProducts = cart.products
 
   return (
-    <Cart products={products}/>
+    <Cart cartProducts={cartProducts}/>
   )
 }
 

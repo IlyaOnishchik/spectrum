@@ -13,13 +13,13 @@ type FavoritesButtonProduct = {
 const FavoritesButton: FC<FavoritesButtonProduct> = ({ productId, variant = 'ouline' }) => {
 
   const [toggleProduct] = useToggleFavoritesProduct()
-  const handleToggleFavoritesProduct = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => { 
+  const handleClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => { 
     e.preventDefault()
     toggleProduct({ variables: { productId } })
   }
 
   return (
-    <ActionsItem onClick={handleToggleFavoritesProduct}>
+    <ActionsItem onClick={handleClick}>
       {
         variant === 'ouline' ? 
           <HeartIconOutline className='w-8 h-8 text-violet-400'/> :

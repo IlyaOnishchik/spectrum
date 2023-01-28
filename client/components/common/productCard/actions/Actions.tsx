@@ -19,12 +19,13 @@ const Actions: FC<ActionsProps> = ({ productId }) => {
   if (error) return <Error message={error.message}/>
   const user: User = data.currentUser
   const isInFavorites = !!user.favorites.products.find(item => item.id === productId)
+  const isInCart = !!user.cart.products.find(item => item.product.id === productId)
 
   return (
     <ul className='flex | gap-2'>
       <CompareButton/>
       <FavoritesButton productId={productId} variant={isInFavorites ? 'solid' : 'ouline'}/>
-      <CartButton/>
+      <CartButton productId={productId} variant={isInCart ? 'solid' : 'ouline'}/>
     </ul>
   )
 }

@@ -14,17 +14,25 @@ export const CURRENT_USER_QUERY = gql`
       cart {
         products {
           id
-          images { image { name } order }
-          parameters {
-            parameter { name }
-            value
-            unit
+          quantity
+          product {
+            id
+            price
+            quantity
+            images { image { name } order }
+            parameters {
+              parameter { name }
+              value
+              unit
+            }
           }
         }
       }
       favorites {
         products {
           id
+          price
+          quantity
           images { image { name } order }
           parameters {
             parameter { name }

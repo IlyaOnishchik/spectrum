@@ -1,7 +1,8 @@
 import { Field, ObjectType } from "@nestjs/graphql";
+import { CartProduct } from "src/carts-products/models/cart-product.entity";
 import { Product } from "src/products/models/product.entity";
 import { User } from "src/users/models/user.entity";
-import { Entity, JoinTable, ManyToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, JoinTable, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('carts')
 @ObjectType()
@@ -14,8 +15,7 @@ export class Cart {
   @Field(() => User)
   user: User;
   
-  @ManyToMany(() => Product, product => product.carts)
-  @JoinTable({ name: 'carts_products', joinColumn: { name: 'cartId' }, inverseJoinColumn: { name: 'productId' } })
-  @Field(() => [Product], { nullable: true })
-  products: Product[];
+  @OneToMany(() => CartProduct, product => product.cart)
+  @Field(() => [CartProduct], { nullable: true })
+  products: CartProduct[];
 }

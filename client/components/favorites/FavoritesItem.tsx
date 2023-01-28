@@ -19,24 +19,29 @@ const FavoritesItem: FC<FavoritesItemProps> = ({ product }) => {
 
   const [toggleProduct] = useToggleFavoritesProduct()
 
-  const handleRemove = () => { toggleProduct({ variables: { productId: product.id } }) }
+  const handleRemove = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault()
+    toggleProduct({ variables: { productId: product.id } }) 
+  }
 
   return (
-    <Card>
-      <Link href={`/products/${product.id}`}>
+    <Link href={`/products/${product.id}`}>
+      <Card>
         <CardImage src={src} alt={`${brand} ${model}`}/>
-      </Link>
-      <CardBody>
-        <div className='flex items-center h-full gap-5'>
-          <div className='flex-auto text-2xl'>
-            {brand} {model}
+        <CardBody>
+          <div className='flex items-center h-full gap-5'>
+            <div className='flex-auto'>
+              <div className='text-2xl'>{name}</div>
+              <div className='text-xl font-bold'>${product.price}</div>
+              <div>Left <span className='font-bold'>{product.quantity}</span></div>
+            </div>
+            <div>
+              <RemoveButton onClick={handleRemove}/>
+            </div>
           </div>
-          <div>
-            <RemoveButton onClick={handleRemove}/>
-          </div>
-        </div>
-      </CardBody>
-    </Card>
+        </CardBody>
+      </Card>
+    </Link>
   )
 }
 

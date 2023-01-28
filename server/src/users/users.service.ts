@@ -20,22 +20,16 @@ export class UsersService {
         roles: true,
         cart: {
           products: {
-            images: {
-              image: true
-            },
-            parameters: {
-              parameter: true
-            },
+            product: {
+              images: { image: true },
+              parameters: { parameter: true }
+            }
           }
         },
         favorites: {
           products: {
-            images: {
-              image: true
-            },
-            parameters: {
-              parameter: true
-            },
+            images: { image: true },
+            parameters: { parameter: true },
           }
         }
       },

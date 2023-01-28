@@ -1,4 +1,5 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
+import { CartProduct } from "src/carts-products/models/cart-product.entity";
 import { Cart } from "src/carts/models/cart.entity";
 import { Category } from "src/categories/models/category.entity";
 import { Favorites } from "src/favorites/models/favorites.entity";
@@ -34,9 +35,9 @@ export class Product {
   @Field(() => Int)
   quantity: number;
 
-  @ManyToMany(() => Cart, cart => cart.products)
-  @Field(() => [Cart], { nullable: true })
-  carts: Cart[];
+  @OneToMany(() => CartProduct, cartProduct => cartProduct.product)
+  @Field(() => [CartProduct], { nullable: true })
+  cartProducts: CartProduct[];
 
   @ManyToMany(() => Favorites, favorites => favorites.products)
   @Field(() => [Favorites], { nullable: true })
