@@ -31,7 +31,8 @@ export class ComparedResolver {
     @CurrentUser() { id }: Pick<User, 'id'>,
     @Args('productId') productId: string,
   ): Promise<Compared> {
-    const { compared } = await this.usersService.findOne({ id });
+    const user = await this.usersService.findOne({ id });
+    const compared = await this.comparedService.findOne(user.compared.id);
     const product = await this.productsService.findOne({ id: productId });
     if (compared.products.find(item => item.id === product.id)) {
       compared.products = compared.products.filter(item => item.id !== product.id)

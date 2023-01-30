@@ -1,5 +1,5 @@
 import { Heading } from '@chakra-ui/react'
-import Button from '../../../common/Button'
+import Button from '../../../common/buttons/Button'
 
 const Slide1 = () => {
   return (

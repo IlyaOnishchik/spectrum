@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import ButtonNext from './productCard/slider/ButtonNext';
-import ButtonPrev from './productCard/slider/ButtonPrev';
-import { Image } from '../../types/Image'
+import ButtonNext from './ButtonNext';
+import ButtonPrev from './ButtonPrev';
+import { Image } from '../../../types/Image'
 
 type ImageSliderProps = {
   name: string

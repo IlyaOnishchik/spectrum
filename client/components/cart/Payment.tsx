@@ -1,7 +1,7 @@
 
 import { FC } from "react"
 import { CartProduct } from "../../types/CartProduct"
-import Button from "../common/Button"
+import Button from "../common/buttons/Button"
 
 type PaymentProps = {
   cartProducts: CartProduct[]

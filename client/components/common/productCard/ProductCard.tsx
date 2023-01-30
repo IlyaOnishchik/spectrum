@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import ImageSlider from '../ImageSlider'
-import Actions from './actions/Actions'
+import ImageSlider from '../imageSlider/ImageSlider'
+import Actions from './Actions'
 import { useHover } from '../../../hooks/useHover'
 import { Product } from '../../../types/Product'
 import Link from 'next/link'
@@ -29,7 +29,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
           <div className='text-lg font-bold'>{name}</div>
           <div className='flex justify-between items-center'>
             <div className='text-xl font-bold'>${product.price}</div>
-            {/* <Actions productId={product.id}/> */}
+            <Actions productId={product.id}/>
           </div>
         </div>
       </Link>

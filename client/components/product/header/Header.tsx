@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useHover } from '../../../hooks/useHover'
 import { Image } from '../../../types/Image'
-import ImageSlider from '../../common/ImageSlider'
+import ImageSlider from '../../common/imageSlider/ImageSlider'
 import Common from './Common'
 import Payment from './Payment'
 

@@ -1,6 +1,6 @@
 import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, useDisclosure } from '@chakra-ui/react'
 import { AdjustmentsHorizontalIcon } from '@heroicons/react/24/solid'
-import IconButton from '../../../common/IconButton'
+import IconButton from '../../../common/buttons/IconButton'
 import FiltrationCommon from '../../../common/filtration/Filtration'
 
 

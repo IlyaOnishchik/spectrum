@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import Button from '../../common/Button'
+import Button from '../../common/buttons/Button'
 
 type PaymentProps = {
   className?: string

@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { Field, Formik } from 'formik'
 import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react'
 import AuthInput from './AuthInput'
-import Button from '../../../common/Button'
+import Button from '../../../common/buttons/Button'
 
 type AuthFormProps = {
   callback: (email: string, password: string) => Promise<void>,

@@ -5,7 +5,6 @@ export const TOGGLE_COMPARED_PRODUCT = gql`
   mutation toggleComparedProduct($productId: String!) {
     toggleComparedProduct(productId: $productId) {
       id
-      products { id }
     }
   }
 `
