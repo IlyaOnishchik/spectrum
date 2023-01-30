@@ -14,4 +14,18 @@ export class CartsService {
     const cart = new Cart();
     return await this.cartsRepository.save(cart);
   }
+
+  async findOne(id: string): Promise<Cart> {
+    return await this.cartsRepository.findOne({
+      where: { id },
+      relations: {
+        products: {
+          product: {
+            images: { image: true },
+            parameters: { parameter: true }
+          }
+        }
+      }
+    });
+  }
 }

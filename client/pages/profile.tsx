@@ -12,9 +12,7 @@ const ProfilePage = () => {
   if (loading) return <Loading/>
   if (error) router.push('/')
 
-  return (
-    <Profile/>
-  )
+  return <Profile/>
 }
 
 export default ProfilePage

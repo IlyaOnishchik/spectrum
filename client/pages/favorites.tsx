@@ -8,16 +8,11 @@ import { User } from '../types/User'
 const FavoritesPage = () => {
 
   const router = useRouter()
-  const { loading, error, data } = useCurrentUser()
+  const { loading, error } = useCurrentUser()
   if (loading) return <Loading/>
   if (error) router.push('/')
-  const user: User = data.currentUser
-  const favorites = user.favorites
-  const products = favorites.products
   
-  return (
-    <Favorites products={products}/>
-  )
+  return <Favorites/>
 }
 
 export default FavoritesPage

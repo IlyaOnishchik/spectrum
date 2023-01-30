@@ -18,26 +18,9 @@ export class UsersService {
       where,
       relations: {
         roles: true,
-        cart: {
-          products: {
-            product: {
-              images: { image: true },
-              parameters: { parameter: true }
-            }
-          }
-        },
-        favorites: {
-          products: {
-            images: { image: true },
-            parameters: { parameter: true },
-          }
-        },
-        compared: {
-          products: {
-            images: { image: true },
-            parameters: { parameter: true },
-          }
-        }
+        cart: true,
+        favorites: true,
+        compared: true,
       },
     });
   }

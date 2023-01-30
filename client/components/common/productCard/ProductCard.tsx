@@ -29,7 +29,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
           <div className='text-lg font-bold'>{name}</div>
           <div className='flex justify-between items-center'>
             <div className='text-xl font-bold'>${product.price}</div>
-            <Actions productId={product.id}/>
+            {/* <Actions productId={product.id}/> */}
           </div>
         </div>
       </Link>

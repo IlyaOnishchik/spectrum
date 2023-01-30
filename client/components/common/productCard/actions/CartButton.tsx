@@ -2,7 +2,7 @@ import { ShoppingCartIcon as ShoppingCartIconSolid } from '@heroicons/react/24/s
 import { ShoppingCartIcon as ShoppingCartIconOutline } from '@heroicons/react/24/outline'
 import ActionsItem from './ActionsItem'
 import { FC } from 'react'
-import { useToggleCartProduct } from '../../../../hooks/useToggleCartProduct'
+import { useToggleCartProduct } from '../../../../hooks/cart/useToggleCartProduct'
 
 type CartButtonProps = {
   productId: string

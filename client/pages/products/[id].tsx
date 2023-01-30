@@ -9,9 +9,7 @@ const ProductPage = () => {
   const { id } = router.query
   if (!id) return <Loading/>
 
-  return (
-    <Product id={String(id)}/>
-  )
+  return <Product id={String(id)}/>
 }
 
 export default ProductPage

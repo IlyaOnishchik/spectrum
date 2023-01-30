@@ -4,7 +4,5 @@ import Home from '../components/home/Home'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function HomePage() {
-  return (
-    <Home/>
-  )
+  return <Home/>
 }

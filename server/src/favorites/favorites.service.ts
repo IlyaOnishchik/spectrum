@@ -18,4 +18,19 @@ export class FavoritesService {
     return await this.favoritesRepository.save(favorites);
   }
 
+  async findOne(id: string): Promise<Favorites> {
+    return await this.favoritesRepository.findOne({
+      where: { id },
+      relations: {
+        products: {
+          images: {
+            image: true
+          },
+          parameters: {
+            parameter: true
+          }
+        }
+      }
+    })
+  }
 }

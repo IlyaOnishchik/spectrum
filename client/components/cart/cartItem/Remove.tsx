@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { useToggleCartProduct } from '../../../hooks/useToggleCartProduct'
+import { useToggleCartProduct } from '../../../hooks/cart/useToggleCartProduct'
 import RemoveButton from '../../common/RemoveButton'
 
 type RemoveProps = {

@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { HeartIcon as HeartIconSolid} from '@heroicons/react/24/solid'
 import { HeartIcon as HeartIconOutline} from '@heroicons/react/24/outline'
 import ActionsItem from './ActionsItem'
-import { useToggleFavoritesProduct } from '../../../../hooks/useToggleFavoritesProduct'
+import { useToggleFavoritesProduct } from '../../../../hooks/favorites/useToggleFavoritesProduct'
 import { useCurrentUser } from '../../../../hooks/useCurrentUser'
 
 type FavoritesButtonProduct = {

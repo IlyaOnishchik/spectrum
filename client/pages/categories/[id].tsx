@@ -9,9 +9,7 @@ const CategoryPage = () => {
   const { id } = router.query
   if (!id) return <Loading/>
 
-  return (
-    <Category id={String(id)}/>
-  )
+  return <Category id={String(id)}/>
 }
 
 export default CategoryPage

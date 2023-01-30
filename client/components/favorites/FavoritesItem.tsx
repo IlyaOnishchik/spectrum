@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { FC } from "react"
-import { useToggleFavoritesProduct } from "../../hooks/useToggleFavoritesProduct"
+import { useToggleFavoritesProduct } from "../../hooks/favorites/useToggleFavoritesProduct"
 import { Product } from "../../types/Product"
 import { Card, CardBody, CardImage } from "../common/card"
 import RemoveButton from "../common/RemoveButton"

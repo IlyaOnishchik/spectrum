@@ -17,4 +17,20 @@ export class ComparedService {
   async save(compared: Compared): Promise<Compared> {
     return await this.comapredRepository.save(compared);
   }
+
+  async findOne(id: string): Promise<Compared> {
+    return await this.comapredRepository.findOne({ 
+      where: { id },
+      relations: {
+        products: {
+          images: {
+            image: true
+          },
+          parameters: {
+            parameter: true
+          }
+        }
+      }
+    });
+  }
 }
