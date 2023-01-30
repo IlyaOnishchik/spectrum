@@ -15,6 +15,9 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { User } from 'src/users/models/user.entity';
 import { JwtPayload } from './models/jwt-payload.model';
+import { Cart } from 'src/carts/models/cart.entity';
+import { Favorites } from 'src/favorites/models/favorites.entity';
+import { Compared } from 'src/compared/models/compared.entity';
 
 @Resolver()
 export class AuthResolver {
@@ -33,6 +36,9 @@ export class AuthResolver {
       throw new ConflictException('User with this email already exists!');
     const passwordHash = await bcrypt.hashSync(password, 5);
     const user = new User();
+    user.cart = new Cart();
+    user.favorites = new Favorites();
+    user.compared = new Compared();
     user.email = email;
     user.passwordHash = passwordHash;
     const activationLink = uuidv4();

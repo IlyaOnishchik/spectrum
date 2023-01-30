@@ -23,6 +23,7 @@ import { ParameterTypesModule } from './parameter-types/parameter-types.module';
 import { CartsModule } from './carts/carts.module';
 import { FavoritesModule } from './favorites/favorites.module';
 import { CartsProductsModule } from './carts-products/carts-products.module';
+import { ComparedModule } from './compared/compared.module';
 
 @Module({
   imports: [
@@ -71,6 +72,7 @@ import { CartsProductsModule } from './carts-products/carts-products.module';
     CartsModule,
     FavoritesModule,
     CartsProductsModule,
+    ComparedModule,
   ],
   controllers: [AppController],
   providers: [AppService],

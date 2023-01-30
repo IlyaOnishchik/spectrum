@@ -11,6 +11,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { Role } from 'src/roles/models/role.entity';
 import { Cart } from 'src/carts/models/cart.entity';
 import { Favorites } from 'src/favorites/models/favorites.entity';
+import { Compared } from 'src/compared/models/compared.entity';
 
 @Entity('users')
 @ObjectType()
@@ -55,4 +56,9 @@ export class User {
   @JoinColumn()
   @Field(() => Favorites)
   favorites: Favorites;
+
+  @OneToOne(() => Compared, compared => compared.user)
+  @JoinColumn()
+  @Field(() => Compared)
+  compared: Compared;
 }

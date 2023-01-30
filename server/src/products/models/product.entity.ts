@@ -2,6 +2,7 @@ import { Field, Int, ObjectType } from "@nestjs/graphql";
 import { CartProduct } from "src/carts-products/models/cart-product.entity";
 import { Cart } from "src/carts/models/cart.entity";
 import { Category } from "src/categories/models/category.entity";
+import { Compared } from "src/compared/models/compared.entity";
 import { Favorites } from "src/favorites/models/favorites.entity";
 import { Image } from "src/images/models/image.entity";
 import { ProductImage } from "src/products-images/models/product-image.entity";
@@ -42,4 +43,8 @@ export class Product {
   @ManyToMany(() => Favorites, favorites => favorites.products)
   @Field(() => [Favorites], { nullable: true })
   favorites: Favorites[];
+
+  @ManyToMany(() => Compared, compared => compared.products)
+  @Field(() => [Compared], { nullable: true })
+  compared: Compared[];
 }
