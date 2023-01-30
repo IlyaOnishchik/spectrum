@@ -10,7 +10,8 @@ export class CartsService {
     @InjectRepository(Cart) private cartsRepository: Repository<Cart>
   ) {}
 
-  async save(cart: Cart): Promise<Cart> {
+  async create(): Promise<Cart> {
+    const cart = new Cart();
     return await this.cartsRepository.save(cart);
   }
 }

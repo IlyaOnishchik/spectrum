@@ -1,12 +1,12 @@
 import React from 'react'
 import Section from '../common/Section'
 
-const Compare = () => {
+const Compared = () => {
   return (
-    <Section title='Compare'>
+    <Section title='Compared'>
 
     </Section>
   )
 }
 
-export default Compare
+export default Compared

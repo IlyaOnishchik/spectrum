@@ -9,7 +9,13 @@ export class FavoritesService {
     @InjectRepository(Favorites) private favoritesRepository: Repository<Favorites>
   ) {}
 
+  async create(): Promise<Favorites> {
+    const favorites = new Favorites();
+    return await this.favoritesRepository.save(favorites);
+  }
+
   async save(favorites: Favorites): Promise<Favorites> {
     return await this.favoritesRepository.save(favorites);
   }
+
 }

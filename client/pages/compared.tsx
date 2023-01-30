@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
 import React from 'react'
 import Loading from '../components/common/Loading'
-import Compare from '../components/compare/Compare'
+import Compared from '../components/compared/Compared'
 import { useCurrentUser } from '../hooks/useCurrentUser'
 
-const ComparePage = () => {
+const ComparedPage = () => {
   
   const router = useRouter()
   const { loading, error } = useCurrentUser()
@@ -12,8 +12,8 @@ const ComparePage = () => {
   if (error) router.push('/')
 
   return (
-    <Compare/>
+    <Compared/>
   )
 }
 
-export default ComparePage
+export default ComparedPage

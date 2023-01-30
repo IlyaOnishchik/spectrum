@@ -17,7 +17,7 @@ const Actions = () => {
       <ul className='flex | gap-1'>
         {data ? (
             <>
-              <ActionsItem name='Compare' href='/compare' icon={<ChartBarSquareIcon className='w-8 h-8 text-white'/>}/>
+              <ActionsItem name='Compare' href='/compared' icon={<ChartBarSquareIcon className='w-8 h-8 text-white'/>}/>
               <ActionsItem name='Favorites' href='/favorites' icon={<HeartIcon className='w-8 h-8 text-white'/>}/>
               <ActionsItem name='Cart' href='/cart' icon={<ShoppingCartIcon className='w-8 h-8 text-white'/>}/>
               <ActionsItem name='Profile' href='/profile' icon={<UserCircleIcon className='w-8 h-8 text-white'/>}/>

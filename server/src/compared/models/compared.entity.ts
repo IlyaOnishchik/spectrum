@@ -11,7 +11,7 @@ export class Compared {
   id: string;
 
   @OneToOne(() => User, user => user.compared)
-  @Field(() => User)
+  @Field(() => User, { nullable: true })
   user: User;
 
   @ManyToMany(() => Product, product => product.compared)

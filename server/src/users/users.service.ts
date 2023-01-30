@@ -31,6 +31,12 @@ export class UsersService {
             images: { image: true },
             parameters: { parameter: true },
           }
+        },
+        compared: {
+          products: {
+            images: { image: true },
+            parameters: { parameter: true },
+          }
         }
       },
     });
