@@ -6,9 +6,6 @@ type ReviewsItemProps = {
 }
 
 const ReviewsItem: FC<ReviewsItemProps> = ({ review }) => {
-
-  console.log(review)
-
   return (
     <div>
       {review.user.email}: {review.text}

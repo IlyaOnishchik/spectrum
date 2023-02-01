@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType } from "@nestjs/graphql";
+import { Field, Float, Int, ObjectType } from "@nestjs/graphql";
 import { CartProduct } from "src/carts-products/models/cart-product.entity";
 import { Cart } from "src/carts/models/cart.entity";
 import { Category } from "src/categories/models/category.entity";
@@ -7,6 +7,7 @@ import { Favorites } from "src/favorites/models/favorites.entity";
 import { Image } from "src/images/models/image.entity";
 import { ProductImage } from "src/products-images/models/product-image.entity";
 import { ProductParameter } from "src/products-parameters/models/product-parameter.entity";
+import { Rating } from "src/ratings/models/rating.entity";
 import { Review } from "src/reviews/models/review.entity";
 import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
@@ -52,4 +53,11 @@ export class Product {
   @OneToMany(() => Review, review => review.product)
   @Field(() => [Review], { nullable: true })
   reviews: Review[];
+
+  @OneToMany(() => Rating, rating => rating.product)
+  @Field(() => [Rating], { nullable: true })
+  ratings: Rating[];
+
+  @Field(() => Float)
+  rating: number;
 }

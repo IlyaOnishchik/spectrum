@@ -10,9 +10,10 @@ type HeaderProps = {
   price: number
   quanity: number
   images: Image[]
+  rating: number
 }
 
-const Header: FC<HeaderProps> = ({ name, price, quanity, images }) => {
+const Header: FC<HeaderProps> = ({ name, price, quanity, images, rating }) => {
 
   const { isHovered, onMouseEnter, onMouseLeave } = useHover()
 
@@ -21,7 +22,7 @@ const Header: FC<HeaderProps> = ({ name, price, quanity, images }) => {
       <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} className='col-span-12 md:col-span-4'>
         <ImageSlider name={name} images={images} isHovered={isHovered}/>
       </div>
-      <Common className='col-span-12 sm:col-span-6 md:col-span-4'/>
+      <Common className='col-span-12 sm:col-span-6 md:col-span-4' rating={rating}/>
       <Payment price={price} quantity={quanity} className='col-span-12 sm:col-span-6 md:col-span-4'/>
     </header>
   )

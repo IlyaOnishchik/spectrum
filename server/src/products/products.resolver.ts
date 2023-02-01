@@ -1,5 +1,5 @@
 import { UseGuards } from '@nestjs/common';
-import { Args, Field, Int, Mutation, ObjectType, Query, Resolver } from '@nestjs/graphql';
+import { Args, Field, Float, Int, Mutation, ObjectType, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CategoriesService } from 'src/categories/categories.service';
 import { Roles } from 'src/roles/decorators/roles.decorator';
@@ -10,7 +10,7 @@ import { FindProductsArgs } from './models/find-products.args';
 import { Product } from './models/product.entity';
 import { PaginatedProductsRepsonse, ProductsService } from './products.service';
 
-@Resolver()
+@Resolver(() => Product)
 export class ProductsResolver {
   constructor(
     private productsService: ProductsService,
@@ -34,5 +34,11 @@ export class ProductsResolver {
   @Query(() => Product, { name: 'product' })
   async findOne(@Args() findProduct: FindProduct): Promise<Product> {
     return await this.productsService.findOne(findProduct);
+  }
+
+  @ResolveField(() => Float)
+  rating(@Parent() product: Product) {
+    const rating = product.ratings.map(item => item.value).reduce((sum, item) => sum + item, 0) / product.ratings.length;
+    return rating ? rating : 5;
   }
 }

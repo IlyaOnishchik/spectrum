@@ -26,10 +26,11 @@ const Product: FC<ProductProps> = ({ id }) => {
   const images = [...product.images].sort((a,b) => a.order - b.order).map(item => item.image)
   const parameters = product.parameters
   const reviews = product.reviews
+  const rating = product.rating
 
   return (
     <Section title={name}>
-      <Header name={name} price={price} quanity={quantity} images={images}/>
+      <Header name={name} price={price} quanity={quantity} images={images} rating={rating}/>
       <Main productId={product.id} parameters={parameters} reviews={reviews}/>
     </Section>
   )

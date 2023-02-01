@@ -11,4 +11,5 @@ export type Product = {
   images: ProductImage[]
   parameters: ProductParameter[]
   reviews: Review[]
+  rating: number
 }

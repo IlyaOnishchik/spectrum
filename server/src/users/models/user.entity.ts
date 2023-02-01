@@ -14,6 +14,7 @@ import { Cart } from 'src/carts/models/cart.entity';
 import { Favorites } from 'src/favorites/models/favorites.entity';
 import { Compared } from 'src/compared/models/compared.entity';
 import { Review } from 'src/reviews/models/review.entity';
+import { Rating } from 'src/ratings/models/rating.entity';
 
 @Entity('users')
 @ObjectType()
@@ -67,4 +68,8 @@ export class User {
   @OneToMany(() => Review, review => review.user)
   @Field(() => [Review], { nullable: true })
   reviews: Review[];
+
+  @OneToMany(() => Rating, rating => rating.user)
+  @Field(() => [Rating], { nullable: true })
+  ratings: Rating[];
 }

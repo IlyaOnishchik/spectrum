@@ -23,6 +23,7 @@ export const PRODUCT_QUERY = gql`
         text
         createdAt
       }
+      rating
     }
   }
 `

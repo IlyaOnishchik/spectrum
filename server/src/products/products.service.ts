@@ -73,7 +73,8 @@ export class ProductsService {
         },
         reviews: {
           user: true
-        }
+        },
+        ratings: true
       }, 
     });
   }
