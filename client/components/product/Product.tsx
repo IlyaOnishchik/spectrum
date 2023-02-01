@@ -30,7 +30,7 @@ const Product: FC<ProductProps> = ({ id }) => {
 
   return (
     <Section title={name}>
-      <Header name={name} price={price} quanity={quantity} images={images} rating={rating}/>
+      <Header id={product.id} name={name} price={price} quantity={quantity} images={images} rating={rating}/>
       <Main productId={product.id} parameters={parameters} reviews={reviews}/>
     </Section>
   )

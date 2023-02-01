@@ -16,8 +16,8 @@ const Main: FC<MainProps> = ({ productId, parameters, reviews }) => {
     <div>
       <Tabs colorScheme='purple'>
         <TabList>
-          <Tab fontSize={18} fontWeight='bold'>Parameters</Tab>
-          <Tab fontSize={18} fontWeight='bold'>Reviews</Tab>
+          <Tab fontSize={18} fontWeight={700}>Parameters</Tab>
+          <Tab fontSize={18} fontWeight={700}>Reviews ({reviews.length})</Tab>
         </TabList>
         <TabPanels>
           <TabPanel>

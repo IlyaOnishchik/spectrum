@@ -1,5 +1,4 @@
-import { Heading } from '@chakra-ui/react'
-import Button from '../../../common/buttons/Button'
+import { Button, Heading } from '@chakra-ui/react'
 
 const Slide1 = () => {
   return (
@@ -9,7 +8,7 @@ const Slide1 = () => {
         <Heading as='h1' size='xl'>Online electronics store</Heading>
         <span>We strive to offer our customers maximum benefits and convenience</span>
         <img src="/macbook.png" alt="Macbook" className='block md:hidden max-w-[65%]'/>
-        <Button>Open catalog</Button>
+        <Button colorScheme='purple'>Open catalog</Button>
       </div>
     </div>
   )

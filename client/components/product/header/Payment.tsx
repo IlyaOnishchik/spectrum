@@ -1,5 +1,5 @@
-import React, { FC } from 'react'
-import Button from '../../common/buttons/Button'
+import { FC } from 'react'
+import { Button } from '@chakra-ui/react'
 
 type PaymentProps = {
   className?: string
@@ -13,7 +13,7 @@ const Payment: FC<PaymentProps> = ({ className, price, quantity }) => {
       <div className='flex flex-col gap-3 p-5 shadow-xl rounded-xl'>
         <div className='text-5xl font-bold'>${price}</div>
         <div><span className='font-bold'>{quantity}</span> left</div>
-        <Button>Buy now</Button>
+        <Button colorScheme='purple'>Buy</Button>
       </div>
     </div>
   )
