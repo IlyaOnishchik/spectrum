@@ -1,6 +1,6 @@
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/solid"
 import { FC } from "react"
-import { useChangeCartProductQuantity } from "../../../hooks/useChangeCartProductQuantity"
+import { useChangeCartProductQuantity } from "../../../hooks/cart/useChangeCartProductQuantity"
 
 type QuantityProps = {
   cartProductId: string

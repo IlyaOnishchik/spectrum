@@ -1,5 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
-import { CURRENT_USER_QUERY } from "./useCurrentUser";
+import { CART_QUERY } from "./useCart";
 
 export const CHANGE_CART_PRODUCT_QUANTITY = gql`
   mutation changeCartProductQuantity($id: String!, $quantity: Int!) {
@@ -7,4 +7,4 @@ export const CHANGE_CART_PRODUCT_QUANTITY = gql`
   }
 `
 
-export const useChangeCartProductQuantity = () => useMutation(CHANGE_CART_PRODUCT_QUANTITY, { refetchQueries: [{ query: CURRENT_USER_QUERY }] })
+export const useChangeCartProductQuantity = () => useMutation(CHANGE_CART_PRODUCT_QUANTITY, { refetchQueries: [{ query: CART_QUERY }] })

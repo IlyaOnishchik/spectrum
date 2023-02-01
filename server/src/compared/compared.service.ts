@@ -23,11 +23,15 @@ export class ComparedService {
       where: { id },
       relations: {
         products: {
+          category: true,
           images: {
             image: true
           },
           parameters: {
-            parameter: true
+            parameter: {
+              category: true,
+              type: true
+            }
           }
         }
       }

@@ -23,7 +23,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
       className='flex flex-col | w-[280px] gap-5 px-5 py-3 | transition-all shadow md:shadow-xl md:hover:shadow-lg rounded-xl'
       onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
     >
-      <ImageSlider name={name} images={images} isHovered={isHovered} height='200px'/>
+      <ImageSlider name={name} images={images} isHovered={isHovered}/>
       <Link href={`/products/${product.id}`}>
         <div className='flex flex-col | gap-1'>
           <div className='text-lg font-bold'>{name}</div>

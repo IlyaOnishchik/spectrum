@@ -29,8 +29,8 @@ const ComparedButton: FC<ComparedButtonProps> = ({ productId }) => {
     <button onClick={handleClick} className='p-1 | rounded | transition-all hover:bg-violet-100'>
       {
         isInCompared ?
-          <ChartBarSquareIconOutline className='w-8 h-8 text-violet-400'/> :
-          <ChartBarSquareIconSolid className='w-8 h-8 text-violet-400'/>
+          <ChartBarSquareIconSolid className='w-8 h-8 text-violet-400'/> :
+          <ChartBarSquareIconOutline className='w-8 h-8 text-violet-400'/>
       }
     </button>
   )

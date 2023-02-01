@@ -7,6 +7,7 @@ export const COMPARED_QUERY = gql`
         id
         price
         quantity
+        category { name }
         images {
           image {
             name
@@ -15,7 +16,14 @@ export const COMPARED_QUERY = gql`
         }
         parameters {
           parameter {
+            id
             name
+            order
+            category {
+              id
+              name
+              order 
+            }
           }
           value
           unit
