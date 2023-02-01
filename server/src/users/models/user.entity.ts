@@ -4,6 +4,7 @@ import {
   JoinColumn,
   JoinTable,
   ManyToMany,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -12,6 +13,7 @@ import { Role } from 'src/roles/models/role.entity';
 import { Cart } from 'src/carts/models/cart.entity';
 import { Favorites } from 'src/favorites/models/favorites.entity';
 import { Compared } from 'src/compared/models/compared.entity';
+import { Review } from 'src/reviews/models/review.entity';
 
 @Entity('users')
 @ObjectType()
@@ -61,4 +63,8 @@ export class User {
   @JoinColumn()
   @Field(() => Compared)
   compared: Compared;
+
+  @OneToMany(() => Review, review => review.user)
+  @Field(() => [Review], { nullable: true })
+  reviews: Review[];
 }

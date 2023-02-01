@@ -27,6 +27,10 @@ export class CartsProductsService {
     return await this.cartsProductsRepository.findOne({ where });
   }
 
+  async findOneByCartIdAndProductId(cartId: string, productId: string): Promise<CartProduct> {
+    return await this.cartsProductsRepository.findOne({ where: { cart: { id: cartId }, product: { id: productId } } });
+  }
+
   async updateOne(criteria, partialCartProduct: Partial<CartProduct>): Promise<UpdateResult> {
     return await this.cartsProductsRepository.update(criteria, partialCartProduct);
   }

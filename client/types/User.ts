@@ -1,5 +1,6 @@
 import { Cart } from "./Cart"
 import { Favorites } from "./Favorites"
+import { Review } from "./Review"
 import { Role } from "./Role"
 
 export type User = {
@@ -10,4 +11,5 @@ export type User = {
   isBanned: boolean
   cart: Cart
   favorites: Favorites
+  reviews: Review[]
 }

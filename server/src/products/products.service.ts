@@ -70,6 +70,9 @@ export class ProductsService {
           parameter: {
             category: true
           }
+        },
+        reviews: {
+          user: true
         }
       }, 
     });

@@ -24,11 +24,10 @@ export class CartsProductsResolver {
   ): Promise<Boolean> {
     const { cart } = await this.usersService.findOne({ id });
     const product = await this.productsService.findOne({ id: productId });
-    let cartProduct = await this.cartsProductsService.findOne({ cart, product });
-    let result = null;
-    if (cartProduct) result = await this.cartsProductsService.remove(cartProduct);
-    else result = await this.cartsProductsService.create(cart, product);
-    return result ? true : false;
+    const cartProduct = await this.cartsProductsService.findOneByCartIdAndProductId(cart.id, product.id);
+    if (cartProduct) await this.cartsProductsService.remove(cartProduct);
+    else await this.cartsProductsService.create(cart, product);
+    return true
   }
 
   @UseGuards(JwtAuthGuard)

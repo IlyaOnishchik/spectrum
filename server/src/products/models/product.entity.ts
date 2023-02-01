@@ -7,6 +7,7 @@ import { Favorites } from "src/favorites/models/favorites.entity";
 import { Image } from "src/images/models/image.entity";
 import { ProductImage } from "src/products-images/models/product-image.entity";
 import { ProductParameter } from "src/products-parameters/models/product-parameter.entity";
+import { Review } from "src/reviews/models/review.entity";
 import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('products')
@@ -47,4 +48,8 @@ export class Product {
   @ManyToMany(() => Compared, compared => compared.products)
   @Field(() => [Compared], { nullable: true })
   compared: Compared[];
+
+  @OneToMany(() => Review, review => review.product)
+  @Field(() => [Review], { nullable: true })
+  reviews: Review[];
 }

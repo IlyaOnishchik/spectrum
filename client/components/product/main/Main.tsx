@@ -1,16 +1,20 @@
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
 import React, { FC } from 'react'
 import { ProductParameter } from '../../../types/ProductParameter'
+import { Review } from '../../../types/Review'
 import Parameters from './parameters/Parameters'
+import Reviews from './reviews/Reviews'
 
 type MainProps = {
+  productId: string
   parameters: ProductParameter[]
+  reviews: Review[]
 }
 
-const Main: FC<MainProps> = ({ parameters }) => {
+const Main: FC<MainProps> = ({ productId, parameters, reviews }) => {
   return (
     <div>
-      <Tabs>
+      <Tabs colorScheme='purple'>
         <TabList>
           <Tab fontSize={18} fontWeight='bold'>Parameters</Tab>
           <Tab fontSize={18} fontWeight='bold'>Reviews</Tab>
@@ -20,7 +24,7 @@ const Main: FC<MainProps> = ({ parameters }) => {
             <Parameters parameters={parameters}/>
           </TabPanel>
           <TabPanel>
-            Reviews
+            <Reviews productId={productId} reviews={reviews}/>
           </TabPanel>
         </TabPanels>
       </Tabs>

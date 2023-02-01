@@ -17,6 +17,12 @@ export const PRODUCT_QUERY = gql`
         value
         unit
       }
+      reviews {
+        id
+        user { email }
+        text
+        createdAt
+      }
     }
   }
 `

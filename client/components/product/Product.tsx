@@ -16,6 +16,7 @@ const Product: FC<ProductProps> = ({ id }) => {
   const { loading, error, data } = useProduct({ id })
   if (loading) return <Loading/>
   if (error) return <Error message={error.message}/>
+
   const product: Product = data.product
   const brand = product.parameters.find(item => item.parameter.name === 'Brand')?.value || 'Brand'
   const model = product.parameters.find(item => item.parameter.name === 'Model')?.value || 'Model'
@@ -24,11 +25,12 @@ const Product: FC<ProductProps> = ({ id }) => {
   const quantity = product.quantity
   const images = [...product.images].sort((a,b) => a.order - b.order).map(item => item.image)
   const parameters = product.parameters
+  const reviews = product.reviews
 
   return (
     <Section title={name}>
       <Header name={name} price={price} quanity={quantity} images={images}/>
-      <Main parameters={parameters}/>
+      <Main productId={product.id} parameters={parameters} reviews={reviews}/>
     </Section>
   )
 }

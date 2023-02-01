@@ -24,6 +24,7 @@ import { CartsModule } from './carts/carts.module';
 import { FavoritesModule } from './favorites/favorites.module';
 import { CartsProductsModule } from './carts-products/carts-products.module';
 import { ComparedModule } from './compared/compared.module';
+import { ReviewsModule } from './reviews/reviews.module';
 
 @Module({
   imports: [
@@ -73,6 +74,7 @@ import { ComparedModule } from './compared/compared.module';
     FavoritesModule,
     CartsProductsModule,
     ComparedModule,
+    ReviewsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
