@@ -14,9 +14,11 @@ const Common: FC<CommonProps> = ({ className, rating, productId }) => {
   return (
     <div className={`${className} flex flex-col justify-center items-center gap-5`}>
       <div>Rating {rating}</div>
-      <ComparedButton productId={productId}/>
-      <FavoritesButton productId={productId}/>
-      <CartButton productId={productId}/>
+      <div>
+        <ComparedButton productId={productId}/>
+        <FavoritesButton productId={productId}/>
+        <CartButton productId={productId}/>
+      </div>
     </div>
   )
 }

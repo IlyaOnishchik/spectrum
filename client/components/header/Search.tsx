@@ -1,3 +1,4 @@
+import { Input } from '@chakra-ui/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 
 const Search = () => {

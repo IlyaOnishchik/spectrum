@@ -1,3 +1,4 @@
+import { Button, Input } from '@chakra-ui/react'
 import React, { FC, useState } from 'react'
 import { useCreateReview } from '../../../../hooks/useCreateReview'
 
@@ -13,8 +14,8 @@ const Add: FC<AddProps> = ({ productId }) => {
 
   return (
     <div>
-      <button onClick={handleClick}>Add</button>
-      <input type="text" value={text} onChange={e => setText(e.target.value)}/>
+      <Button onClick={handleClick} colorScheme='purple'>Add</Button>
+      <Input type="text" value={text} onChange={e => setText(e.target.value)} focusBorderColor='#805AD5'/>
     </div>
   )
 }
