@@ -31,8 +31,8 @@ const CartButton: FC<CartButtonProps> = ({ productId }) => {
     <button onClick={handleClick} className='p-1 | rounded | transition-all hover:bg-violet-100'>
       {
         isInCart ? 
-          <ShoppingCartIconSolid className='w-8 h-8 text-violet-400'/> :
-          <ShoppingCartIconOutline className='w-8 h-8 text-violet-400'/>
+          <ShoppingCartIconSolid className='w-8 h-8 text-violet-500'/> :
+          <ShoppingCartIconOutline className='w-8 h-8 text-violet-500'/>
       }
     </button>
   )

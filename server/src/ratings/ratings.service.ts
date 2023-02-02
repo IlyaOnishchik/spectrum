@@ -18,4 +18,8 @@ export class RatingsService {
     rating.value = value;
     return await this.ratingsRepository.save(rating);
   }
+
+  async findOneByUserIdAndProductId(userId: string, productId: string): Promise<Rating> {
+    return await this.ratingsRepository.findOne({ where: { user: { id: userId }, product: { id: productId } } })
+  }
 }

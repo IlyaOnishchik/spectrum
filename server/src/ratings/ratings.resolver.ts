@@ -1,5 +1,5 @@
 import { UseGuards } from '@nestjs/common';
-import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { ProductsService } from 'src/products/products.service';
@@ -26,5 +26,13 @@ export class RatingsResolver {
     const user = await this.usersService.findOne({ id: userId });
     const product = await this.productService.findOne({ id: productId });
     return await this.ratingsService.create(user, product, value);
+  }
+
+  @Query(() => Rating, { name: 'rating' })
+  async findOne(
+    @Args('userId') userId: string,
+    @Args('productId') productId: string
+  ): Promise<Rating> {
+    return await this.ratingsService.findOneByUserIdAndProductId(userId, productId);
   }
 }

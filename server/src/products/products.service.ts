@@ -72,7 +72,8 @@ export class ProductsService {
           }
         },
         reviews: {
-          user: true
+          user: true,
+          product: true
         },
         ratings: true
       }, 

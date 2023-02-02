@@ -22,8 +22,9 @@ export const PRODUCT_QUERY = gql`
         user { email }
         text
         createdAt
+        rating
       }
-      rating
+      rating { value count }
     }
   }
 `

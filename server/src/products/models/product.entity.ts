@@ -10,6 +10,7 @@ import { ProductParameter } from "src/products-parameters/models/product-paramet
 import { Rating } from "src/ratings/models/rating.entity";
 import { Review } from "src/reviews/models/review.entity";
 import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { ProductRating } from "./product-rating.model";
 
 @Entity('products')
 @ObjectType()
@@ -58,6 +59,6 @@ export class Product {
   @Field(() => [Rating], { nullable: true })
   ratings: Rating[];
 
-  @Field(() => Float)
-  rating: number;
+  @Field(() => ProductRating)
+  rating: ProductRating;
 }

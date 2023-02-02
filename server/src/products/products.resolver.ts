@@ -7,6 +7,7 @@ import { RolesGuard } from 'src/roles/guards/roles.guard';
 import { CreateProduct } from './models/create-product.input';
 import { FindProduct } from './models/find-product';
 import { FindProductsArgs } from './models/find-products.args';
+import { ProductRating } from './models/product-rating.model';
 import { Product } from './models/product.entity';
 import { PaginatedProductsRepsonse, ProductsService } from './products.service';
 
@@ -36,9 +37,10 @@ export class ProductsResolver {
     return await this.productsService.findOne(findProduct);
   }
 
-  @ResolveField(() => Float)
+  @ResolveField(() => ProductRating)
   rating(@Parent() product: Product) {
-    const rating = product.ratings.map(item => item.value).reduce((sum, item) => sum + item, 0) / product.ratings.length;
-    return rating ? rating : 5;
+    const value = product.ratings.map(item => item.value).reduce((sum, item) => sum + item, 0) / product.ratings.length || 0;
+    const count = product.ratings.length || 0;
+    return { value, count };
   }
 }

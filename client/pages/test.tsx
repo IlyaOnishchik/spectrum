@@ -1,14 +1,11 @@
-import CartButton from "../components/common/buttons/CartButton"
-import ComparedButton from "../components/common/buttons/ComparedButton"
-import FavoritesButton from "../components/common/buttons/FavoritesButton"
-import Rating from "../components/common/Rating"
+import Rating from "../components/common/rating/Rating"
 import Section from "../components/common/Section"
 
 const TestPage = () => {
   return (
     <Section title='Test'>
       <div>
-        <Rating/>
+        <Rating value={3.8}/>
       </div>
     </Section>
   )

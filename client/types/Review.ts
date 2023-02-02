@@ -7,4 +7,5 @@ export type Review = {
   product: Product
   text: string
   createdAt: string
+  rating: number
 }

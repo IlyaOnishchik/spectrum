@@ -1,5 +1,6 @@
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, Float, ObjectType } from "@nestjs/graphql";
 import { Product } from "src/products/models/product.entity";
+import { Rating } from "src/ratings/models/rating.entity";
 import { User } from "src/users/models/user.entity";
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
@@ -25,4 +26,7 @@ export class Review {
   @CreateDateColumn()
   @Field()
   createdAt: Date;
+
+  @Field(() => Float)
+  rating: number;
 }

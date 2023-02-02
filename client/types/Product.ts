@@ -1,6 +1,7 @@
 import { Category } from "./Category"
 import { ProductImage } from "./ProductImage"
 import { ProductParameter } from "./ProductParameter"
+import { ProductRating } from "./ProductRating"
 import { Review } from "./Review"
 
 export type Product = {
@@ -11,5 +12,5 @@ export type Product = {
   images: ProductImage[]
   parameters: ProductParameter[]
   reviews: Review[]
-  rating: number
+  rating: ProductRating
 }

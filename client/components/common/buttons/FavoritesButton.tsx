@@ -29,8 +29,8 @@ const FavoritesButton: FC<FavoritesButtonProps> = ({ productId }) => {
     <button onClick={handleClick} className='p-1 | rounded | transition-all hover:bg-violet-100'>
       {
         isInFavorites ?
-          <HeartIconSolid className='w-8 h-8 text-violet-400'/> :
-          <HeartIconOutline className='w-8 h-8 text-violet-400'/>
+          <HeartIconSolid className='w-8 h-8 text-violet-500'/> :
+          <HeartIconOutline className='w-8 h-8 text-violet-500'/>
       }
     </button>
   )

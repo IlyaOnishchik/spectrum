@@ -18,9 +18,9 @@ const ParametersItem: FC<ParametersItemProps> = ({ name, parameters }) => {
         <AccordionIcon/>
       </AccordionButton>
       <AccordionPanel>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-[20%]'>
+        <div className='flex justify-between flex-wrap gap-3'>
           {sortedParameters.map(item => 
-            <div key={item.id} className='flex md:text-lg'>
+            <div key={item.id} className='flex md:text-lg basis-full md:basis-2/5'>
               <span>{item.parameter.name}</span>
               <span className='flex-auto border-b border-dashed border-black'></span>
               <span className='font-bold'>{item.value} {item.unit}</span>
