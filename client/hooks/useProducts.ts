@@ -6,14 +6,16 @@ export const PRODUCTS_QUERY = gql`
     $take: Int, $skip: Int, 
     $sortBy: String, $order: String, 
     $minPrice: Int, $maxPrice: Int,
-    $filters: FiltersInput
+    $filters: FiltersInput,
+    $query: String
   ) {
     products(
       categoryId: $categoryId, 
       take: $take, skip: $skip, 
       sortBy: $sortBy, order: $order, 
       minPrice: $minPrice, maxPrice: $maxPrice,
-      filters: $filters
+      filters: $filters,
+      query: $query
     ) {
       items {
         id
@@ -36,6 +38,7 @@ type UseProductsVariables = {
   minPrice?: number
   maxPrice?: number
   filters?: unknown
+  query?: string
 }
 
 export const useProducts = (variables?: UseProductsVariables) => useQuery(PRODUCTS_QUERY, { variables })

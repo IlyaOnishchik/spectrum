@@ -15,7 +15,9 @@ const Remove: FC<RemoveProps> = ({ productId }) => {
   }
 
   return (
-    <RemoveButton onClick={handleRemove} className={'hidden md:block'}/>
+    <div>
+      <RemoveButton onClick={handleRemove}/>
+    </div>
   )
 }
 

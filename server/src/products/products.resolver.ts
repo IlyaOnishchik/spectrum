@@ -5,8 +5,8 @@ import { CategoriesService } from 'src/categories/categories.service';
 import { Roles } from 'src/roles/decorators/roles.decorator';
 import { RolesGuard } from 'src/roles/guards/roles.guard';
 import { CreateProduct } from './models/create-product.input';
-import { FindProduct } from './models/find-product';
-import { FindProductsArgs } from './models/find-products.args';
+import { FindProduct } from './models/find-product.args';
+import { FindProducts } from './models/find-products.args';
 import { ProductRating } from './models/product-rating.model';
 import { Product } from './models/product.entity';
 import { PaginatedProductsRepsonse, ProductsService } from './products.service';
@@ -28,13 +28,21 @@ export class ProductsResolver {
   }
 
   @Query(() => PaginatedProductsRepsonse, { name: 'products' })
-  async findAndCount(@Args() findProductsArgs: FindProductsArgs): Promise<PaginatedProductsRepsonse> {
-    return await this.productsService.findAndCount(findProductsArgs);
+  async findAndCount(@Args() findProducts: FindProducts): Promise<PaginatedProductsRepsonse> {
+    return await this.productsService.findAndCount(findProducts);
   }
 
   @Query(() => Product, { name: 'product' })
   async findOne(@Args() findProduct: FindProduct): Promise<Product> {
     return await this.productsService.findOne(findProduct);
+  }
+
+  @ResolveField(() => String)
+  name(@Parent() product: Product) {
+    const brand = product.parameters.find(item => item.parameter.name === 'Brand').value;
+    const model = product.parameters.find(item => item.parameter.name === 'Model').value;
+    const name = brand + ' ' + model;
+    return name;
   }
 
   @ResolveField(() => ProductRating)

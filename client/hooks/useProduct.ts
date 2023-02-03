@@ -4,6 +4,7 @@ export const PRODUCT_QUERY = gql`
   query product($id: String) {
     product(id: $id) {
       id
+      name
       price
       quantity
       images { image { id name } order }

@@ -2,7 +2,7 @@ import { ArgsType, Field, Int } from "@nestjs/graphql";
 import { FiltersInput } from "./filters.model";
 
 @ArgsType()
-export class FindProductsArgs {
+export class FindProducts {
   @Field({ nullable: true })
   categoryId: string;
 
@@ -26,4 +26,7 @@ export class FindProductsArgs {
 
   @Field(() => FiltersInput, { nullable: true })
   filters: FiltersInput;
+
+  @Field({ nullable: true })
+  query: string;
 }

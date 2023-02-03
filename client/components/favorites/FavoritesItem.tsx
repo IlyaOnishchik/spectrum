@@ -2,7 +2,7 @@ import Link from "next/link"
 import { FC } from "react"
 import { useToggleFavoritesProduct } from "../../hooks/favorites/useToggleFavoritesProduct"
 import { Product } from "../../types/Product"
-import { Card, CardBody, CardImage } from "../common/card"
+import { Card, CardBody, CardFooter, CardImage } from "../common/card"
 import RemoveButton from "../common/buttons/RemoveButton"
 
 type FavoritesItemProps = {
@@ -26,21 +26,24 @@ const FavoritesItem: FC<FavoritesItemProps> = ({ product }) => {
 
   return (
     <Link href={`/products/${product.id}`}>
-      <Card>
-        <CardImage src={src} alt={`${brand} ${model}`}/>
-        <CardBody>
-          <div className='flex items-center h-full gap-5'>
-            <div className='flex-auto'>
-              <div className='text-2xl'>{name}</div>
-              <div className='text-xl font-bold'>${product.price}</div>
-              <div>Left <span className='font-bold'>{product.quantity}</span></div>
-            </div>
-            <div>
-              <RemoveButton onClick={handleRemove}/>
-            </div>
+      <div className='flex flex-col gap-3 p-5 shadow hover:shadow-md rounded-lg transition-all'>
+        <div className='flex gap-5 justify-between'>
+          <div className='relative w-[100px] h-[100px]'>
+            <img src={src} alt={name} className='absolute w-full h-full object-contain'/>
           </div>
-        </CardBody>
-      </Card>
+          <div className='flex-auto hidden sm:flex flex-col'>
+            <span className='text-lg'>{name}</span>
+            <span className='text-lg font-semibold'>${product.price}</span>
+          </div>
+          <div>
+            <RemoveButton onClick={handleRemove}/>
+          </div>
+        </div>
+        <div className='flex sm:hidden flex-col'>
+          <span className='text-lg'>{name}</span>
+          <span className='text-lg font-semibold'>${product.price}</span>
+        </div>
+      </div>
     </Link>
   )
 }

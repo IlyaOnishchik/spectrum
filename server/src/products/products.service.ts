@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Category } from 'src/categories/models/category.entity';
-import { Between, LessThan, MoreThan, Repository } from 'typeorm';
+import { Between, ILike, In, LessThan, MoreThan, Repository } from 'typeorm';
 import { FiltersInput } from './models/filters.model';
-import { FindProductsArgs } from './models/find-products.args';
+import { FindProducts } from './models/find-products.args';
 import { Product } from './models/product.entity';
 
 @ObjectType()
@@ -30,8 +30,8 @@ export class ProductsService {
     return await this.productsRepository.save(product);
   }
 
-  async findAndCount(findProductsArgs: FindProductsArgs): Promise<PaginatedProductsRepsonse> {
-    const { categoryId, take, skip, sortBy, order, minPrice, maxPrice, filters } = findProductsArgs;
+  async findAndCount(findProducts: FindProducts): Promise<PaginatedProductsRepsonse> {
+    const { categoryId, take, skip, sortBy, order, minPrice, maxPrice, filters, query } = findProducts;
 
     const result = await this.productsRepository.findAndCount({
       take,
@@ -39,7 +39,10 @@ export class ProductsService {
       order: { [sortBy]: order },
       where: {
         category: { id: categoryId },
-        price: minPrice && maxPrice ? Between(minPrice, maxPrice) : minPrice ? MoreThan(minPrice) : maxPrice ? LessThan(maxPrice) : null
+        price: minPrice && maxPrice ? Between(minPrice, maxPrice) : minPrice ? MoreThan(minPrice) : maxPrice ? LessThan(maxPrice) : null,
+        parameters: {
+          value: query ? ILike(`%${query}%`) : null
+        }
       },
       relations: {
         category: true,

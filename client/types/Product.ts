@@ -6,6 +6,7 @@ import { Review } from "./Review"
 
 export type Product = {
   id: string
+  name: string
   price: number
   quantity: number
   category: Category

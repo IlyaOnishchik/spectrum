@@ -7,7 +7,7 @@ type CardImageProps = {
 
 export const CardImage: FC<CardImageProps> = ({ src, alt }) => {
   return (
-    <div className='relative min-w-[100px] w-[100px] h-[100px]'>
+    <div className='relative w-[50px] sm:w-[100px] h-[50px] sm:h-[100px]'>
       <img src={src} alt={alt} className='absolute top-0 left-0 w-full h-full object-contain'/>
     </div>
   )

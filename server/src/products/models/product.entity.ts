@@ -59,6 +59,9 @@ export class Product {
   @Field(() => [Rating], { nullable: true })
   ratings: Rating[];
 
+  @Field()
+  name: string;
+
   @Field(() => ProductRating)
   rating: ProductRating;
 }

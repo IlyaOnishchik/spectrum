@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { FC } from 'react'
 import { CartProduct } from '../../../types/CartProduct'
-import { Card, CardBody, CardImage } from '../../common/card'
+import RemoveButton from '../../common/buttons/RemoveButton'
 import Quantity from './Quantity'
 import Remove from './Remove'
 
@@ -21,24 +21,24 @@ const CartItem: FC<CartItemProps> = ({ cartProduct }) => {
 
   return (
     <Link href={href}>
-      <Card>
-        <CardImage src={src} alt={name}/>
-        <CardBody>
-          <div className='flex items-center h-full gap-5'>
-            <div className='flex-auto flex flex-col md:flex-row justify-between'>
-              <div>
-                <div className='text-2xl'>{name}</div>
-                <div className='text-xl font-bold'>${product.price}</div>
-              </div>
-              <div className='flex flex-col md:items-center gap-2'>
-                <Quantity cartProductId={cartProduct.id} cartProductQuantity={cartProduct.quantity} productQuantity={product.quantity}/>
-                <div>Left <span className='font-bold'>{cartProduct.product.quantity}</span></div>
-              </div>
-            </div>
-            <Remove productId={product.id}/>
+      <div className='flex flex-col gap-3 p-5 shadow hover:shadow-md rounded-lg transition-all'>
+        <div className='flex gap-5 justify-between'>
+          <div className='relative w-[100px] h-[100px]'>
+            <img src={src} alt={name} className='absolute w-full h-full object-contain'/>
           </div>
-        </CardBody>
-      </Card>
+          <div className='flex-auto hidden sm:flex flex-col gap-1'>
+            <span className='text-lg'>{name}</span>
+            <span className='text-lg font-semibold'>${product.price}</span>
+            <Quantity cartProductId={cartProduct.id} cartProductQuantity={cartProduct.quantity} productQuantity={product.quantity}/>
+          </div>
+          <Remove productId={product.id}/>
+        </div>
+        <div className='flex sm:hidden flex-col gap-1'>
+          <span className='text-lg'>{name}</span>
+          <span className='text-lg font-semibold'>${product.price}</span>
+          <Quantity cartProductId={cartProduct.id} cartProductQuantity={cartProduct.quantity} productQuantity={product.quantity}/>
+        </div>
+      </div>
     </Link>
   )
 }

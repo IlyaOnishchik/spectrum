@@ -25,6 +25,8 @@ export class RatingsResolver {
   ): Promise<Rating> {
     const user = await this.usersService.findOne({ id: userId });
     const product = await this.productService.findOne({ id: productId });
+    const rating = await this.ratingsService.findOneByUserIdAndProductId(userId, productId);
+    if (rating) return rating;
     return await this.ratingsService.create(user, product, value);
   }
 
