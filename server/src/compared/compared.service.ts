@@ -18,9 +18,9 @@ export class ComparedService {
     return await this.comapredRepository.save(compared);
   }
 
-  async findOne(id: string): Promise<Compared> {
+  async findOneByUserId(userId: string): Promise<Compared> {
     return await this.comapredRepository.findOne({ 
-      where: { id },
+      where: { user: { id: userId } },
       relations: {
         products: {
           category: true,

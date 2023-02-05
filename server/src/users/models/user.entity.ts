@@ -51,17 +51,14 @@ export class User {
   roles: Role[];
 
   @OneToOne(() => Cart, cart => cart.user)
-  @JoinColumn()
   @Field(() => Cart)
   cart: Cart;
 
   @OneToOne(() => Favorites, favorites => favorites.user)
-  @JoinColumn()
   @Field(() => Favorites)
   favorites: Favorites;
 
   @OneToOne(() => Compared, compared => compared.user)
-  @JoinColumn()
   @Field(() => Compared)
   compared: Compared;
 

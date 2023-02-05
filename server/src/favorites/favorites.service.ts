@@ -18,9 +18,9 @@ export class FavoritesService {
     return await this.favoritesRepository.save(favorites);
   }
 
-  async findOne(id: string): Promise<Favorites> {
+  async findOneByUserId(userId: string): Promise<Favorites> {
     return await this.favoritesRepository.findOne({
-      where: { id },
+      where: { user: { id: userId } },
       relations: {
         products: {
           images: {

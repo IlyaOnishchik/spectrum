@@ -15,9 +15,9 @@ export class CartsService {
     return await this.cartsRepository.save(cart);
   }
 
-  async findOne(id: string): Promise<Cart> {
+  async findOneByUserId(userId: string): Promise<Cart> {
     return await this.cartsRepository.findOne({
-      where: { id },
+      where: { user: { id: userId } },
       relations: {
         products: {
           product: {
