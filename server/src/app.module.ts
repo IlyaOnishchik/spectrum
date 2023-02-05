@@ -26,6 +26,8 @@ import { CartsProductsModule } from './carts-products/carts-products.module';
 import { ComparedModule } from './compared/compared.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { RatingsModule } from './ratings/ratings.module';
+import { OrdersModule } from './orders/orders.module';
+import { OrdersProductsModule } from './orders-products/orders-products.module';
 
 @Module({
   imports: [
@@ -77,6 +79,8 @@ import { RatingsModule } from './ratings/ratings.module';
     ComparedModule,
     ReviewsModule,
     RatingsModule,
+    OrdersModule,
+    OrdersProductsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
