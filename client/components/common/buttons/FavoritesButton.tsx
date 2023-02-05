@@ -16,17 +16,20 @@ const FavoritesButton: FC<FavoritesButtonProps> = ({ productId }) => {
   const [toggleProduct] = useToggleFavoritesProduct()
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
-    toggleProduct({ variables: { productId } })
+    if (data) toggleProduct({ variables: { productId } })
+    else alert('Unauthorized')
   }
 
-  const { loading, error, data } = useFavorites()
+  const { loading, data } = useFavorites()
   if (loading) return <Loading/>
-  if (error) return <Error message={error.message}/>
-  const products: Product[] = data.favorites.products
-  const isInFavorites = !!products.find(item => item.id === productId)
+  const products: Product[] = data?.favorites.products
+  const isInFavorites = !!products?.find(item => item.id === productId)
 
   return (
-    <button onClick={handleClick} className='p-1 | rounded | transition-all hover:bg-violet-100'>
+    <button 
+      onClick={handleClick} 
+      className={`p-1 | rounded | ${data ? 'transition-all hover:bg-violet-100' : 'opacity-50'}`}
+    >
       {
         isInFavorites ?
           <HeartIconSolid className='w-8 h-8 text-violet-500'/> :

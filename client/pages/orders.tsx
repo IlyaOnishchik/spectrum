@@ -1,23 +1,21 @@
-import React from 'react'
-import { useRouter } from 'next/router'
-import { useCurrentUser } from '../hooks/useCurrentUser'
-import Profile from '../components/profile/Profile'
-import Loading from '../components/common/Loading'
-import { User } from '../types/User'
 import { Alert, AlertIcon } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
+import React from 'react'
+import Loading from '../components/common/Loading'
+import Orders from '../components/orders/Orders'
+import { useCurrentUser } from '../hooks/useCurrentUser'
+import { User } from '../types/User'
 
-
-const ProfilePage = () => {
-
+const OrdersPage = () => {
+  
   const router = useRouter()
   const { loading, error, data } = useCurrentUser()
   if (loading) return <Loading/>
   if (error) router.push('/')
   const user: User = data.currentUser
   if (!user.isActivated) return <Alert status='warning'><AlertIcon/>Seems your account is not activated</Alert>
-  const isAdmin = !!user.roles.find(item => item.name === 'admin')
 
-  return <Profile isAdmin={isAdmin}/>
+  return <Orders/>
 }
 
-export default ProfilePage
+export default OrdersPage

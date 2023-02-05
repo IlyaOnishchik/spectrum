@@ -1,31 +1,23 @@
-import React from 'react'
-import { useCurrentUser } from '../../hooks/useCurrentUser'
-import { User } from '../../types/User'
-import Error from '../common/Error'
-import Loading from '../common/Loading'
+import { FC } from 'react'
+import Link from 'next/link'
 import Section from '../common/Section'
 
-const Profile = () => {
+type ProfileProps = {
+  isAdmin: boolean
+}
 
-  const { data, loading, error } = useCurrentUser()
-  if (loading) return <Loading/>
-  if (error) return <Error message={error.message}/>
-  const user: User = data.currentUser
-  const email  = user.email
-  const isActivated = user.isActivated
-
+const Profile: FC<ProfileProps> = ({ isAdmin }) => {
   return (
-    <div>
-      {
-        isActivated ? (
-          <Section title='Profile'>
-            {email}
-          </Section>
-        ) : (
-          <div>Activate your account please!</div>
-        )
-      }
-    </div>
+    <Section title='Profile'>
+      <ul>
+        {isAdmin && <li><Link href='/admin'>Admin</Link></li>}
+        <li><Link href='/orders'>Orders</Link></li>
+        <li><Link href='/cart'>Cart</Link></li>
+        <li><Link href='/favorites'>Favorites</Link></li>
+        <li><Link href='/compared'>Compared</Link></li>
+      </ul>
+    </Section>
+
   )
 }
 

@@ -16,17 +16,20 @@ const ComparedButton: FC<ComparedButtonProps> = ({ productId }) => {
   const [toggleProduct] = useToggleComparedProduct()
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
-    toggleProduct({ variables: { productId } })
+    if (data) toggleProduct({ variables: { productId } })
+    else alert('Unauthorized')
   }
 
-  const { loading, error, data } = useCompared()
+  const { loading, data } = useCompared()
   if (loading) return <Loading/>
-  if (error) return <Error message={error.message}/>
-  const products: Product[] = data.compared.products
-  const isInCompared = !!products.find(item => item.id === productId)
+  const products: Product[] = data?.compared.products
+  const isInCompared = !!products?.find(item => item.id === productId)
 
   return (
-    <button onClick={handleClick} className='p-1 | rounded | transition-all hover:bg-violet-100'>
+    <button 
+      onClick={handleClick} 
+      className={`p-1 | rounded | ${data ? 'transition-all hover:bg-violet-100' : 'opacity-50'}`}
+    >
       {
         isInCompared ?
           <ChartBarSquareIconSolid className='w-8 h-8 text-violet-500'/> :

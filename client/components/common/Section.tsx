@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react'
 import { Heading } from '@chakra-ui/react'
 
 type SectionProps = {
-  children: ReactNode
+  children?: ReactNode
   title: string
 }
 
