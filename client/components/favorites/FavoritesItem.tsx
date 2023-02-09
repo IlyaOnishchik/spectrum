@@ -4,6 +4,8 @@ import { useToggleFavoritesProduct } from "../../hooks/favorites/useToggleFavori
 import { Product } from "../../types/Product"
 import { Card, CardBody, CardFooter, CardImage } from "../common/card"
 import RemoveButton from "../common/buttons/RemoveButton"
+import CartButton from "../common/buttons/CartButton"
+import ComparedButton from "../common/buttons/ComparedButton"
 
 type FavoritesItemProps = {
   product: Product
@@ -31,9 +33,13 @@ const FavoritesItem: FC<FavoritesItemProps> = ({ product }) => {
           <div className='relative w-[100px] h-[100px]'>
             <img src={src} alt={name} className='absolute w-full h-full object-contain'/>
           </div>
-          <div className='flex-auto hidden sm:flex flex-col'>
+          <div className='flex-auto hidden sm:flex flex-col gap-2'>
             <span className='text-lg'>{name}</span>
-            <span className='text-lg font-semibold'>${product.price}</span>
+            <div className='flex items-center gap-3'>
+              <span className='text-lg font-semibold'>${product.price}</span>
+              <CartButton productId={product.id}/>
+              <ComparedButton productId={product.id}/>
+            </div>
           </div>
           <div>
             <RemoveButton onClick={handleRemove}/>
@@ -41,7 +47,11 @@ const FavoritesItem: FC<FavoritesItemProps> = ({ product }) => {
         </div>
         <div className='flex sm:hidden flex-col'>
           <span className='text-lg'>{name}</span>
-          <span className='text-lg font-semibold'>${product.price}</span>
+          <div className='flex items-center gap-3'>
+            <span className='text-lg font-semibold'>${product.price}</span>
+            <CartButton productId={product.id}/>
+            <ComparedButton productId={product.id}/>
+          </div>
         </div>
       </div>
     </Link>

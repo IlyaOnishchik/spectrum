@@ -1,4 +1,4 @@
-import { Field, InputType, Int } from "@nestjs/graphql";
+import { Field, Float, InputType, Int } from "@nestjs/graphql";
 
 @InputType()
 class FilterInput {
@@ -26,10 +26,10 @@ export class RangeFilterInput extends FilterInput {
   @Field({ nullable: true })
   unit: string;
 
-  @Field(() => Int)
+  @Field(() => Float)
   from: number;
 
-  @Field(() => Int)
+  @Field(() => Float)
   to: number;
 }
 

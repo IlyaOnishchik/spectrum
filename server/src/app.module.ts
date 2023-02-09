@@ -28,6 +28,7 @@ import { ReviewsModule } from './reviews/reviews.module';
 import { RatingsModule } from './ratings/ratings.module';
 import { OrdersModule } from './orders/orders.module';
 import { OrdersProductsModule } from './orders-products/orders-products.module';
+import { PricesHistoryModule } from './prices-history/prices-history.module';
 
 @Module({
   imports: [
@@ -81,6 +82,7 @@ import { OrdersProductsModule } from './orders-products/orders-products.module';
     RatingsModule,
     OrdersModule,
     OrdersProductsModule,
+    PricesHistoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

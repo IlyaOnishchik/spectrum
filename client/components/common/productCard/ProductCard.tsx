@@ -20,7 +20,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div 
-      className='flex flex-col | w-[280px] gap-5 px-5 py-3 | transition-all shadow md:shadow-xl md:hover:shadow-lg rounded-xl'
+      className='flex flex-col | w-[260px] gap-5 px-5 py-3 | transition-all shadow md:shadow-lg md:hover:shadow-md rounded-xl'
       onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
     >
       <ImageSlider name={name} images={images} isHovered={isHovered}/>

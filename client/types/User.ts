@@ -1,5 +1,6 @@
 import { Cart } from "./Cart"
 import { Favorites } from "./Favorites"
+import { Order } from "./Order"
 import { Review } from "./Review"
 import { Role } from "./Role"
 
@@ -12,4 +13,5 @@ export type User = {
   cart: Cart
   favorites: Favorites
   reviews: Review[]
+  orders: Order[]
 }

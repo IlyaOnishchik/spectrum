@@ -1,4 +1,4 @@
-import { ArgsType, Field, Int } from "@nestjs/graphql";
+import { ArgsType, Field, Float, Int } from "@nestjs/graphql";
 import { FiltersInput } from "./filters.model";
 
 @ArgsType()
@@ -18,10 +18,10 @@ export class FindProducts {
   @Field({ nullable: true })
   order: string;
 
-  @Field(() => Int, { nullable: true })
+  @Field(() => Float, { nullable: true })
   minPrice: number;
 
-  @Field(() => Int, { nullable: true })
+  @Field(() => Float, { nullable: true })
   maxPrice: number;
 
   @Field(() => FiltersInput, { nullable: true })

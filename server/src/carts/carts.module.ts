@@ -6,6 +6,7 @@ import { CartsResolver } from './carts.resolver';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Cart])],
-  providers: [CartsService, CartsResolver]
+  providers: [CartsService, CartsResolver],
+  exports: [CartsService]
 })
 export class CartsModule {}

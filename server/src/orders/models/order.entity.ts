@@ -23,7 +23,7 @@ export class Order {
   @Field(() => Int)
   amount: number;
 
-  @Column({ default: Status.PENDING })
+  @Column({ default: Status.NEW })
   @Field()
   status: Status;
 
@@ -34,4 +34,28 @@ export class Order {
   @UpdateDateColumn()
   @Field()
   updatedAt: string;
+
+  @Column()
+  @Field()
+  name: string;
+
+  @Column()
+  @Field()
+  phone: string;
+
+  @Column()
+  @Field()
+  country: string;
+
+  @Column()
+  @Field()
+  city: string;
+
+  @Column()
+  @Field()
+  address: string;
+
+  @Column()
+  @Field(() => Int)
+  zipCode: number;
 }

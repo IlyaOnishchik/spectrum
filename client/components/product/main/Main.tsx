@@ -14,7 +14,7 @@ type MainProps = {
 const Main: FC<MainProps> = ({ productId, parameters, reviews }) => {
   return (
     <div>
-      <Tabs colorScheme='purple'>
+      <Tabs variant='soft-rounded' colorScheme='purple'>
         <TabList>
           <Tab fontSize={18} fontWeight={700}>Parameters</Tab>
           <Tab fontSize={18} fontWeight={700}>Reviews ({reviews.length})</Tab>

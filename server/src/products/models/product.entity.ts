@@ -6,6 +6,7 @@ import { Compared } from "src/compared/models/compared.entity";
 import { Favorites } from "src/favorites/models/favorites.entity";
 import { Image } from "src/images/models/image.entity";
 import { OrderProduct } from "src/orders-products/models/order-product.entity";
+import { PriceHistory } from "src/prices-history/models/price-history.entity";
 import { ProductImage } from "src/products-images/models/product-image.entity";
 import { ProductParameter } from "src/products-parameters/models/product-parameter.entity";
 import { Rating } from "src/ratings/models/rating.entity";
@@ -25,7 +26,7 @@ export class Product {
   images: ProductImage[];
 
   @Column()
-  @Field(() => Int)
+  @Field(() => Float)
   price: number;
 
   @ManyToOne(() => Category, category => category.products)
@@ -69,4 +70,8 @@ export class Product {
   @OneToMany(() => OrderProduct, orderProduct => orderProduct.product)
   @Field(() => [OrderProduct], { nullable: true })
   orderProducts: OrderProduct[];
+
+  @OneToMany(() => PriceHistory, priceHistory => priceHistory.product)
+  @Field(() => [PriceHistory], { nullable: true })
+  pricesHistory: PriceHistory[];
 }

@@ -1,5 +1,7 @@
 export enum Status {
-  PENDING = 'pending',
-  FULLFILLED = 'fulfilled',
+  NEW = 'new',
+  DELIVERY = 'delivery',
+  DELIVERED = 'delivered',
+  PAID = 'paid',
   CANCELED = 'canceled'
 }

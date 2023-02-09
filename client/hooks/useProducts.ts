@@ -5,7 +5,7 @@ export const PRODUCTS_QUERY = gql`
     $categoryId: String, 
     $take: Int, $skip: Int, 
     $sortBy: String, $order: String, 
-    $minPrice: Int, $maxPrice: Int,
+    $minPrice: Float, $maxPrice: Float,
     $filters: FiltersInput,
     $query: String
   ) {
