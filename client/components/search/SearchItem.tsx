@@ -1,7 +1,6 @@
 import { FC } from "react"
 import { useProduct } from "../../hooks/useProduct"
 import { Product } from "../../types/Product"
-import { Card, CardBody, CardImage } from "../common/card"
 import Error from "../common/Error"
 import Loading from "../common/Loading"
 import ProductCard from "../common/productCard/ProductCard"

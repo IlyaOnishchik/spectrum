@@ -8,7 +8,7 @@ type CardProps = {
 
 export const Card: FC<CardProps> = ({ className, children }) => {
   return (
-    <div className={`${className} flex p-3 sm:p-5 gap-5 shadow hover:shadow-md rounded-lg transition-all`}>
+    <div className={`${className} p-5 shadow hover:shadow-md rounded-lg transition-all`}>
       {children}
     </div>
   )

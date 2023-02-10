@@ -11,7 +11,6 @@ const Compared = () => {
   if (loading) return <Loading/>
   if (error) return <Error message={error.message}/>
   const products: Product[] = data.compared.products
-  console.log(products)
 
   return (
     <div>

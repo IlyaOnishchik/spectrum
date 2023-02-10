@@ -2,10 +2,10 @@ import Link from "next/link"
 import { FC } from "react"
 import { useToggleFavoritesProduct } from "../../hooks/favorites/useToggleFavoritesProduct"
 import { Product } from "../../types/Product"
-import { Card, CardBody, CardFooter, CardImage } from "../common/card"
 import RemoveButton from "../common/buttons/RemoveButton"
 import CartButton from "../common/buttons/CartButton"
 import ComparedButton from "../common/buttons/ComparedButton"
+import { Card } from "../common/card"
 
 type FavoritesItemProps = {
   product: Product
@@ -28,7 +28,7 @@ const FavoritesItem: FC<FavoritesItemProps> = ({ product }) => {
 
   return (
     <Link href={`/products/${product.id}`}>
-      <div className='flex flex-col gap-3 p-5 shadow hover:shadow-md rounded-lg transition-all'>
+      <Card className='flex flex-col gap-3'>
         <div className='flex gap-5 justify-between'>
           <div className='relative w-[100px] h-[100px]'>
             <img src={src} alt={name} className='absolute w-full h-full object-contain'/>
@@ -53,7 +53,7 @@ const FavoritesItem: FC<FavoritesItemProps> = ({ product }) => {
             <ComparedButton productId={product.id}/>
           </div>
         </div>
-      </div>
+      </Card>
     </Link>
   )
 }

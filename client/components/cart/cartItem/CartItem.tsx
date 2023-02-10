@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { FC } from 'react'
 import { CartProduct } from '../../../types/CartProduct'
 import RemoveButton from '../../common/buttons/RemoveButton'
+import { Card } from '../../common/card'
 import Quantity from './Quantity'
 import Remove from './Remove'
 
@@ -21,7 +22,7 @@ const CartItem: FC<CartItemProps> = ({ cartProduct }) => {
 
   return (
     <Link href={href}>
-      <div className='flex flex-col gap-3 p-5 shadow hover:shadow-md rounded-lg transition-all'>
+      <Card className='flex flex-col gap-3'>
         <div className='flex gap-5 justify-between'>
           <div className='relative w-[100px] h-[100px]'>
             <img src={src} alt={name} className='absolute w-full h-full object-contain'/>
@@ -38,7 +39,7 @@ const CartItem: FC<CartItemProps> = ({ cartProduct }) => {
           <span className='text-lg font-semibold'>${product.price}</span>
           <Quantity cartProductId={cartProduct.id} cartProductQuantity={cartProduct.quantity} productQuantity={product.quantity}/>
         </div>
-      </div>
+      </Card>
     </Link>
   )
 }

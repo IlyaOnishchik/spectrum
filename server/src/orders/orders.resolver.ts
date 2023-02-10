@@ -5,6 +5,8 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CartsProductsService } from 'src/carts-products/carts-products.service';
 import { CartsService } from 'src/carts/carts.service';
 import { OrdersProductsService } from 'src/orders-products/orders-products.service';
+import { Roles } from 'src/roles/decorators/roles.decorator';
+import { RolesGuard } from 'src/roles/guards/roles.guard';
 import { User } from 'src/users/models/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { CreateOrder } from './models/create-order.input';
@@ -44,5 +46,12 @@ export class OrdersResolver {
     @CurrentUser() { id }: Pick<User, 'id'>
   ): Promise<Order[]> {
     return await this.ordersService.findByUserId(id);
+  }
+
+  @Roles('admin')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Query(() => [Order], { name: 'adminOrders' })
+  async findAll(): Promise<Order[]> {
+    return await this.ordersService.find();
   }
 }
