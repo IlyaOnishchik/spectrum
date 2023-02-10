@@ -12,7 +12,7 @@ const OrdersPage = () => {
   const { loading, error, data } = useCurrentUser()
   if (loading) return <Loading/>
   if (error) router.push('/')
-  const user: User = data.currentUser
+  const user: User = data?.currentUser
   if (!user.isActivated) return <Alert status='warning'><AlertIcon/>Seems your account is not activated</Alert>
 
   return <Orders/>

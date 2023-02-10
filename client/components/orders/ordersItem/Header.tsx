@@ -10,9 +10,11 @@ const Header: FC<HeaderProps> = ({ status, amount, createdAt }) => {
 
   const createdAtdate = new Date(+createdAt).toLocaleDateString()
 
+  const statusColor = status === 'paid' ? 'text-green-500' : status === 'canceled' ? 'text-red-500' : ''
+
   return (
     <header className='flex gap-5'>
-      <span className='italic'>{status.toUpperCase()}</span>
+      <span className={`${statusColor} font-bold italic`}>{status.toUpperCase()}</span>
       <span className='flex-auto font-bold'>${amount}</span>
       <span>{createdAtdate}</span>
     </header>

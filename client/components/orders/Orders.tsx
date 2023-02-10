@@ -17,7 +17,11 @@ const Orders = () => {
   return (
     <Section title='Orders'>
       <Accordion allowMultiple defaultIndex={[0]} className='flex flex-col gap-5'>
-        {orders.map(item => <OrdersItem key={item.id} order={item}/>)}
+        {
+          orders.length ? 
+            [...orders].sort((a, b) => +b.createdAt - +a.createdAt).map(item => <OrdersItem key={item.id} order={item}/>) :
+            <div>Your orders empty.</div>
+        }
       </Accordion>
     </Section>
   )

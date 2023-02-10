@@ -8,7 +8,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, Float, ObjectType } from '@nestjs/graphql';
 import { Role } from 'src/roles/models/role.entity';
 import { Cart } from 'src/carts/models/cart.entity';
 import { Favorites } from 'src/favorites/models/favorites.entity';
@@ -74,4 +74,13 @@ export class User {
   @OneToMany(() => Order, order => order.user)
   @Field(() => [Order], { nullable: true })
   orders: Order[];
+
+  @Field(() => Float)
+  ordersAmount: number;
+
+  @Field(() => Float)
+  redemptionAmount: number;
+
+  @Field(() => Float)
+  redemptionPercent: number;
 }
