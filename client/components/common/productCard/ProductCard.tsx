@@ -7,9 +7,10 @@ import Link from 'next/link'
 
 type ProductCardProps = {
   product: Product
+  className?: string
 }
 
-const ProductCard: FC<ProductCardProps> = ({ product }) => {
+const ProductCard: FC<ProductCardProps> = ({ product, className }) => {
 
   const brand = product.parameters.find(item => item.parameter.name === 'Brand')?.value || 'Brand'
   const model = product.parameters.find(item => item.parameter.name === 'Model')?.value || 'Model'
@@ -20,7 +21,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div 
-      className='flex flex-col | w-[260px] gap-5 px-5 py-3 | transition-all shadow md:shadow-lg md:hover:shadow-md rounded-xl'
+      className={`${className} flex flex-col | w-[260px] gap-5 px-5 py-3 | transition-all shadow md:shadow-lg md:hover:shadow-md rounded-xl`}
       onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
     >
       <ImageSlider name={name} images={images} isHovered={isHovered}/>

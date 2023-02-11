@@ -6,4 +6,5 @@ export type OrderProduct = {
   order: Order
   product: Product
   quantity: number
+  paid: number
 }

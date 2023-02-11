@@ -21,4 +21,8 @@ export class OrderProduct {
   @Column()
   @Field(() => Int)
   quantity: number;
+
+  @Column({ default: 0 })
+  @Field(() => Int)
+  paid: number;
 } 

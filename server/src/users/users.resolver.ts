@@ -27,7 +27,12 @@ export class UsersResolver {
     @CurrentUser() { id }: Pick<User, 'id'>
   ): Promise<number> {
     const orders = await this.ordersService.findByUserId(id);
-    const redemptionAmount = orders.filter(item => item.status === 'paid').reduce((sum, item) => sum + item.amount, 0);
+    let redemptionAmount = 0;
+    orders.forEach(order => {
+      order.orderProducts.forEach(orderProduct => {
+        redemptionAmount += orderProduct.paid ? orderProduct.paid * orderProduct.product.price : 0;
+      });
+    });
     return redemptionAmount;
   }
 
@@ -38,7 +43,12 @@ export class UsersResolver {
   ): Promise<number> {
     const orders = await this.ordersService.findByUserId(id);
     const ordersAmount = orders.reduce((sum, item) => sum + item.amount, 0);
-    const redemptionAmount = orders.filter(item => item.status === 'paid').reduce((sum, item) => sum + item.amount, 0);
+    let redemptionAmount = 0;
+    orders.forEach(order => {
+      order.orderProducts.forEach(orderProduct => {
+        redemptionAmount += orderProduct.paid ? orderProduct.paid * orderProduct.product.price : 0;
+      });
+    });
     const redemptionPercent = redemptionAmount / ordersAmount * 100;
     return redemptionPercent;
   }

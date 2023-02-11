@@ -1,7 +1,6 @@
-export enum Status {
+export enum OrderStatuses {
   NEW = 'new',
   DELIVERY = 'delivery',
   DELIVERED = 'delivered',
-  PAID = 'paid',
-  CANCELED = 'canceled'
+  FULLFILLED = 'fullfilled'
 }

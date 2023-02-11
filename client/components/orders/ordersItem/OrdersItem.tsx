@@ -16,7 +16,7 @@ const OrdersItem: FC<OrdersItemProps> = ({ order }) => {
         <AccordionIcon/>
       </AccordionButton>
       <AccordionPanel>
-        <Body orderProducts={order.orderProducts}/>
+        <Body status={order.status} orderProducts={order.orderProducts}/>
       </AccordionPanel>
     </AccordionItem>
   )

@@ -3,13 +3,14 @@ import { OrderProduct } from '../../../types/OrderProduct'
 import BodyItem from './BodyItem'
 
 type BodyProps = {
+  status: string
   orderProducts: OrderProduct[]
 }
 
-const Body: FC<BodyProps> = ({ orderProducts }) => {
+const Body: FC<BodyProps> = ({ status, orderProducts }) => {
   return (
     <div className='flex flex-wrap gap-5'>
-      {orderProducts.map(item => <BodyItem key={item.id} orderProduct={item}/>)}
+      {orderProducts.map(item => <BodyItem key={item.id} status={status} orderProduct={item}/>)}
     </div>
   )
 }

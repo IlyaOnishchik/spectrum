@@ -11,6 +11,7 @@ export const ORDERS_QUERY = gql`
         id
         product { id }
         quantity
+        paid
       }
     }
   }

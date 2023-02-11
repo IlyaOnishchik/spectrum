@@ -2,7 +2,7 @@ import { Field, Int, ObjectType } from "@nestjs/graphql";
 import { OrderProduct } from "src/orders-products/models/order-product.entity";
 import { User } from "src/users/models/user.entity";
 import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { Status } from "./status.enum";
+import { OrderStatuses } from "./order-statuses.enum";
 
 @Entity('orders')
 @ObjectType()
@@ -23,9 +23,9 @@ export class Order {
   @Field(() => Int)
   amount: number;
 
-  @Column({ default: Status.NEW })
+  @Column({ default: OrderStatuses.NEW })
   @Field()
-  status: Status;
+  status: OrderStatuses;
 
   @CreateDateColumn()
   @Field()
