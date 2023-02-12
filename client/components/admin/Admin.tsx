@@ -2,6 +2,8 @@ import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
 import React from 'react'
 import Section from '../common/Section'
 import Orders from './orders/Orders'
+import Products from './products/Products'
+import Users from './users/Users'
 
 const Admin = () => {
   return (
@@ -14,8 +16,8 @@ const Admin = () => {
         </TabList>
         <TabPanels>
           <TabPanel><Orders/></TabPanel>
-          <TabPanel>Products</TabPanel>
-          <TabPanel>Users</TabPanel>
+          <TabPanel><Products/></TabPanel>
+          <TabPanel><Users/></TabPanel>
         </TabPanels>
       </Tabs>
     </Section>

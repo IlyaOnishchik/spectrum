@@ -5,6 +5,7 @@ import { User } from 'src/users/models/user.entity';
 import { Repository } from 'typeorm';
 import { CreateOrder } from './models/create-order.input';
 import { Order } from './models/order.entity';
+import { PaginatedOrders } from './models/paginated-orders.model';
 
 @Injectable()
 export class OrdersService {
@@ -25,8 +26,11 @@ export class OrdersService {
     return await this.ordersRepository.save(order);
   }
 
-  async find(): Promise<Order[]> {
-    return await this.ordersRepository.find({
+  async find(skip: number, take: number, sortBy: string, order: string): Promise<PaginatedOrders> {
+    const result = await this.ordersRepository.findAndCount({
+      take,
+      skip,
+      order: { [sortBy]: order },
       relations: {
         user: true,
         orderProducts: {
@@ -34,6 +38,7 @@ export class OrdersService {
         }
       }
     });
+    return { items: result[0], count: result[1] }
   }
 
   async findByUserId(userId: string): Promise<Order[]> {

@@ -4,6 +4,8 @@ import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CartsProductsService } from 'src/carts-products/carts-products.service';
 import { CartsService } from 'src/carts/carts.service';
+import { PaginationArgs } from 'src/helpers/pagination.args';
+import { SortingArgs } from 'src/helpers/sorting.args';
 import { OrdersProductsService } from 'src/orders-products/orders-products.service';
 import { Roles } from 'src/roles/decorators/roles.decorator';
 import { RolesGuard } from 'src/roles/guards/roles.guard';
@@ -11,6 +13,7 @@ import { User } from 'src/users/models/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { CreateOrder } from './models/create-order.input';
 import { Order } from './models/order.entity';
+import { PaginatedOrders } from './models/paginated-orders.model';
 import { OrdersService } from './orders.service';
 
 @Resolver()
@@ -50,8 +53,11 @@ export class OrdersResolver {
 
   @Roles('admin')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Query(() => [Order], { name: 'adminOrders' })
-  async findAll(): Promise<Order[]> {
-    return await this.ordersService.find();
+  @Query(() => PaginatedOrders, { name: 'adminOrders' })
+  async findAll(
+    @Args() { skip, take }: PaginationArgs,
+    @Args() { sortBy, order }: SortingArgs,
+  ): Promise<PaginatedOrders> {
+    return await this.ordersService.find(skip, take, sortBy, order);
   }
 }
