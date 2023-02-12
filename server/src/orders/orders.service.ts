@@ -4,6 +4,7 @@ import { OrderProduct } from 'src/orders-products/models/order-product.entity';
 import { User } from 'src/users/models/user.entity';
 import { Repository } from 'typeorm';
 import { CreateOrder } from './models/create-order.input';
+import { OrderStatuses } from './models/order-statuses.enum';
 import { Order } from './models/order.entity';
 import { PaginatedOrders } from './models/paginated-orders.model';
 
@@ -53,5 +54,10 @@ export class OrdersService {
         }
       }
     });
+  }
+
+  async updateOneById(id: string, status: OrderStatuses): Promise<Boolean> {
+    const result = await this.ordersRepository.update(id, { status });
+    return !!result.affected; 
   }
 }

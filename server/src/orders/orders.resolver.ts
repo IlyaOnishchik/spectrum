@@ -12,8 +12,10 @@ import { RolesGuard } from 'src/roles/guards/roles.guard';
 import { User } from 'src/users/models/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { CreateOrder } from './models/create-order.input';
+import { OrderStatuses } from './models/order-statuses.enum';
 import { Order } from './models/order.entity';
 import { PaginatedOrders } from './models/paginated-orders.model';
+import { UpdateOrder } from './models/update-order.input';
 import { OrdersService } from './orders.service';
 
 @Resolver()
@@ -59,5 +61,15 @@ export class OrdersResolver {
     @Args() { sortBy, order }: SortingArgs,
   ): Promise<PaginatedOrders> {
     return await this.ordersService.find(skip, take, sortBy, order);
+  }
+
+  @Roles('admin')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Mutation(() => Boolean, { name: 'updateOrder' })
+  async updateOneById(
+    @Args('id') id: string,
+    @Args('status', { nullable: true }) status: OrderStatuses,
+  ): Promise<Boolean> {
+    return await this.ordersService.updateOneById(id, status);
   }
 }

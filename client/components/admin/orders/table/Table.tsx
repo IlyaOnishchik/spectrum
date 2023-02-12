@@ -5,7 +5,7 @@ import Error from '../../../common/Error'
 import { Order } from '../../../../types/Order'
 import { TableContainer, Table as ChakraTable, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react'
 import Pagination from '../../../common/pagination/Pagination'
-import TableItem from './TableItem'
+import TableItem from './tableItem/TableItem'
 import { SelectOption } from '../../../common/Select'
 import Sorting from '../../../common/sorting/Sorting'
 
@@ -41,7 +41,7 @@ const Table = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {orders.map(order => <TableItem order={order}/>)}
+            {orders.map(item => <TableItem order={item} skip={page * take} take={take} sortBy={sortBy} sortOrder={order}/>)}
           </Tbody>
         </ChakraTable>
       </TableContainer>

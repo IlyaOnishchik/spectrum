@@ -8,6 +8,13 @@ export const ADMIN_ORDERS_QUERY = gql`
         status
         amount
         createdAt
+        updatedAt
+        name
+        phone
+        country
+        city
+        address
+        zipCode
         orderProducts {
           id
           product { id }
@@ -19,7 +26,7 @@ export const ADMIN_ORDERS_QUERY = gql`
   }
 `
 
-type UseAdminOrdersVariables = {
+export type UseAdminOrdersVariables = {
   skip?: number
   take?: number
   sortBy?: string

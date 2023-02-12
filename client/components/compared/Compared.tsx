@@ -17,7 +17,7 @@ const Compared = () => {
 
   return (
     <Section title='Compared'>
-      <Tabs colorScheme='purple'>
+      <Tabs variant='soft-rounded' colorScheme='purple'>
         <TabList>
           {categories.map(item => <Tab key={item}>{item}</Tab>)}
         </TabList>
