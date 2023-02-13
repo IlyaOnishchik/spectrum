@@ -14,4 +14,7 @@ export type User = {
   favorites: Favorites
   reviews: Review[]
   orders: Order[]
+  ordersAmount: number
+  redemptionAmount: number
+  redemptionPercent: number
 }

@@ -21,12 +21,12 @@ ChartJS.register(
   Legend
 );
 
-type ChartProps = {
+type QuantityChartProps = {
   labels?: string[]
   data?: number[]
 }
 
-const Chart: FC<ChartProps> = ({ labels = ['08', '09', '10'], data = [1, 6, 3] }) => {
+const QuantityChart: FC<QuantityChartProps> = ({ labels, data }) => {
   return (
     <div>
       <Line
@@ -39,8 +39,8 @@ const Chart: FC<ChartProps> = ({ labels = ['08', '09', '10'], data = [1, 6, 3] }
             {
               label: 'Orders quantity',
               data,
-              borderColor: 'rgb(255, 99, 132)',
-              backgroundColor: 'rgba(255, 99, 132, 0.5)',
+              borderColor: '#7c3aed',
+              backgroundColor: '#a78bfa',
             }
           ]
         }}
@@ -49,4 +49,4 @@ const Chart: FC<ChartProps> = ({ labels = ['08', '09', '10'], data = [1, 6, 3] }
   )
 }
 
-export default Chart
+export default QuantityChart

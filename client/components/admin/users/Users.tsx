@@ -1,8 +1,14 @@
 import React from 'react'
+import { Card } from '../../common/card'
+import Table from './table/Table'
 
 const Users = () => {
   return (
-    <div>Users</div>
+    <div>
+      <Card>
+        <Table/>
+      </Card>
+    </div>
   )
 }
 

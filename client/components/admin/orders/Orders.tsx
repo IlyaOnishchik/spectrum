@@ -4,7 +4,8 @@ import { Order } from '../../../types/Order'
 import { Card } from '../../common/card'
 import Error from '../../common/Error'
 import Loading from '../../common/Loading'
-import Chart from './Chart'
+import QuantityChart from './QuantityChart'
+import StatusesChart from './StatusesChart'
 import Table from './table/Table'
 
 const Orders = () => {
@@ -27,11 +28,14 @@ const Orders = () => {
   })
 
   return (
-    <div className='grid'>
-      <Card>
-        <Chart labels={Array.from(chartData.keys())} data={Array.from(chartData.values())}/>
+    <div className='grid grid-cols-3 gap-5'>
+      <Card className='col-span-3 lg:col-span-2'>
+        <QuantityChart labels={Array.from(chartData.keys())} data={Array.from(chartData.values())}/>
       </Card>
-      <Card>
+      <Card className='col-span-3 lg:col-span-1'>
+        <StatusesChart orders={orders}/>
+      </Card>
+      <Card className='col-span-3'>
         <Table/>
       </Card>
     </div>
