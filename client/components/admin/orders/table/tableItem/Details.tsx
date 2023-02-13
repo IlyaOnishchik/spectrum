@@ -1,4 +1,4 @@
-import { Button, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Table, Tbody, Td, Th, Thead, Tr, useDisclosure } from '@chakra-ui/react'
+import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Table, Tbody, Td, Th, Thead, Tr, useDisclosure } from '@chakra-ui/react'
 import React, { FC } from 'react'
 import { Order } from '../../../../../types/Order'
 
@@ -13,10 +13,11 @@ const Details: FC<DetailsProps> = ({ order }) => {
   return (
     <>
       <Button colorScheme='purple' onClick={onOpen}>Show details</Button>
-      <Modal isOpen={isOpen} onClose={onClose} scrollBehavior='inside'>
+      <Modal isOpen={isOpen} onClose={onClose} scrollBehavior='inside' size={['full', 'sm', 'md', 'lg', 'xl']}>
         <ModalOverlay/>
         <ModalContent>
           <ModalHeader>Details</ModalHeader>
+          <ModalCloseButton/>
           <ModalBody>
             <Table>
               <Tbody>

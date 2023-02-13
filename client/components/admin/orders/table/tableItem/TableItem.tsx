@@ -15,7 +15,7 @@ const TableItem: FC<TableItemProps> = ({ order, skip, take, sortBy, sortOrder })
   const createdAt = new Date(+order.createdAt).toLocaleDateString()
 
   return (
-    <Popover>
+    <Popover size='xs'>
       <PopoverTrigger>
         <Tr cursor='pointer'>
           <Td>{createdAt}</Td>

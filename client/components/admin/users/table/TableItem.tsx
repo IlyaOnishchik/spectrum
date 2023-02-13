@@ -20,10 +20,10 @@ const TableItem: FC<TableItemProps> = ({ user, skip, take, sortBy, order}) => {
   return (
     <Popover>
       <PopoverTrigger>
-      <Tr cursor='pointer'>
-        <Td>{user.email}</Td>
-        <Td>{String(user.isBanned)}</Td>
-      </Tr>
+        <Tr cursor='pointer'>
+          <Td>{user.email}</Td>
+          <Td>{String(user.isBanned)}</Td>
+        </Tr>
       </PopoverTrigger>
       <Portal>
         <PopoverContent>

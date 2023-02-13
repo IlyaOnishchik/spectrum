@@ -20,6 +20,7 @@ export const PRODUCTS_QUERY = gql`
       items {
         id
         price
+        quantity
         category { id name }
         images { image { id name } order }
         parameters { parameter { name } value }
