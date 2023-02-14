@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react'
-import { useProducts } from '../../hooks/useProducts'
+import { useProducts } from '../../hooks/product/useProducts'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { Product } from '../../types/Product'
 import Loading from '../common/Loading'

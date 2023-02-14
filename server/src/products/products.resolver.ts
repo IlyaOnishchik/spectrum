@@ -1,22 +1,40 @@
-import { UseGuards } from '@nestjs/common';
+import { NotFoundException, UseGuards } from '@nestjs/common';
 import { Args, Field, Float, Int, Mutation, ObjectType, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CategoriesService } from 'src/categories/categories.service';
 import { Roles } from 'src/roles/decorators/roles.decorator';
 import { RolesGuard } from 'src/roles/guards/roles.guard';
-import { CreateProduct } from './models/create-product.input';
-import { FindProduct } from './models/find-product.args';
-import { FindProducts } from './models/find-products.args';
+import { CreateProduct } from './models/inputs/create-product.input';
+import { FindProduct } from './models/args/find-product.args';
+import { FindProducts } from './models/args/find-products.args';
 import { ProductRating } from './models/product-rating.model';
 import { Product } from './models/product.entity';
 import { PaginatedProductsRepsonse, ProductsService } from './products.service';
+import { UpdateProductInput } from './models/inputs/update-product.input';
+import { PricesHistoryService } from 'src/prices-history/prices-history.service';
 
 @Resolver(() => Product)
 export class ProductsResolver {
   constructor(
     private productsService: ProductsService,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private priceHistoryService: PricesHistoryService,
   ) {}
+
+  @ResolveField(() => String)
+  name(@Parent() product: Product) {
+    const brand = product.parameters.find(item => item.parameter.name === 'Brand').value;
+    const model = product.parameters.find(item => item.parameter.name === 'Model').value;
+    const name = brand + ' ' + model;
+    return name;
+  }
+
+  @ResolveField(() => ProductRating)
+  rating(@Parent() product: Product) {
+    const value = product.ratings.map(item => item.value).reduce((sum, item) => sum + item, 0) / product.ratings.length || 0;
+    const count = product.ratings.length || 0;
+    return { value, count };
+  }
 
   @Roles('admin')
   @UseGuards(JwtAuthGuard, RolesGuard)
@@ -37,18 +55,19 @@ export class ProductsResolver {
     return await this.productsService.findOne(findProduct);
   }
 
-  @ResolveField(() => String)
-  name(@Parent() product: Product) {
-    const brand = product.parameters.find(item => item.parameter.name === 'Brand').value;
-    const model = product.parameters.find(item => item.parameter.name === 'Model').value;
-    const name = brand + ' ' + model;
-    return name;
-  }
-
-  @ResolveField(() => ProductRating)
-  rating(@Parent() product: Product) {
-    const value = product.ratings.map(item => item.value).reduce((sum, item) => sum + item, 0) / product.ratings.length || 0;
-    const count = product.ratings.length || 0;
-    return { value, count };
+  @Roles('admin')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Mutation(() => Product, { name: 'updateProduct' })
+  async updateOne(
+    @Args('updateProductInput') updateProductInput: UpdateProductInput
+  ): Promise<Product> {
+    const { id, price } = updateProductInput;
+    let product = await this.productsService.findOne({ id });
+    if (!product) throw new NotFoundException(`Product ${id} not found`);
+    if (price) {
+      await this.priceHistoryService.create(product);
+      product = await this.productsService.findOne({ id });
+    }
+    return await this.productsService.updateOne(product, price);
   }
 }

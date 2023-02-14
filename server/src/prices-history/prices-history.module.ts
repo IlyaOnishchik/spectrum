@@ -6,6 +6,7 @@ import { PriceHistory } from './models/price-history.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([PriceHistory])],
-  providers: [PricesHistoryService, PricesHistoryResolver]
+  providers: [PricesHistoryService, PricesHistoryResolver],
+  exports: [PricesHistoryService]
 })
 export class PricesHistoryModule {}

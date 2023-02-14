@@ -1,6 +1,6 @@
 import { TableContainer, Table as ChakraTable, Thead, Tbody, Tr, Th } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import { useProducts } from '../../../../hooks/useProducts'
+import { useProducts } from '../../../../hooks/product/useProducts'
 import Loading from '../../../common/Loading'
 import Error from '../../../common/Error'
 import { Product } from '../../../../types/Product'
@@ -41,7 +41,7 @@ const Table = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {products.map(product => <TableItem key={product.id} product={product}/>)}
+            {products.map(product => <TableItem key={product.id} product={product} skip={page * take} take={take} sortBy={sortBy} order={order}/>)}
           </Tbody>
         </ChakraTable>
       </TableContainer>

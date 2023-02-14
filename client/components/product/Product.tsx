@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { useProduct } from "../../hooks/useProduct"
+import { useProduct } from "../../hooks/product/useProduct"
 import { Product } from "../../types/Product"
 import Error from "../common/Error"
 import Loading from "../common/Loading"
@@ -27,10 +27,11 @@ const Product: FC<ProductProps> = ({ id }) => {
   const parameters = product.parameters
   const reviews = product.reviews
   const rating = product.rating
+  const pricesHistory = product.pricesHistory
 
   return (
     <Section title={name}>
-      <Header id={product.id} name={name} price={price} quantity={quantity} images={images} rating={rating}/>
+      <Header id={product.id} name={name} price={price} quantity={quantity} images={images} rating={rating} pricesHistory={pricesHistory}/>
       <Main productId={product.id} parameters={parameters} reviews={reviews}/>
     </Section>
   )

@@ -1,11 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Category } from 'src/categories/models/category.entity';
 import { Between, ILike, In, LessThan, MoreThan, Repository } from 'typeorm';
 import { FiltersInput } from './models/filters.model';
-import { FindProducts } from './models/find-products.args';
+import { FindProducts } from './models/args/find-products.args';
 import { Product } from './models/product.entity';
+import { UpdateProductInput } from './models/inputs/update-product.input';
 
 @ObjectType()
 export class PaginatedProductsRepsonse {
@@ -78,7 +79,8 @@ export class ProductsService {
           user: true,
           product: true
         },
-        ratings: true
+        ratings: true,
+        pricesHistory: true
       }, 
     });
   }
@@ -91,5 +93,10 @@ export class ProductsService {
       products = products.filter(product => product.parameters.find(productParameter => productParameter.parameter.name === filter.name && +productParameter.value >= filter.from && +productParameter.value <= filter.to))
     })
     return products;
+  }
+
+  async updateOne(product: Product, price?: number): Promise<Product> {
+    product.price = price;
+    return await this.productsRepository.save(product);
   }
 }

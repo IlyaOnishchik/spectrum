@@ -4,12 +4,15 @@ import { Product } from '../../../../../types/Product'
 import Delete from './Delete'
 import Details from './details/Details'
 import Edit from './edit/Edit'
+import Price from './Price'
 
 type TableItemProps = {
-  product: Product
+  product: Product,
+  skip: number, take: number, 
+  sortBy: string, order: string
 }
 
-const TableItem: FC<TableItemProps> = ({ product }) => {
+const TableItem: FC<TableItemProps> = ({ product, skip, take, sortBy, order }) => {
   return (
     <Popover>
       <PopoverTrigger>
@@ -26,7 +29,7 @@ const TableItem: FC<TableItemProps> = ({ product }) => {
           <PopoverBody>
             <Stack>
               <Details id={product.id}/>
-              <Edit/>
+              <Price id={product.id} price={product.price} skip={skip} take={take} sortBy={sortBy} order={order}/>
               <Delete/>
             </Stack>
           </PopoverBody>

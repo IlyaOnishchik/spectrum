@@ -1,5 +1,5 @@
 import { ArgsType, Field, Float, Int } from "@nestjs/graphql";
-import { FiltersInput } from "./filters.model";
+import { FiltersInput } from "../filters.model";
 
 @ArgsType()
 export class FindProducts {

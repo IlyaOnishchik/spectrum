@@ -1,6 +1,6 @@
-import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useDisclosure } from '@chakra-ui/react'
+import { Button, FormControl, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useDisclosure } from '@chakra-ui/react'
 import React, { FC } from 'react'
-import { useProduct } from '../../../../../../hooks/useProduct'
+import { useProduct } from '../../../../../../hooks/product/useProduct'
 import { Product } from '../../../../../../types/Product'
 import Error from '../../../../../common/Error'
 import Loading from '../../../../../common/Loading'
@@ -24,7 +24,7 @@ const Details: FC<DetailsProps> = ({ id }) => {
   return (
     <>
       <Button colorScheme='purple' onClick={onOpen}>Show details</Button>
-      <Modal isOpen={isOpen} onClose={onClose} size={'full'}>
+      <Modal isOpen={isOpen} onClose={onClose} size={['full']}>
         <ModalOverlay/>
         <ModalContent>
           <ModalHeader>Details</ModalHeader>

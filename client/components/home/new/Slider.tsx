@@ -1,6 +1,6 @@
 import { Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { useProducts } from '../../../hooks/useProducts'
+import { useProducts } from '../../../hooks/product/useProducts'
 import Loading from '../../common/Loading'
 import Error from '../../common/Error'
 import ProductCard from '../../common/productCard/ProductCard'

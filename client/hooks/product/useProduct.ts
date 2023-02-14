@@ -27,6 +27,11 @@ export const PRODUCT_QUERY = gql`
         rating
       }
       rating { value count }
+      pricesHistory {
+        id
+        createdAt
+        value
+      }
     }
   }
 `

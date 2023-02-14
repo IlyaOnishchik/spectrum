@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { useProduct } from "../../hooks/useProduct"
+import { useProduct } from "../../hooks/product/useProduct"
 import { Product } from "../../types/Product"
 import Error from "../common/Error"
 import Loading from "../common/Loading"

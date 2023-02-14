@@ -1,5 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
-import { PRODUCT_QUERY } from "./useProduct";
+import { PRODUCT_QUERY } from "./product/useProduct";
 
 export const CREATE_REVIEW_MUTATION = gql`
   mutation createreview($productId: String!, $text: String!) {

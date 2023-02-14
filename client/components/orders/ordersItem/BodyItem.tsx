@@ -1,6 +1,6 @@
 import { Badge, Tooltip } from '@chakra-ui/react'
 import React, { FC } from 'react'
-import { useProduct } from '../../../hooks/useProduct'
+import { useProduct } from '../../../hooks/product/useProduct'
 import { OrderProduct } from '../../../types/OrderProduct'
 import { Product } from '../../../types/Product'
 import Error from '../../common/Error'
