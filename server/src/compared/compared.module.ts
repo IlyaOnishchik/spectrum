@@ -7,6 +7,7 @@ import { ProductsModule } from 'src/products/products.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Compared]), ProductsModule],
-  providers: [ComparedService, ComparedResolver]
+  providers: [ComparedService, ComparedResolver],
+  exports: [ComparedService]
 })
 export class ComparedModule {}

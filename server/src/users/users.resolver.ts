@@ -83,4 +83,23 @@ export class UsersResolver {
     else await this.usersService.updateOne(id, { isBanned: true })
     return true
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Query(() => Boolean)
+  async isProductPaid(
+    @CurrentUser() { id: userId }: Pick<User, 'id'>,
+    @Args('productId') productId: string
+  ): Promise<Boolean> {
+    const orders = await this.ordersService.findByUserId(userId);
+    let isPaid = false;
+    orders.forEach(order => {
+      order.orderProducts.forEach(orderProduct => {
+        if (orderProduct.product.id === productId && orderProduct.paid > 0) {
+          isPaid = true;
+          return;
+        }
+      });
+    });
+    return isPaid
+  }
 }

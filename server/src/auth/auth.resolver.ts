@@ -18,6 +18,9 @@ import { JwtPayload } from './models/jwt-payload.model';
 import { Cart } from 'src/carts/models/cart.entity';
 import { Favorites } from 'src/favorites/models/favorites.entity';
 import { Compared } from 'src/compared/models/compared.entity';
+import { CartsService } from 'src/carts/carts.service';
+import { FavoritesService } from 'src/favorites/favorites.service';
+import { ComparedService } from 'src/compared/compared.service';
 
 @Resolver()
 export class AuthResolver {
@@ -26,6 +29,9 @@ export class AuthResolver {
     private usersService: UsersService,
     private rolesService: RolesService,
     private jwtService: JwtService,
+    private cartsService: CartsService,
+    private favoritesService: FavoritesService,
+    private comparedService: ComparedService,
   ) {}
 
   @Mutation(() => String)
@@ -36,9 +42,9 @@ export class AuthResolver {
       throw new ConflictException('User with this email already exists!');
     const passwordHash = await bcrypt.hashSync(password, 5);
     const user = new User();
-    user.cart = new Cart();
-    user.favorites = new Favorites();
-    user.compared = new Compared();
+    user.cart = await this.cartsService.create();
+    user.favorites = await this.favoritesService.create();
+    user.compared = await this.comparedService.create();
     user.email = email;
     user.passwordHash = passwordHash;
     const activationLink = uuidv4();

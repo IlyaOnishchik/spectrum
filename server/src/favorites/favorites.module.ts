@@ -7,6 +7,7 @@ import { ProductsModule } from 'src/products/products.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Favorites]), ProductsModule],
-  providers: [FavoritesService, FavoritesResolver]
+  providers: [FavoritesService, FavoritesResolver],
+  exports: [FavoritesService]
 })
 export class FavoritesModule {}

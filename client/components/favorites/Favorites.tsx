@@ -15,7 +15,7 @@ const Favorites = () => {
 
   return (
     <Section title='Favorites'>
-      {products.length ? products.map(item => <FavoritesItem key={item.id} product={item}/>) : <div>Your favorites empty.</div>}
+      {products.length ? products.map(item => <FavoritesItem key={item.id} product={item}/>) : <div>Your favorites empty</div>}
     </Section>
   )
 }

@@ -17,7 +17,7 @@ const Cart = () => {
     <Section title='Cart'>
       <div className='flex flex-col md:flex-row gap-5'>
         <div className='flex-auto flex flex-col order-2 gap-5'>
-          {cartProducts.length ? cartProducts.map(item => <CartItem key={item.id} cartProduct={item}/>) : <div>Your cart empty.</div>}
+          {cartProducts.length ? cartProducts.map(item => <CartItem key={item.id} cartProduct={item}/>) : <div>Your cart empty</div>}
         </div>
         <Payment cartProducts={cartProducts}/>
       </div>

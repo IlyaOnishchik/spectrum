@@ -12,6 +12,11 @@ const Actions = () => {
   const { isOpen: isSignUpOpen, onOpen: onSignUpOpen, onClose: onSignUpClose } = useDisclosure()
   const { signIn, signUp, signOut } = useAuth()
 
+  // const handleSignUp = (email: string, password: string) => {
+  //   signUp(email, password)
+  //   alert('egistration completed successfully. Activation link has been sent to your email')
+  // }
+
   return (
     <nav>
       <ul className='flex | gap-1'>

@@ -7,6 +7,9 @@ import { AuthResolver } from './auth.resolver';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { CartsModule } from 'src/carts/carts.module';
+import { FavoritesModule } from 'src/favorites/favorites.module';
+import { ComparedModule } from 'src/compared/compared.module';
 
 @Module({
   imports: [
@@ -19,6 +22,9 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     }),
     UsersModule,
     RolesModule,
+    CartsModule,
+    FavoritesModule,
+    ComparedModule
   ],
   providers: [AuthService, AuthResolver, JwtStrategy],
   controllers: [AuthController],

@@ -17,14 +17,18 @@ const Compared = () => {
 
   return (
     <Section title='Compared'>
-      <Tabs variant='soft-rounded' colorScheme='purple'>
-        <TabList>
-          {categories.map(item => <Tab key={item}>{item}</Tab>)}
-        </TabList>
-        <TabPanels>
-          {categories.map(item => <Content key={item} products={products.filter(product => product.category.name === item)}/>)}
-        </TabPanels>
-      </Tabs>
+      {products.length ? (
+        <Tabs variant='soft-rounded' colorScheme='purple'>
+          <TabList>
+            {categories.map(item => <Tab key={item}>{item}</Tab>)}
+          </TabList>
+          <TabPanels>
+            {categories.map(item => <Content key={item} products={products.filter(product => product.category.name === item)}/>)}
+          </TabPanels>
+        </Tabs>
+      ) : (
+        <div><div>Your comapred empty</div></div>
+      )}
     </Section>
   )
 }

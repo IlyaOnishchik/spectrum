@@ -1,6 +1,7 @@
 import { Alert, AlertIcon } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import React from 'react'
+import ActivationAlert from '../components/common/alerts/ActivationAlert'
 import Loading from '../components/common/Loading'
 import Orders from '../components/orders/Orders'
 import { useCurrentUser } from '../hooks/useCurrentUser'
@@ -13,7 +14,7 @@ const OrdersPage = () => {
   if (loading) return <Loading/>
   if (error) router.push('/')
   const user: User = data?.currentUser
-  if (!user.isActivated) return <Alert status='warning'><AlertIcon/>Seems your account is not activated</Alert>
+  if (!user.isActivated) return <ActivationAlert email={user.email}/>
 
   return <Orders/>
 }
